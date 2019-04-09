@@ -1,0 +1,1 @@
+Game.creeps['Harvester1'].suicide()
