@@ -12,7 +12,7 @@ module.exports.loop = function () {
     // console.log('Upgrader: ' + upgraders.length +' Harvester: '+harvesters.length);
 
     //We can also use StructureSpawn.renewCreep to maintain the needed number of creeps.
-    if(upgraders.length + harvesters.length < 10 && Game.spawns['shaxianxiaochi'].energy >200) {
+    if(upgraders.length + harvesters.length < 15 && Game.spawns['shaxianxiaochi'].energy >200) {
         var newName = 'Harvester' + Game.time;
         console.log('Spawning new harvester: ' + newName);
         Game.spawns['shaxianxiaochi'].spawnCreep([WORK,CARRY,MOVE], newName, 
