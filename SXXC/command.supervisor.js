@@ -15,16 +15,20 @@ var theSupervisor = {
         }
     },
 
-    keepWorking: function(){
-        for(var name in Game.creeps) {
+    urge: function () {
+        for (var name in Game.creeps) {
             var creep = Game.creeps[name];
             if (creep.memory.role == 'worker') {
                 roleWorker.run(creep);
             }
+            if (creep.memory.role == 'footman') {
+                militaryFootman.run(creep);
+            }
         }
     },
 
-    keepDefence: function (structureSpawn) {
+    keepDefence: function () {
+        var structureSpawn = Game.spawns['shaxianxiaochi'];
         var targets = structureSpawn.room.find(FIND_HOSTILE_CREEPS);
         if (targets.length > 0 && structureSpawn.energy >= militaryFootman.cost) {
             militaryFootman.spawnOne(structureSpawn);

@@ -26,4 +26,4 @@ var militaryFootman = {
     }
 };
 
-module.exports = roleWorker;
+module.exports = militaryFootman;
