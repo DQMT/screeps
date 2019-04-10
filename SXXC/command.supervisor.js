@@ -45,6 +45,7 @@ var theSupervisor = {
         if (targets.length > 0 && structureSpawn.energy >= militaryFootman.cost) {
             militaryFootman.spawnOne(structureSpawn);
             console.log('spwan a new footman from ' + structureSpawn);
+            console.log('targets left : ' + targets.length);
         }
     }
 
