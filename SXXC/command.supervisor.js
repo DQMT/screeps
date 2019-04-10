@@ -1,28 +1,20 @@
-var roleHarvester = require('role.harvester');
-var roleUpgrader = require('role.upgrader');
-var roleBuilder = require('role.builder');
+var roleWorker = require('role.worker');
 
 /**
  * The supervisor make sure every creep work correctly.
  */
 var theSupervisor = {
-    trans: function(creep,role) {
-        creep.memory.role = role;
-        creep.say('🔄 trans to '+role);
+    spawn:function(structureSpawn,role){
+        console.log('spwan a new '+role+' from '+structureSpawn);
+        if(role=='worker'){
+            roleWorker.spawnOne(structureSpawn);
+        }
     },
+   
     /** @param {Creep} creep **/
     urge: function(creep) {
-        if(creep.memory.role == 'harvester') {
-            if(roleHarvester.free(creep)==true){
-             this.trans(creep,'upgrader');
-            }
-            roleHarvester.run(creep);
-        }
-        if(creep.memory.role == 'upgrader') {
-            roleUpgrader.run(creep);
-        }
-        if(creep.memory.role == 'builder') {
-            roleBuilder.run(creep);
+        if(creep.memory.role == 'worker') {
+            roleWorker.run(creep);
         }
     }
 
