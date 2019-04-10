@@ -13,11 +13,11 @@ module.exports.loop = function () {
         upgraders: 3,
         builders: 2
     });
-    util.setLimits({
-        harvesters: 5,
-        upgraders: 5,
-        builders: 5
-    });
+    // util.setLimits({
+    //     harvesters: 5,
+    //     upgraders: 2,
+    //     builders: 2
+    // });
     supervisor.keepSpawning();
     supervisor.keepDefence();
     supervisor.urge();
