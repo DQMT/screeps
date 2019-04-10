@@ -4,7 +4,8 @@ var roleUpgrader = require('role.worker.upgrader');
 
 /**
  * A worker can be a harvester, a builder or a upgrader, depending on creep.memory.roleState
- * body part need: [WORK, CARRY, MOVE]
+ * body part need:           [WORK, CARRY, MOVE]
+ * energy cost:               200
  */
 
 var WORK_STATE = {
@@ -20,6 +21,7 @@ var WORK_PLAYER = {
 }
 
 var roleWorker = {
+    cost:200,
 
     /** @param {StructureSpawn} structureSpawn **/
     spawnOne: function (structureSpawn) {

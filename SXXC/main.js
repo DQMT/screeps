@@ -7,6 +7,7 @@ module.exports.loop = function () {
             console.log('Clearing non-existing creep memory:', name);
         }
     }
+    
     var workers = _.filter(Game.creeps, (creep) => creep.memory.role == 'worker');
     console.log('workers: ' + workers.length);
 
