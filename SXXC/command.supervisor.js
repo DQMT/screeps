@@ -1,6 +1,6 @@
 var roleWorker = require('role.worker');
 var militaryFootman = require('military.footman');
-
+var constants = require('constants');
 /**
  * The supervisor make sure every creep work correctly.
  */
@@ -11,28 +11,28 @@ var theSupervisor = {
     keepSpawning: function () {
         var structureSpawn = Game.spawns['shaxianxiaochi'];
         var workers = _.filter(Game.creeps, (creep) => creep.memory.role == 'worker');
-        var havesters = _.filter(workers, (creep) => creep.memory.roleState == roleWorker.state.HARVEST);
-        var upgraders = _.filter(workers, (creep) => creep.memory.roleState == roleWorker.state.UPGRADE);
-        var builders = _.filter(workers, (creep) => creep.memory.roleState == roleWorker.state.BUILD);
+        var havesters = _.filter(workers, (creep) => creep.memory.roleState == constants.WORKER_STATE.HARVEST);
+        var upgraders = _.filter(workers, (creep) => creep.memory.roleState == constants.WORKER_STATE.UPGRADE);
+        var builders = _.filter(workers, (creep) => creep.memory.roleState == constants.WORKER_STATE.BUILD);
 
         if (Game.time % 10 == 0) {
             console.log('workers: ' + workers.length +
                 '\nhavesters: ' + havesters.length +
                 '\nupgraders: ' + upgraders.length +
                 '\nbuilders: ' + builders.length);
-            console.log('limits: ' + Memory.limits);
+            console.log('limits: ' + JSON.stringify(Memory.limits));
         }
         //We can also use StructureSpawn.renewCreep to maintain the needed number of creeps.
         if (havesters.length < Memory.limits.havesters && structureSpawn.energy > roleWorker.cost) {
-            roleWorker.spawnOne(structureSpawn, roleWorker.state.HARVEST);
+            roleWorker.spawnOne(structureSpawn, constants.WORKER_STATE.HARVEST);
             console.log('spwan a new havester from ' + structureSpawn);
         }
         if (upgraders.length < Memory.limits.upgraders && structureSpawn.energy > roleWorker.cost) {
-            roleWorker.spawnOne(structureSpawn, roleWorker.state.UPGRADE);
+            roleWorker.spawnOne(structureSpawn, constants.WORKER_STATE.UPGRADE);
             console.log('spwan a new upgrader from ' + structureSpawn);
         }
         if (builders.length < Memory.limits.builders && structureSpawn.energy > roleWorker.cost) {
-            roleWorker.spawnOne(structureSpawn, roleWorker.state.BUILD);
+            roleWorker.spawnOne(structureSpawn, constants.WORKER_STATE.BUILD);
             console.log('spwan a new builder from ' + structureSpawn);
         }
     },

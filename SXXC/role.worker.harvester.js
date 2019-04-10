@@ -1,4 +1,5 @@
 var util = require('util');
+var constants = require('constants');
 /**
  * A harvester continously harvest energy and transfer energy to your structures
  * body part need: [WORK, CARRY, MOVE]
@@ -44,6 +45,7 @@ var roleHarvester = {
                 structure = targets[0];
             }else{
                 util.decreaseLimit('harvesters');
+                creep.memory.roleState == constants.WORK_STATE.UPGRADE;
             }
         }
 
