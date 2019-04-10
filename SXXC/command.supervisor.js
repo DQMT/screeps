@@ -36,13 +36,13 @@ var theSupervisor = {
             roleWorker.spawnOne(structureSpawn, constants.WORKER_STATE.BUILD);
             console.log('spwan a new builder from ' + structureSpawn);
         }
-        if(Memory.peace && (!structureSpawn.spawning) && harvesters.length>=Memory.limits['harvesters'] && structureSpawn.energy < structureSpawn.energyCapacity){
+        if (Memory.peace && (!structureSpawn.spawning) && harvesters.length < Memory.limits['upgraders'] && structureSpawn.energy < structureSpawn.energyCapacity) {
             util.increaseLimit('harvesters');
         }
-        if(upgraders.length > Memory.limits.upgraders + 4){
-            Memory.fullUpgraders=true;
-        }else{
-            Memory.fullUpgraders=false;
+        if (upgraders.length > Memory.limits.upgraders + 4) {
+            Memory.fullUpgraders = true;
+        } else {
+            Memory.fullUpgraders = false;
         }
     },
 
@@ -62,12 +62,12 @@ var theSupervisor = {
         var structureSpawn = Game.spawns['shaxianxiaochi'];
         var targets = structureSpawn.room.find(FIND_HOSTILE_CREEPS);
         if (targets.length > 0 && structureSpawn.energy >= militaryFootman.cost) {
-            Memory.peace=false;
+            Memory.peace = false;
             militaryFootman.spawnOne(structureSpawn);
             console.log('spwan a new footman from ' + structureSpawn);
             console.log('targets left : ' + targets.length);
-        }else{
-            Memory.peace=true;
+        } else {
+            Memory.peace = true;
         }
     }
 
