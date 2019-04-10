@@ -23,6 +23,9 @@ module.exports = {
             Memory.limits = limits
         }
     },
+    setLimits: function (limits) {
+        Memory.limits = limits;
+    },
     decreaseLimit(item) {
         var val = Memory.limits[item] - 1;
         Memory.limits[item] = val > 0 ? val : 1;
