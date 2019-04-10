@@ -4,6 +4,9 @@ var militaryFootman = require('military.footman');
 /**
  * The supervisor make sure every creep work correctly.
  */
+
+
+
 var theSupervisor = {
     keepSpawning: function () {
         var structureSpawn = Game.spawns['shaxianxiaochi'];
@@ -17,17 +20,18 @@ var theSupervisor = {
                 '\nhavesters: ' + havesters.length +
                 '\nupgraders: ' + upgraders.length +
                 '\nbuilders: ' + builders.length);
+            console.log('limits: ' + Memory.limits);
         }
         //We can also use StructureSpawn.renewCreep to maintain the needed number of creeps.
-        if (havesters.length < 5 && structureSpawn.energy > roleWorker.cost) {
+        if (havesters.length < Memory.limits.havesters && structureSpawn.energy > roleWorker.cost) {
             roleWorker.spawnOne(structureSpawn, roleWorker.state.HARVEST);
             console.log('spwan a new havester from ' + structureSpawn);
         }
-        if (upgraders.length < 3 && structureSpawn.energy > roleWorker.cost) {
+        if (upgraders.length < Memory.limits.upgraders && structureSpawn.energy > roleWorker.cost) {
             roleWorker.spawnOne(structureSpawn, roleWorker.state.UPGRADE);
             console.log('spwan a new upgrader from ' + structureSpawn);
         }
-        if (builders.length < 3 && structureSpawn.energy > roleWorker.cost) {
+        if (builders.length < Memory.limits.builders && structureSpawn.energy > roleWorker.cost) {
             roleWorker.spawnOne(structureSpawn, roleWorker.state.BUILD);
             console.log('spwan a new builder from ' + structureSpawn);
         }

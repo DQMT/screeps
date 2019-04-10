@@ -8,6 +8,25 @@
  */
 
 module.exports = {
+    init: function (param) {
+        if (!Memory.limits) {
+            var limits;
+            if (!param) {
+                limits = {
+                    harvesters: 2,
+                    upgraders: 1,
+                    builders: 1
+                }
+            } else {
+                limits = param;
+            }
+            Memory.limits = limits
+        }
+    },
+    decreaseLimit(item) {
+        var val = Memory.limits[item] - 1;
+        Memory.limits[item] = val > 0 ? val : 1;
+    },
     randomNum: function (minNum, maxNum) {
         switch (arguments.length) {
             case 1:

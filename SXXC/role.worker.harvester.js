@@ -42,6 +42,8 @@ var roleHarvester = {
             if (targets.length > 0) {
                 creep.memory.structure = targets[0].id;
                 structure = targets[0];
+            }else{
+                util.decreaseLimit('harvesters');
             }
         }
 

@@ -1,4 +1,5 @@
 var supervisor = require('command.supervisor');
+var util = require('util');
 
 module.exports.loop = function () {
     for(var name in Memory.creeps) {
@@ -7,6 +8,11 @@ module.exports.loop = function () {
             console.log('Clearing non-existing creep memory:', name);
         }
     }
+    util.init({
+        harvesters: 5,
+        upgraders: 3,
+        builders: 2
+    });
     supervisor.keepSpawning();
     supervisor.keepDefence();
     supervisor.urge();
