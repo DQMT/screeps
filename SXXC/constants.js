@@ -7,6 +7,5 @@ var WORK_STATE = {
 
 
 module.exports = {
-    WORKER_STATE:WORK_STATE,
-    WORK_PLAYER:WORK_PLAYER
+    WORKER_STATE:WORK_STATE
 };
