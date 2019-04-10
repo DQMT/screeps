@@ -25,7 +25,7 @@ var roleWorker = {
                 { memory: { role: 'worker', roleState: state } });
         } else {
             structureSpawn.spawnCreep([WORK, CARRY, MOVE], newName,
-                { memory: { role: 'worker', roleState: constants.WORK_STATE.HARVEST } });
+                { memory: { role: 'worker', roleState: constants.WORKER_STATE.HARVEST } });
         }
     },
 

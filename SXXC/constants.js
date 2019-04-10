@@ -1,4 +1,4 @@
-var WORK_STATE = {
+var WORKER_STATE = {
     HARVEST: 0,
     UPGRADE: 1,
     BUILD: 2,
@@ -7,5 +7,5 @@ var WORK_STATE = {
 
 
 module.exports = {
-    WORKER_STATE:WORK_STATE
+    WORKER_STATE:WORKER_STATE
 };
