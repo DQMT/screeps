@@ -1,17 +1,17 @@
 
 /**
  * A footman is the simplest military unit
- * body part need:           [TOUGH, ATTACK, MOVE]
- * energy cost:               140
+ * body part need:           [TOUGH, TOUGH, ATTACK, ATTACK, MOVE, MOVE]
+ * energy cost:              280
  */
 
 var militaryFootman = {
-    cost: 140,
+    cost: 280,
 
     /** @param {StructureSpawn} structureSpawn **/
     spawnOne: function (structureSpawn) {
         var newName = 'Footman_' + Game.time;
-        structureSpawn.spawnCreep([TOUGH, ATTACK, MOVE], newName,
+        structureSpawn.spawnCreep([TOUGH, TOUGH, ATTACK, ATTACK, MOVE, MOVE], newName,
             { memory: { role: 'footman' } });
     },
 

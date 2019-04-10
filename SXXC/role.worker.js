@@ -5,8 +5,8 @@ var constants = require('constants');
 
 /**
  * A worker can be a harvester, a builder or a upgrader, depending on creep.memory.roleState
- * body part need:           [WORK, CARRY, MOVE]
- * energy cost:               200
+ * body part need:           [WORK, WORK, CARRY, CARRY, MOVE, MOVE]
+ * energy cost:               400
  */
 var WORK_PLAYER = {
     0: roleHarvester,
@@ -15,16 +15,16 @@ var WORK_PLAYER = {
 }
 
 var roleWorker = {
-    cost: 200,
+    cost: 400,
 
     /** @param {StructureSpawn} structureSpawn **/
     spawnOne: function (structureSpawn, state) {
         var newName = 'Worker_' + Game.time;
         if (state) {
-            structureSpawn.spawnCreep([WORK, CARRY, MOVE], newName,
+            structureSpawn.spawnCreep([WORK, WORK, CARRY, CARRY, MOVE, MOVE], newName,
                 { memory: { role: 'worker', roleState: state } });
         } else {
-            structureSpawn.spawnCreep([WORK, CARRY, MOVE], newName,
+            structureSpawn.spawnCreep([WORK, WORK, CARRY, CARRY, MOVE, MOVE], newName,
                 { memory: { role: 'worker', roleState: constants.WORKER_STATE.HARVEST } });
         }
     },
