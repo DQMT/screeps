@@ -36,7 +36,7 @@ var theSupervisor = {
             roleWorker.spawnOne(structureSpawn, constants.WORKER_STATE.BUILD);
             console.log('spwan a new builder from ' + structureSpawn);
         }
-        if((!structureSpawn.spawning) && harvesters.length==Memory.limits['harvesters'] && structureSpawn.energy < structureSpawn.energyCapacity){
+        if((!structureSpawn.spawning) && harvesters.length>=Memory.limits['harvesters'] && structureSpawn.energy < structureSpawn.energyCapacity){
             util.increaseLimit('harvesters');
         }
         if(upgraders.length > Memory.limits.upgraders + 4){
