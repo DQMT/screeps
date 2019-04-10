@@ -12,15 +12,15 @@ var theSupervisor = {
         var builders = _.filter(workers, (creep) => creep.memory.roleState == roleWorker.state.BUILD);
         //console.log('workers: ' + workers.length);
         //We can also use StructureSpawn.renewCreep to maintain the needed number of creeps.
-        if (havesters.length < 15 && Game.spawns['shaxianxiaochi'].energy > roleWorker.cost) {
+        if (havesters.length < 10 && Game.spawns['shaxianxiaochi'].energy > roleWorker.cost) {
             roleWorker.spawnOne(Game.spawns['shaxianxiaochi'], roleWorker.state.HARVEST);
             console.log('spwan a new havester from ' + structureSpawn);
         }
-        if (upgraders.length < 10 && Game.spawns['shaxianxiaochi'].energy > roleWorker.cost) {
+        if (upgraders.length < 5 && Game.spawns['shaxianxiaochi'].energy > roleWorker.cost) {
             roleWorker.spawnOne(Game.spawns['shaxianxiaochi'], roleWorker.state.UPGRADE);
             console.log('spwan a new upgrader from ' + structureSpawn);
         }
-        if (builders.length < 5 && Game.spawns['shaxianxiaochi'].energy > roleWorker.cost) {
+        if (builders.length < 3 && Game.spawns['shaxianxiaochi'].energy > roleWorker.cost) {
             roleWorker.spawnOne(Game.spawns['shaxianxiaochi'], roleWorker.state.BUILD);
             console.log('spwan a new builder from ' + structureSpawn);
         }
