@@ -1,3 +1,4 @@
+var util = require('util');
 /**
  * A upgrader continously harvest energy and pump energy to your controller
  * body part need: [WORK, CARRY, MOVE]
@@ -18,8 +19,9 @@ var roleUpgrader = {
     run: function (creep) {
         if (creep.carry.energy == 0) {
             var sources = getEnergySources(creep);
-            if (creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(sources[0]);
+            var source = util.getHashedTarget(creep,sources);
+            if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(source);
             }
         }
         else {
