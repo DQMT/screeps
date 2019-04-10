@@ -27,6 +27,10 @@ module.exports = {
         var val = Memory.limits[item] - 1;
         Memory.limits[item] = val > 0 ? val : 1;
     },
+    increaseLimit(item) {
+        var val = Memory.limits[item] + 1;
+        Memory.limits[item] = val < 20 ? val : 20;
+    },
     randomNum: function (minNum, maxNum) {
         switch (arguments.length) {
             case 1:
