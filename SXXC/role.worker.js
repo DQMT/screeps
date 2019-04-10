@@ -15,19 +15,25 @@ var WORK_STATE = {
 }
 
 var WORK_PLAYER = {
-    0 : roleHarvester,
-    1 : roleUpgrader,
-    2 : roleBuilder
+    0: roleHarvester,
+    1: roleUpgrader,
+    2: roleBuilder
 }
 
 var roleWorker = {
-    cost:200,
+    state: WORK_STATE,
+    cost: 200,
 
     /** @param {StructureSpawn} structureSpawn **/
-    spawnOne: function (structureSpawn) {
+    spawnOne: function (structureSpawn, state) {
         var newName = 'Worker_' + Game.time;
-        structureSpawn.spawnCreep([WORK, CARRY, MOVE], newName,
-            { memory: { role: 'worker', roleState: WORK_STATE.HARVEST } });
+        if (state) {
+            structureSpawn.spawnCreep([WORK, CARRY, MOVE], newName,
+                { memory: { role: 'worker', roleState: state } });
+        } else {
+            structureSpawn.spawnCreep([WORK, CARRY, MOVE], newName,
+                { memory: { role: 'worker', roleState: WORK_STATE.HARVEST } });
+        }
     },
 
     /** @param {Creep} creep **/

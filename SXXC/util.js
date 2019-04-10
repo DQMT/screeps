@@ -39,7 +39,7 @@ module.exports = {
     },
 
     /** @param {Creep} creep **/
-    getHashedTarget: function (creep,targets) {
+    getHashedTarget: function (creep, targets) {
         var hash = this.getHashCode(creep.id);
         var index = (hash % targets.length);
         return targets[index];
