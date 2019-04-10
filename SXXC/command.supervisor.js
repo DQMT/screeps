@@ -11,7 +11,13 @@ var theSupervisor = {
         var havesters = _.filter(workers, (creep) => creep.memory.roleState == roleWorker.state.HARVEST);
         var upgraders = _.filter(workers, (creep) => creep.memory.roleState == roleWorker.state.UPGRADE);
         var builders = _.filter(workers, (creep) => creep.memory.roleState == roleWorker.state.BUILD);
-        //console.log('workers: ' + workers.length);
+
+        if (engine.time % 30 == 0) {
+            console.log('workers: ' + workers.length +
+                '\nhavesters: ' + havesters.length +
+                '\nupgraders: ' + upgraders.length +
+                '\nbuilders: ' + builders.length);
+        }
         //We can also use StructureSpawn.renewCreep to maintain the needed number of creeps.
         if (havesters.length < 10 && structureSpawn.energy > roleWorker.cost) {
             roleWorker.spawnOne(structureSpawn, roleWorker.state.HARVEST);
