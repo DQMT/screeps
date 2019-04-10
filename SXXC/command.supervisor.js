@@ -6,22 +6,23 @@ var militaryFootman = require('military.footman');
  */
 var theSupervisor = {
     keepSpawning: function () {
+        var structureSpawn = Game.spawns['shaxianxiaochi'];
         var workers = _.filter(Game.creeps, (creep) => creep.memory.role == 'worker');
         var havesters = _.filter(workers, (creep) => creep.memory.roleState == roleWorker.state.HARVEST);
         var upgraders = _.filter(workers, (creep) => creep.memory.roleState == roleWorker.state.UPGRADE);
         var builders = _.filter(workers, (creep) => creep.memory.roleState == roleWorker.state.BUILD);
         //console.log('workers: ' + workers.length);
         //We can also use StructureSpawn.renewCreep to maintain the needed number of creeps.
-        if (havesters.length < 10 && Game.spawns['shaxianxiaochi'].energy > roleWorker.cost) {
-            roleWorker.spawnOne(Game.spawns['shaxianxiaochi'], roleWorker.state.HARVEST);
+        if (havesters.length < 10 && structureSpawn.energy > roleWorker.cost) {
+            roleWorker.spawnOne(structureSpawn, roleWorker.state.HARVEST);
             console.log('spwan a new havester from ' + structureSpawn);
         }
-        if (upgraders.length < 5 && Game.spawns['shaxianxiaochi'].energy > roleWorker.cost) {
-            roleWorker.spawnOne(Game.spawns['shaxianxiaochi'], roleWorker.state.UPGRADE);
+        if (upgraders.length < 5 && structureSpawn.energy > roleWorker.cost) {
+            roleWorker.spawnOne(structureSpawn, roleWorker.state.UPGRADE);
             console.log('spwan a new upgrader from ' + structureSpawn);
         }
-        if (builders.length < 3 && Game.spawns['shaxianxiaochi'].energy > roleWorker.cost) {
-            roleWorker.spawnOne(Game.spawns['shaxianxiaochi'], roleWorker.state.BUILD);
+        if (builders.length < 3 && structureSpawn.energy > roleWorker.cost) {
+            roleWorker.spawnOne(structureSpawn, roleWorker.state.BUILD);
             console.log('spwan a new builder from ' + structureSpawn);
         }
     },
