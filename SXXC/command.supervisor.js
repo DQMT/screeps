@@ -12,7 +12,7 @@ var theSupervisor = {
         var upgraders = _.filter(workers, (creep) => creep.memory.roleState == roleWorker.state.UPGRADE);
         var builders = _.filter(workers, (creep) => creep.memory.roleState == roleWorker.state.BUILD);
 
-        if (engine.time % 30 == 0) {
+        if (Game.time % 10 == 0) {
             console.log('workers: ' + workers.length +
                 '\nhavesters: ' + havesters.length +
                 '\nupgraders: ' + upgraders.length +
