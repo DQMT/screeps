@@ -19,11 +19,11 @@ var theSupervisor = {
                 '\nbuilders: ' + builders.length);
         }
         //We can also use StructureSpawn.renewCreep to maintain the needed number of creeps.
-        if (havesters.length < 10 && structureSpawn.energy > roleWorker.cost) {
+        if (havesters.length < 5 && structureSpawn.energy > roleWorker.cost) {
             roleWorker.spawnOne(structureSpawn, roleWorker.state.HARVEST);
             console.log('spwan a new havester from ' + structureSpawn);
         }
-        if (upgraders.length < 5 && structureSpawn.energy > roleWorker.cost) {
+        if (upgraders.length < 3 && structureSpawn.energy > roleWorker.cost) {
             roleWorker.spawnOne(structureSpawn, roleWorker.state.UPGRADE);
             console.log('spwan a new upgrader from ' + structureSpawn);
         }
