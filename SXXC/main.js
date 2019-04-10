@@ -13,7 +13,7 @@ module.exports.loop = function () {
         upgraders: 3,
         builders: 2
     });
-    setLimits({
+    util.setLimits({
         harvesters: 5,
         upgraders: 5,
         builders: 5

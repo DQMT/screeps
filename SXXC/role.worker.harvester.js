@@ -35,6 +35,9 @@ var roleHarvester = {
         var source, structure;
         if (!creep.memory.source || (source = Game.getObjectById(creep.memory.source)) == null) {
             var target = util.getHashedTarget(creep, getEnergySources(creep));
+            if (!target) {
+                return;
+            }
             creep.memory.source = target.id;
             source = target;
         }
@@ -43,7 +46,7 @@ var roleHarvester = {
             if (targets.length > 0) {
                 creep.memory.structure = targets[0].id;
                 structure = targets[0];
-            }else{
+            } else {
                 util.decreaseLimit('harvesters');
                 creep.memory.roleState = constants.WORKER_STATE.UPGRADE;
                 creep.say('I am upgrader now!');

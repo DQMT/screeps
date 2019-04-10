@@ -13,9 +13,9 @@ module.exports = {
             var limits;
             if (!param) {
                 limits = {
-                    harvesters: 2,
-                    upgraders: 1,
-                    builders: 1
+                    harvesters: 3,
+                    upgraders: 3,
+                    builders: 3
                 }
             } else {
                 limits = param;
@@ -32,7 +32,7 @@ module.exports = {
     },
     increaseLimit(item) {
         var val = Memory.limits[item] + 1;
-        Memory.limits[item] = val < 20 ? val : 20;
+        Memory.limits[item] = val < 5 ? val : 5;
     },
     randomNum: function (minNum, maxNum) {
         switch (arguments.length) {
@@ -66,9 +66,13 @@ module.exports = {
 
     /** @param {Creep} creep **/
     getHashedTarget: function (creep, targets) {
-        var hash = this.getHashCode(creep.id);
-        var index = (hash % targets.length);
-        return targets[index];
+        if(creep && creep.id){
+            var hash = this.getHashCode(creep.id);
+            var index = (hash % targets.length);
+            return targets[index];
+        }
+        return null;
+       
     }
 
 };
