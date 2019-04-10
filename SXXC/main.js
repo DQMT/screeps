@@ -9,9 +9,9 @@ module.exports.loop = function () {
         }
     }
     util.init({
-        harvesters: 5,
+        harvesters: 3,
         upgraders: 3,
-        builders: 2
+        builders: 4
     });
     // util.setLimits({
     //     harvesters: 5,
