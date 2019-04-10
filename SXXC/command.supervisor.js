@@ -39,6 +39,11 @@ var theSupervisor = {
         if((!structureSpawn.spawning) && harvesters.length==Memory.limits['harvesters'] && structureSpawn.energy < structureSpawn.energyCapacity){
             util.increaseLimit('harvesters');
         }
+        if(upgraders.length > Memory.limits.upgraders + 4){
+            Memory.fullUpgraders=true;
+        }else{
+            Memory.fullUpgraders=false;
+        }
     },
 
     urge: function () {

@@ -48,8 +48,14 @@ var roleHarvester = {
                 structure = targets[0];
             } else {
                 util.decreaseLimit('harvesters');
-                creep.memory.roleState = constants.WORKER_STATE.UPGRADE;
-                creep.say('I am upgrader now!');
+                if(Memory.fullUpgraders){
+                    creep.say('I am dead now!');
+                    creep.suicide();
+                }else{
+                    creep.say('I am upgrader now!');
+                    creep.memory.roleState = constants.WORKER_STATE.UPGRADE;
+                }
+                
             }
         }
 
