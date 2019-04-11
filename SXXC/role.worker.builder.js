@@ -25,6 +25,16 @@ var roleBuilder = {
 				if (creep.build(target) == ERR_NOT_IN_RANGE) {
 					creep.moveTo(target, { visualizePathStyle: { stroke: '#ffffff' } });
 				}
+			}else{
+				console.log(creep.name+' cannot find a structure to build');
+                util.decreaseLimit('builders');
+                if(Memory.fullUpgraders){
+                    creep.say('I am dead now!');
+                    creep.suicide();
+                }else{
+                    creep.say('I am upgrader now!');
+                    creep.memory.roleState = constants.WORKER_STATE.UPGRADE;
+                }
 			}
 		}
 		else {

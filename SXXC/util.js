@@ -22,13 +22,23 @@ module.exports = {
             }
             Memory.limits = limits
         }
+        if (!Memory.sourceManage) {
+            console.log(JSON.stringify(Game.rooms));
+            Memory.sourceManage = {
+
+            }
+            Object.keys(Game.rooms).forEach(key=>{
+                // Memory.sourceManage
+            });
+            
+        }
     },
     setLimits: function (limits) {
         Memory.limits = limits;
     },
     decreaseLimit(item) {
         var val = Memory.limits[item] - 1;
-        Memory.limits[item] = val > 0 ? val : 1;
+        Memory.limits[item] = val > 0 ? val : 0;
     },
     increaseLimit(item) {
         var val = Memory.limits[item] + 1;
@@ -66,13 +76,13 @@ module.exports = {
 
     /** @param {Creep} creep **/
     getHashedTarget: function (creep, targets) {
-        if(creep && creep.id){
+        if (creep && creep.id) {
             var hash = this.getHashCode(creep.id);
             var index = (hash % targets.length);
             return targets[index];
         }
         return null;
-       
+
     }
 
 };

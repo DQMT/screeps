@@ -34,7 +34,9 @@ var theSupervisor = {
         if (Memory.peace && (!structureSpawn.spawning) && harvesters < Memory.limits['upgraders'] && totalSpawnEnergy < totalSpawnEnergyCapacity) {
             util.increaseLimit('harvesters');
         }
-
+        if(structureSpawn.room.find(FIND_CONSTRUCTION_SITES).length && Memory.peace && (!structureSpawn.spawning) && builders < Memory.limits['upgraders']){
+            util.increaseLimit('builders');
+        }
     },
 
     urge: function () {
