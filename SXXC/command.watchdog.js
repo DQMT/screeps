@@ -48,8 +48,8 @@ function watchSpawning(structureSpawn) {
         totalSpawnEnergy += extensions[i].energy;
         totalSpawnEnergyCapacity += extensions[i].energyCapacity;
     }
-    structureSpawn.memory[keys.TOTAL_SPAWN_ENERGY] = totalSpawnEnergy;
-    structureSpawn.memory[keys.TOTAL_SPAWN_ENERGY_CAPACITY] = totalSpawnEnergyCapacity;
+    structureSpawn.memory[this.keys.TOTAL_SPAWN_ENERGY] = totalSpawnEnergy;
+    structureSpawn.memory[this.keys.TOTAL_SPAWN_ENERGY_CAPACITY] = totalSpawnEnergyCapacity;
 }
 
 var theWatchdog = {
