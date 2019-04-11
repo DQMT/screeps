@@ -17,14 +17,14 @@ var WORK_PLAYER = {
 var roleWorker = {
     cost: function (structureSpawn) {
         var totalSpawnEnergyCapacity = structureSpawn.memory['totalSpawnEnergyCapacity'];
-        var cost = 200 * (totalSpawnEnergyCapacity / 200);
+        var cost = 200 * parseInt(totalSpawnEnergyCapacity / 200);
         return cost < 200 ? 200 : cost;
     },
 
     /** @param {StructureSpawn} structureSpawn **/
     spawnBiggestOne: function (structureSpawn, state) {
         var totalSpawnEnergyCapacity = structureSpawn.memory['totalSpawnEnergyCapacity'];
-        var level = totalSpawnEnergyCapacity / 200;
+        var level = parseInt(totalSpawnEnergyCapacity / 200);
         level = level > 1 ? level : 1;
         var body = [];
         for (var i = 0; i < level; i++) {

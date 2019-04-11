@@ -8,14 +8,14 @@
 var militaryFootman = {
     cost: function (structureSpawn) {
         var totalSpawnEnergyCapacity = structureSpawn.memory['totalSpawnEnergyCapacity'];
-        var cost = 140 * (totalSpawnEnergyCapacity / 140);
+        var cost = 140 * parseInt(totalSpawnEnergyCapacity / 140);
         return cost < 140 ? 140 : cost;
     },
 
     /** @param {StructureSpawn} structureSpawn **/
     spawnBiggestOne: function (structureSpawn) {
         var totalSpawnEnergyCapacity = structureSpawn.memory['totalSpawnEnergyCapacity'];
-        var level = totalSpawnEnergyCapacity / 140;
+        var level = parseInt(totalSpawnEnergyCapacity / 140);
         level = level > 1 ? level : 1;
         var body = [];
         for (var i = 0; i < level; i++) {
