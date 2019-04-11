@@ -9,9 +9,9 @@ var constants = require('constants');
  * energy cost(level 1):                  200
  */
 var WORK_PLAYER = {
-    0: roleHarvester,
-    1: roleUpgrader,
-    2: roleBuilder
+    'harvest': roleHarvester,
+    'upgrade': roleUpgrader,
+    'build': roleBuilder
 }
 
 var roleWorker = {
