@@ -41,10 +41,12 @@ module.exports = {
         Memory.limits = limits;
     },
     decreaseLimit(item) {
+        console.log('decreaseLimit : ' + item);
         var val = Memory.limits[item] - 1;
         Memory.limits[item] = val > 0 ? val : 0;
     },
     increaseLimit(item) {
+        console.log('increaseLimit : ' + item);
         var val = Memory.limits[item] + 1;
         Memory.limits[item] = val < 5 ? val : 5;
     },
