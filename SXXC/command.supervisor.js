@@ -15,8 +15,8 @@ var theSupervisor = {
         var harvesters = Memory.watch['harvesters'];
         var upgraders =Memory.watch['upgraders'];
         var builders = Memory.watch['builders'];
-        var totalSpawnEnergy = structureSpawn.memory[watchdog.keys[TOTAL_SPAWN_ENERGY]];
-        var totalSpawnEnergyCapacity = structureSpawn.memory[watchdog.keys[TOTAL_SPAWN_ENERGY_CAPACITY]];
+        var totalSpawnEnergy = structureSpawn.memory['totalSpawnEnergy'];
+        var totalSpawnEnergyCapacity = structureSpawn.memory['totalSpawnEnergyCapacity'];
 
         //We can also use StructureSpawn.renewCreep to maintain the needed number of creeps.
         if (harvesters.length < Memory.limits.harvesters && totalSpawnEnergy >= roleWorker.cost) {

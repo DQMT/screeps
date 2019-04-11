@@ -5,11 +5,6 @@ var constants = require('constants');
  * 
  */
 
-const keys = {
-    TOTAL_SPAWN_ENERGY: 'totalSpawnEnergy',
-    TOTAL_SPAWN_ENERGY_CAPACITY: 'totalSpawnEnergyCapacity'
-},
-
 function watchCreeps() {
     var workers = _.filter(Game.creeps, (creep) => creep.memory.role == 'worker');
     var harvesters = _.filter(workers, (creep) => creep.memory.roleState == constants.WORKER_STATE.HARVEST);
@@ -53,12 +48,12 @@ function watchSpawning(structureSpawn) {
         totalSpawnEnergy += extensions[i].energy;
         totalSpawnEnergyCapacity += extensions[i].energyCapacity;
     }
-    structureSpawn.memory[keys[TOTAL_SPAWN_ENERGY]] = totalSpawnEnergy;
-    structureSpawn.memory[keys[TOTAL_SPAWN_ENERGY_CAPACITY]] = totalSpawnEnergyCapacity;
+    structureSpawn.memory['totalSpawnEnergy'] = totalSpawnEnergy;
+    structureSpawn.memory['totalSpawnEnergyCapacity'] = totalSpawnEnergyCapacity;
 }
 
 var theWatchdog = {
-    keys: keys,
+    
     watch: function (structureSpawn) {
         watchCreeps();
         if (structureSpawn) {
