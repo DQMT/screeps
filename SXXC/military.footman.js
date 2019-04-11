@@ -20,8 +20,12 @@ var militaryFootman = {
         var body = [];
         for (var i = 0; i < level; i++) {
             body.push(TOUGH);
-            body.push(ATTACK);
+        }
+        for (var i = 0; i < level; i++) {
             body.push(MOVE);
+        }
+        for (var i = 0; i < level; i++) {
+            body.push(ATTACK);
         }
         var newName = 'Footman_' + Game.time;
         structureSpawn.spawnCreep([TOUGH, ATTACK, MOVE], newName,
