@@ -9,6 +9,17 @@
 
 module.exports = {
     init: function (param) {
+        var state = {
+            0: 'harvest',
+            1: 'upgrade',
+            1: 'build',
+        }
+        for(var name in Memory.creeps) {
+            if(Game.creeps[name]) {
+                Game.creeps[name].roleState=state[Game.creeps[name].roleState];
+            }
+        }
+
         if (!Memory.limits) {
             var limits;
             if (!param) {
