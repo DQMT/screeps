@@ -19,19 +19,19 @@ var theSupervisor = {
         var totalSpawnEnergyCapacity = structureSpawn.memory['totalSpawnEnergyCapacity'];
 
         //We can also use StructureSpawn.renewCreep to maintain the needed number of creeps.
-        if (harvesters.length < Memory.limits.harvesters && totalSpawnEnergy >= roleWorker.cost(structureSpawn)) {
+        if (harvesters < Memory.limits.harvesters && totalSpawnEnergy >= roleWorker.cost(structureSpawn)) {
             roleWorker.spawnBiggestOne(structureSpawn, constants.WORKER_STATE.HARVEST);
             console.log('spwan a new havester from ' + structureSpawn);
         }
-        if (Memory.peace && upgraders.length < Memory.limits.upgraders && totalSpawnEnergy >= roleWorker.cost(structureSpawn)) {
+        if (Memory.peace && upgraders < Memory.limits.upgraders && totalSpawnEnergy >= roleWorker.cost(structureSpawn)) {
             roleWorker.spawnBiggestOne(structureSpawn, constants.WORKER_STATE.UPGRADE);
             console.log('spwan a new upgrader from ' + structureSpawn);
         }
-        if (Memory.peace && builders.length < Memory.limits.builders && totalSpawnEnergy >= roleWorker.cost(structureSpawn)) {
+        if (Memory.peace && builders < Memory.limits.builders && totalSpawnEnergy >= roleWorker.cost(structureSpawn)) {
             roleWorker.spawnBiggestOne(structureSpawn, constants.WORKER_STATE.BUILD);
             console.log('spwan a new builder from ' + structureSpawn);
         }
-        if (Memory.peace && (!structureSpawn.spawning) && harvesters.length < Memory.limits['upgraders'] && totalSpawnEnergy < totalSpawnEnergyCapacity) {
+        if (Memory.peace && (!structureSpawn.spawning) && harvesters < Memory.limits['upgraders'] && totalSpawnEnergy < totalSpawnEnergyCapacity) {
             util.increaseLimit('harvesters');
         }
 
