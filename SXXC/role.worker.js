@@ -15,7 +15,32 @@ var WORK_PLAYER = {
 }
 
 var roleWorker = {
-    cost: 400,
+    cost: function () {
+        var totalSpawnEnergyCapacity = structureSpawn.memory['totalSpawnEnergyCapacity'];
+        var cost = 200 * (totalSpawnEnergyCapacity / 200);
+        return cost < 200 ? 200 : cost;
+    },
+
+    /** @param {StructureSpawn} structureSpawn **/
+    spawnBiggestOne: function (structureSpawn, state) {
+        var totalSpawnEnergyCapacity = structureSpawn.memory['totalSpawnEnergyCapacity'];
+        var level = totalSpawnEnergyCapacity / 200;
+        level = level > 1 ? level : 1;
+        var body = [];
+        for (var i = 0; i < level; i++) {
+            body.push(WORK);
+            body.push(CARRY);
+            body.push(MOVE);
+        }
+        var newName = 'Worker_' + Game.time;
+        if (state) {
+            structureSpawn.spawnCreep(body, newName,
+                { memory: { role: 'worker', roleState: state } });
+        } else {
+            structureSpawn.spawnCreep(body, newName,
+                { memory: { role: 'worker', roleState: constants.WORKER_STATE.HARVEST } });
+        }
+    },
 
     /** @param {StructureSpawn} structureSpawn **/
     spawnOne: function (structureSpawn, state) {
