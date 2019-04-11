@@ -65,12 +65,15 @@ function watchSpawning(structureSpawn) {
 var theWatchdog = {
 
     watch: function (structureSpawn) {
-        watchDefence(structureSpawn);
         watchCreeps();
         if (structureSpawn) {
+            watchDefence(structureSpawn);
             watchSpawning(structureSpawn);
         } else {
-            _.filter(Game.spawns, (spawn) => watchSpawning(spawn));
+            _.filter(Game.spawns, (spawn) => {
+                watchDefence(structureSpawn);
+                watchSpawning(spawn);
+            });
         }
     }
 };
