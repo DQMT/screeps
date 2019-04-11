@@ -1,4 +1,6 @@
 var util = require('util');
+var constants = require('constants');
+
 /**
  * A harvester continously harvest energy and transfer energy to your structures
  * body part need: [WORK, CARRY, MOVE]
