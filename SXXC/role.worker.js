@@ -15,7 +15,7 @@ var WORK_PLAYER = {
 }
 
 var roleWorker = {
-    cost: function () {
+    cost: function (structureSpawn) {
         var totalSpawnEnergyCapacity = structureSpawn.memory['totalSpawnEnergyCapacity'];
         var cost = 200 * (totalSpawnEnergyCapacity / 200);
         return cost < 200 ? 200 : cost;
