@@ -71,7 +71,7 @@ var theWatchdog = {
             watchSpawning(structureSpawn);
         } else {
             _.filter(Game.spawns, (spawn) => {
-                watchDefence(structureSpawn);
+                watchDefence(spawn);
                 watchSpawning(spawn);
             });
         }
