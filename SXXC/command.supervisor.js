@@ -35,7 +35,7 @@ var theSupervisor = {
             util.setLimit('harvesters', 4);
         }
         if (structureSpawn.room.find(FIND_CONSTRUCTION_SITES).length && Memory.peace && (!structureSpawn.spawning) && builders < Memory.limits['upgraders']) {
-            util.increaseLimit('builders');
+            util.setLimit('builders', 4);
         }
     },
 
