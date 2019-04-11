@@ -23,14 +23,18 @@ module.exports = {
             Memory.limits = limits
         }
         if (!Memory.sourceManage) {
-            console.log(JSON.stringify(Game.rooms));
             Memory.sourceManage = {
-
             }
             Object.keys(Game.rooms).forEach(key => {
-                // Memory.sourceManage
+                console.log(key);
+                var sources = Game.rooms[key].find(FIND_SOURCES);
+                var obj = {};
+                sources.forEach(source => {
+                    console.log('room = ' + key + ' source = ' + JSON.stringify(source));
+                    obj[source.id] = 0;
+                })
+                Memory.sourceManage[key] = obj;
             });
-
         }
     },
     setLimits: function (limits) {
@@ -83,6 +87,24 @@ module.exports = {
         }
         return null;
 
+    },
+    getMostFreeSourceId: function (creep) {
+        var sourceMap = Memory.sourceManage[creep.room.id];
+        var sourceId;
+        var min = 10000;
+        Object.keys(sourceMap).forEach(key => {
+            if (sourceMap[key] < min) {
+                sourceId = key;
+                min = sourceMap[key];
+            }
+        });
+        sourceMap[sourceId] = min + 1;
+        Memory.sourceManage[creep.room.id] = sourceMap;
+        return sourceId;
+    },
+
+    getMostFreeSource: function (creep) {
+        return Game.getObjectById(getMostFreeSourceId(creep));
     }
 
 };

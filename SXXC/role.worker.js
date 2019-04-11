@@ -2,6 +2,7 @@ var roleHarvester = require('role.worker.harvester');
 var roleBuilder = require('role.worker.builder');
 var roleUpgrader = require('role.worker.upgrader');
 var constants = require('constants');
+var util = require('util');
 
 /**
  * A worker can be a harvester, a builder or a upgrader, depending on creep.memory.roleState
@@ -33,12 +34,13 @@ var roleWorker = {
             body.push(MOVE);
         }
         var newName = 'Worker_' + Game.time;
+        var sourceId = util.getMostFreeSourceId;
         if (state) {
             structureSpawn.spawnCreep(body, newName,
-                { memory: { role: 'worker', roleState: state } });
+                { memory: { role: 'worker', roleState: state, sourceId: sourceId } });
         } else {
             structureSpawn.spawnCreep(body, newName,
-                { memory: { role: 'worker', roleState: constants.WORKER_STATE.HARVEST } });
+                { memory: { role: 'worker', roleState: constants.WORKER_STATE.HARVEST, sourceId: sourceId } });
         }
     },
 
