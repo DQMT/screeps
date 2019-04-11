@@ -16,7 +16,10 @@ module.exports = {
         }
         for(var name in Memory.creeps) {
             if(Game.creeps[name]) {
-                Game.creeps[name].roleState=state[Game.creeps[name].roleState];
+                var old = Game.creeps[name].roleState;
+                var newState = state[old];
+                console.log('old = '+old+ ' new ='+newState);
+                Game.creeps[name].state=newState;
             }
         }
 
