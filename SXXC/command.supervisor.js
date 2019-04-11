@@ -31,10 +31,10 @@ var theSupervisor = {
             roleWorker.spawnBiggestOne(structureSpawn, constants.WORKER_STATE.BUILD);
             console.log('spwan a new builder from ' + structureSpawn);
         }
-        if (Memory.peace && (!structureSpawn.spawning) && harvesters < Memory.limits['upgraders'] && totalSpawnEnergy < totalSpawnEnergyCapacity) {
-            util.increaseLimit('harvesters');
+        if (Memory.peace && (!structureSpawn.spawning) && Memory.limits['harvesters'] < Memory.limits['upgraders'] && totalSpawnEnergy < totalSpawnEnergyCapacity) {
+            util.setLimit('harvesters', 4);
         }
-        if(structureSpawn.room.find(FIND_CONSTRUCTION_SITES).length && Memory.peace && (!structureSpawn.spawning) && builders < Memory.limits['upgraders']){
+        if (structureSpawn.room.find(FIND_CONSTRUCTION_SITES).length && Memory.peace && (!structureSpawn.spawning) && builders < Memory.limits['upgraders']) {
             util.increaseLimit('builders');
         }
     },
