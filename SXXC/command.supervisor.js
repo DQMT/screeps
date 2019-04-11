@@ -13,7 +13,7 @@ var theSupervisor = {
     keepSpawning: function () {
         var structureSpawn = Game.spawns['shaxianxiaochi'];
         var harvesters = Memory.watch['harvesters'];
-        var upgraders =Memory.watch['upgraders'];
+        var upgraders = Memory.watch['upgraders'];
         var builders = Memory.watch['builders'];
         var totalSpawnEnergy = structureSpawn.memory['totalSpawnEnergy'];
         var totalSpawnEnergyCapacity = structureSpawn.memory['totalSpawnEnergyCapacity'];
@@ -34,7 +34,7 @@ var theSupervisor = {
         if (Memory.peace && (!structureSpawn.spawning) && harvesters.length < Memory.limits['upgraders'] && totalSpawnEnergy < totalSpawnEnergyCapacity) {
             util.increaseLimit('harvesters');
         }
-      
+
     },
 
     urge: function () {
@@ -50,18 +50,12 @@ var theSupervisor = {
     },
 
     keepDefence: function () {
-        var structureSpawn = Game.spawns['shaxianxiaochi'];
-        var targets = structureSpawn.room.find(FIND_HOSTILE_CREEPS);
-        if (targets.length > 0 ) {
-            Memory.peace = false;
-            var totalSpawnEnergy = structureSpawn.memory[watchdog.keys.TOTAL_SPAWN_ENERGY];
-            if( totalSpawnEnergy >= roleWorker.cost){
-                militaryFootman.spawnOne(structureSpawn);
+        if (Memory.peace == false) {
+            var totalSpawnEnergy = structureSpawn.memory['totalSpawnEnergy'];
+            if (totalSpawnEnergy >= militaryFootman.cost(structureSpawn)) {
+                militaryFootman.spawnBiggestOne(structureSpawn);
                 console.log('spwan a new footman from ' + structureSpawn);
             }
-            console.warn('targets left : ' + targets.length);
-        } else {
-            Memory.peace = true;
         }
     }
 

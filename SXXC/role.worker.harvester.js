@@ -47,7 +47,7 @@ var roleHarvester = {
                 creep.memory.structure = targets[0].id;
                 structure = targets[0];
             } else {
-                console.warn(creep.name+' cannot find a structure to transfer');
+                console.log(creep.name+' cannot find a structure to transfer');
                 util.decreaseLimit('harvesters');
                 if(Memory.fullUpgraders){
                     creep.say('I am dead now!');

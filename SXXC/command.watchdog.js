@@ -5,6 +5,16 @@ var constants = require('constants');
  * 
  */
 
+function watchDefence(structureSpawn) {
+    var targets = structureSpawn.room.find(FIND_HOSTILE_CREEPS);
+    if (targets.length > 0) {
+        Memory.peace = false;
+        console.log('hostile targets found : ' + targets.length);
+    } else {
+        Memory.peace = true;
+    }
+}
+
 function watchCreeps() {
     var workers = _.filter(Game.creeps, (creep) => creep.memory.role == 'worker');
     var harvesters = _.filter(workers, (creep) => creep.memory.roleState == constants.WORKER_STATE.HARVEST);
@@ -53,8 +63,9 @@ function watchSpawning(structureSpawn) {
 }
 
 var theWatchdog = {
-    
+
     watch: function (structureSpawn) {
+        watchDefence(structureSpawn);
         watchCreeps();
         if (structureSpawn) {
             watchSpawning(structureSpawn);
