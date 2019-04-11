@@ -9,20 +9,6 @@
 
 module.exports = {
     init: function (param) {
-        var state = {
-            0: 'harvest',
-            1: 'upgrade',
-            1: 'build',
-        }
-        for(var name in Memory.creeps) {
-            if(Game.creeps[name]) {
-                var old = Game.creeps[name].roleState;
-                var newState = state[old];
-                console.log('old = '+old+ ' new ='+newState);
-                Game.creeps[name].state=newState;
-            }
-        }
-
         if (!Memory.limits) {
             var limits;
             if (!param) {
@@ -41,10 +27,10 @@ module.exports = {
             Memory.sourceManage = {
 
             }
-            Object.keys(Game.rooms).forEach(key=>{
+            Object.keys(Game.rooms).forEach(key => {
                 // Memory.sourceManage
             });
-            
+
         }
     },
     setLimits: function (limits) {
