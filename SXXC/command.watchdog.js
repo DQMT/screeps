@@ -37,7 +37,7 @@ function watchCreeps() {
 }
 
 function watchSpawning(structureSpawn) {
-    var totalSpawnEnergy = structureSpawn.engrgy;
+    var totalSpawnEnergy = structureSpawn.energy;
     var totalSpawnEnergyCapacity = structureSpawn.energyCapacity;
     var extensions = structureSpawn.room.find(FIND_STRUCTURES, {
         filter: (structure) => {
