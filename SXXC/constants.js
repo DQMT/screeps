@@ -1,7 +1,7 @@
 var WORKER_STATE = {
-    HARVEST: 'harvest',
-    UPGRADE: 'upgrade',
-    BUILD: 'build',
+    HARVEST: 0,
+    UPGRADE: 1,
+    BUILD: 2,
 }
 
 
