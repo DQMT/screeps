@@ -22,7 +22,13 @@ var theSupervisor = {
         if (harvesters < Memory.limits.harvesters && totalSpawnEnergy >= roleWorker.cost(structureSpawn)) {
             roleWorker.spawnBiggestOne(structureSpawn, constants.WORKER_STATE.HARVEST);
             console.log('spwan a new havester from ' + structureSpawn);
+            return;
         }
+        if (Memory.peace && (!structureSpawn.spawning) && Memory.limits['harvesters'] < Memory.limits['upgraders'] && totalSpawnEnergy < totalSpawnEnergyCapacity) {
+            util.setLimit('harvesters', 4);
+            return;
+        }
+        
         if (Memory.peace && upgraders < Memory.limits.upgraders && totalSpawnEnergy >= roleWorker.cost(structureSpawn)) {
             roleWorker.spawnBiggestOne(structureSpawn, constants.WORKER_STATE.UPGRADE);
             console.log('spwan a new upgrader from ' + structureSpawn);
@@ -31,9 +37,7 @@ var theSupervisor = {
             roleWorker.spawnBiggestOne(structureSpawn, constants.WORKER_STATE.BUILD);
             console.log('spwan a new builder from ' + structureSpawn);
         }
-        if (Memory.peace && (!structureSpawn.spawning) && Memory.limits['harvesters'] < Memory.limits['upgraders'] && totalSpawnEnergy < totalSpawnEnergyCapacity) {
-            util.setLimit('harvesters', 4);
-        }
+       
         if (
             Memory.limits['builders'] < Memory.limits['upgraders']
             &&
