@@ -17,7 +17,9 @@ function watchCreeps() {
     } else {
         Memory.fullUpgraders = false;
     }
-
+    if (!Memory.watch) {
+        Memory.watch = {};
+    }
     Memory.watch['workers'] = workers;
     Memory.watch['harvesters'] = harvesters;
     Memory.watch['upgraders'] = upgraders;
@@ -58,8 +60,11 @@ var theWatchdog = {
 
     watch: function (structureSpawn) {
         watchCreeps();
-        watchSpawning(structureSpawn);
-
+        if (structureSpawn) {
+            watchSpawning(structureSpawn);
+        } else {
+            _.filter(Game.spawns, (spawn) => watchSpawning(spawn));
+        }
     }
 };
 
