@@ -36,6 +36,7 @@ var roleHarvester = {
         if (!creep.memory.source || (source = Game.getObjectById(creep.memory.source)) == null) {
             var target = util.getHashedTarget(creep, getEnergySources(creep));
             if (!target) {
+                console.log(creep.name+' cannot find a source');
                 return;
             }
             creep.memory.source = target.id;

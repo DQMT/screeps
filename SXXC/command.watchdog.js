@@ -16,11 +16,11 @@ function watchDefence(structureSpawn) {
 }
 
 function watchCreeps() {
-    var workers = _.filter(Game.creeps, (creep) => creep.memory.role == 'worker');
+    var workers = _.filter(Memory.creeps, (creep) => creep.memory.role == 'worker');
     var harvesters = _.filter(workers, (creep) => creep.memory.roleState == constants.WORKER_STATE.HARVEST);
     var upgraders = _.filter(workers, (creep) => creep.memory.roleState == constants.WORKER_STATE.UPGRADE);
     var builders = _.filter(workers, (creep) => creep.memory.roleState == constants.WORKER_STATE.BUILD);
-    var footmen = _.filter(Game.creeps, (creep) => creep.memory.role == 'footman');
+    var footmen = _.filter(Memory.creeps, (creep) => creep.memory.role == 'footman');
 
     if (upgraders.length > Memory.limits['upgraders'] + 2) {
         Memory.fullUpgraders = true;
