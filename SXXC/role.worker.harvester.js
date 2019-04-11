@@ -72,6 +72,7 @@ var roleHarvester = {
                     return;
                 }
                 if (creep.transfer(structure, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                    //  console.log('harvester ' + creep.id+ ' move to'+ JSON.stringify(structure.id));
                     creep.moveTo(structure, { visualizePathStyle: { stroke: '#ffffff' } });
                 }
             }
