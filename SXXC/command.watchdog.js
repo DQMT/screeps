@@ -44,10 +44,10 @@ function watchSpawning(structureSpawn) {
             return structure.structureType == STRUCTURE_EXTENSION;
         }
     })
-    extensions.array.forEach(element => {
-        totalSpawnEnergy += element.energy;
-        totalSpawnEnergyCapacity += element.energyCapacity;
-    });
+    for (var i = 0; i < extensions.length; i++) {
+        totalSpawnEnergy += extensions[i].energy;
+        totalSpawnEnergyCapacity += extensions[i].energyCapacity;
+    }
     structureSpawn.memory[keys.TOTAL_SPAWN_ENERGY] = totalSpawnEnergy;
     structureSpawn.memory[keys.TOTAL_SPAWN_ENERGY_CAPACITY] = totalSpawnEnergyCapacity;
 }
