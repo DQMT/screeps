@@ -2,6 +2,7 @@ var roleWorker = require('role.worker');
 var militaryFootman = require('military.footman');
 var constants = require('constants');
 var util = require('util');
+var watchdog = require('command.watchdog');
 /**
  * The supervisor make sure every creep work correctly.
  */
@@ -11,39 +12,29 @@ var util = require('util');
 var theSupervisor = {
     keepSpawning: function () {
         var structureSpawn = Game.spawns['shaxianxiaochi'];
-        var workers = _.filter(Game.creeps, (creep) => creep.memory.role == 'worker');
-        var harvesters = _.filter(workers, (creep) => creep.memory.roleState == constants.WORKER_STATE.HARVEST);
-        var upgraders = _.filter(workers, (creep) => creep.memory.roleState == constants.WORKER_STATE.UPGRADE);
-        var builders = _.filter(workers, (creep) => creep.memory.roleState == constants.WORKER_STATE.BUILD);
+        var harvesters = Memory.watch['harvesters'];
+        var upgraders =Memory.watch['upgraders'];
+        var builders = Memory.watch['builders'];
+        var totalSpawnEnergy = structureSpawn.memory[watchdog.keys.TOTAL_SPAWN_ENERGY];
+        var totalSpawnEnergyCapacity = structureSpawn.memory[watchdog.keys.TOTAL_SPAWN_ENERGY_CAPACITY];
 
-        if (Game.time % 10 == 0) {
-            console.log('workers: ' + workers.length +
-                '\nharvesters: ' + harvesters.length +
-                '\nupgraders: ' + upgraders.length +
-                '\nbuilders: ' + builders.length);
-            console.log('limits: ' + JSON.stringify(Memory.limits));
-        }
         //We can also use StructureSpawn.renewCreep to maintain the needed number of creeps.
-        if (harvesters.length < Memory.limits.harvesters ) {
+        if (harvesters.length < Memory.limits.harvesters && totalSpawnEnergy >= roleWorker.cost) {
             roleWorker.spawnOne(structureSpawn, constants.WORKER_STATE.HARVEST);
             console.log('spwan a new havester from ' + structureSpawn);
         }
-        if (Memory.peace && upgraders.length < Memory.limits.upgraders ) {
+        if (Memory.peace && upgraders.length < Memory.limits.upgraders && totalSpawnEnergy >= roleWorker.cost) {
             roleWorker.spawnOne(structureSpawn, constants.WORKER_STATE.UPGRADE);
             console.log('spwan a new upgrader from ' + structureSpawn);
         }
-        if (Memory.peace && builders.length < Memory.limits.builders ) {
+        if (Memory.peace && builders.length < Memory.limits.builders && totalSpawnEnergy >= roleWorker.cost) {
             roleWorker.spawnOne(structureSpawn, constants.WORKER_STATE.BUILD);
             console.log('spwan a new builder from ' + structureSpawn);
         }
-        if (Memory.peace && (!structureSpawn.spawning) && harvesters.length < Memory.limits['upgraders'] && structureSpawn.energy < structureSpawn.energyCapacity) {
+        if (Memory.peace && (!structureSpawn.spawning) && harvesters.length < Memory.limits['upgraders'] && totalSpawnEnergy < totalSpawnEnergyCapacity) {
             util.increaseLimit('harvesters');
         }
-        if (upgraders.length > Memory.limits.upgraders + 4) {
-            Memory.fullUpgraders = true;
-        } else {
-            Memory.fullUpgraders = false;
-        }
+      
     },
 
     urge: function () {
@@ -63,9 +54,12 @@ var theSupervisor = {
         var targets = structureSpawn.room.find(FIND_HOSTILE_CREEPS);
         if (targets.length > 0 ) {
             Memory.peace = false;
-            militaryFootman.spawnOne(structureSpawn);
-            console.log('spwan a new footman from ' + structureSpawn);
-            console.log('targets left : ' + targets.length);
+            var totalSpawnEnergy = structureSpawn.memory[watchdog.keys.TOTAL_SPAWN_ENERGY];
+            if( totalSpawnEnergy >= roleWorker.cost){
+                militaryFootman.spawnOne(structureSpawn);
+                console.log('spwan a new footman from ' + structureSpawn);
+            }
+            console.warn('targets left : ' + targets.length);
         } else {
             Memory.peace = true;
         }

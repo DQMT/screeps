@@ -1,4 +1,5 @@
 var supervisor = require('command.supervisor');
+var watchdog = require('command.watchdog');
 var util = require('util');
 
 module.exports.loop = function () {
@@ -18,6 +19,7 @@ module.exports.loop = function () {
     //     upgraders: 2,
     //     builders: 2
     // });
+    watchdog.watch();
     supervisor.keepSpawning();
     supervisor.keepDefence();
     supervisor.urge();
