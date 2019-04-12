@@ -65,3 +65,4 @@ var roleLorry = {
     },
 
 }
+module.exports = roleLorry;
