@@ -24,3 +24,5 @@ Game.spawns['shaxianxiaochi'].spawnCreep( [ATTACK, ATTACK, MOVE,MOVE,MOVE,MOVE],
      if (creep.attack(closestHostile) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(closestHostile, { visualizePathStyle: { stroke: '#ffaaff' } });
             }
+
+Game.spawns['shaxianxiaochi'].spawnCreep( [ATTACK, ATTACK, MOVE,MOVE,MOVE,MOVE], 'dadi' ,{ memory: { role: 'attacker' } } );

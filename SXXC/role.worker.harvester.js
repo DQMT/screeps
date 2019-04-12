@@ -10,6 +10,13 @@ function getEnergySources(creep) {
             return source.energy > 0;
         }
     });
+    if (!targets || targets.length == 0) {
+        targets = Game.rooms['W4S37'].find(FIND_SOURCES, {
+            filter: (source) => {
+                return source.energy > 0;
+            }
+        });
+    }
     return targets;
 }
 
@@ -33,12 +40,12 @@ var roleHarvester = {
     /** @param {Creep} creep **/
     run: function (creep) {
         if (creep.memory.transfering && creep.carry.energy == 0) {
-			creep.memory.transfering = false;
-			creep.say('harvest');
-		}
-		if (!creep.memory.transfering && creep.carry.energy == creep.carryCapacity) {
-			creep.memory.transfering = true;
-			creep.say('transfer');
+            creep.memory.transfering = false;
+            creep.say('harvest');
+        }
+        if (!creep.memory.transfering && creep.carry.energy == creep.carryCapacity) {
+            creep.memory.transfering = true;
+            creep.say('transfer');
         }
         if (creep.memory.transfering) {//transfer
             var structure;
@@ -48,14 +55,14 @@ var roleHarvester = {
                     creep.memory.structure = targets[0].id;
                     structure = targets[0];
                 } else {
-                    console.log(creep.name+' cannot find a structure to transfer');
+                    console.log(creep.name + ' cannot find a structure to transfer');
                     util.increaseFreeTicks(creep);
-                    if(util.isFree(creep)){
+                    if (util.isFree(creep)) {
                         util.decreaseLimitTo1('harvesters');
-                        if(Memory.fullUpgraders){
+                        if (Memory.fullUpgraders) {
                             creep.say('I am dead now!');
                             creep.suicide();
-                        }else{
+                        } else {
                             creep.say('I am upgrader now!');
                             creep.memory.roleState = constants.WORKER_STATE.UPGRADE;
                         }
@@ -73,12 +80,12 @@ var roleHarvester = {
                     creep.moveTo(structure, { visualizePathStyle: { stroke: constants.STROKE_COLOR.TRANSFER } });
                 }
             }
-        }else{//harvest
+        } else {//harvest
             var source;
             if (!creep.memory.source || (source = Game.getObjectById(creep.memory.source)) == null) {
                 var target = util.getHashedTarget(creep, getEnergySources(creep));
                 if (!target) {
-                    console.log(creep.name+' cannot find a source');
+                    console.log(creep.name + ' cannot find a source');
                     return;
                 }
                 creep.memory.source = target.id;

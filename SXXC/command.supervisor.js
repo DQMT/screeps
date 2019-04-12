@@ -10,12 +10,21 @@ var util = require('util');
 var theSupervisor = {
     keepSpawning: function () {
         var structureSpawn = Game.spawns['shaxianxiaochi'];
+        if (Game.time % 30 == 0) {
+            var claimers = _.filter(Game.creeps, (creep) => creep.memory.role == 'claimer');
+            if (claimers) {
+                for (var i = 0; i < claimers.length; i++) {
+                    structureSpawn.renewCreep(claimers[i]);
+                }
+            }
+        }
         var harvesters = Memory.watch['harvesters'];
         var upgraders = Memory.watch['upgraders'];
         var builders = Memory.watch['builders'];
         var lorries = Memory.watch['lorries'];
         var totalSpawnEnergy = structureSpawn.memory['totalSpawnEnergy'];
         var totalSpawnEnergyCapacity = structureSpawn.memory['totalSpawnEnergyCapacity'];
+
 
         //We can also use StructureSpawn.renewCreep to maintain the needed number of creeps.
         if (harvesters < Memory.limits.harvesters && totalSpawnEnergy >= roleWorker.cost(structureSpawn)) {
