@@ -13,9 +13,14 @@ var roleClaimer = {
     /** @param {Creep} creep */
     run: function (creep) {
         var target = Game.rooms['W4S37'].controller;
-        if (creep.reserveController(target) == ERR_NOT_IN_RANGE) {
-            creep.moveTo(target, { visualizePathStyle: { stroke: '#ffffff' } });
+        if (target) {
+            if (creep.reserveController(target) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(target, { visualizePathStyle: { stroke: '#ffffff' } });
+            }
+        } else {
+            creep.moveTo(49, 23);
         }
+
     },
     /** @param {StructureSpawn} structureSpawn **/
     spawnOne: function (structureSpawn) {
