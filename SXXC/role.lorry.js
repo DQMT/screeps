@@ -12,11 +12,13 @@ var roleLorry = {
     },
     /** @param {Creep} creep */
     run: function (creep) {
-        if (creep.memory.working == true && creep.carry.energy == 0) {
+        if (creep.memory.working && creep.carry.energy == 0) {
             creep.memory.working = false;
+            creep.say('DI DI DI!');
         }
-        else if (creep.memory.working == false && creep.carry.energy == creep.carryCapacity) {
+        else if (!creep.memory.working && creep.carry.energy == creep.carryCapacity) {
             creep.memory.working = true;
+            creep.say('DU DU DU!');
         }
 
         if (creep.memory.working == true) {
