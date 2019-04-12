@@ -24,6 +24,7 @@ var roleBuilder = {
 			if (targets.length) {
 				var target = targets[0];
 				// var target = util.getHashedTarget(creep,targets);
+				util.resetFreeTicks(creep);
 				if (creep.build(target) == ERR_NOT_IN_RANGE) {
 					creep.moveTo(target, { visualizePathStyle: { stroke: constants.STROKE_COLOR.BUILD } });
 				}
@@ -33,18 +34,22 @@ var roleBuilder = {
 				});
 				targets.sort((a, b) => a.hits - b.hits);
 				if (targets.length > 0) {
+					util.resetFreeTicks(creep);
 					if (creep.repair(targets[0]) == ERR_NOT_IN_RANGE) {
 						creep.moveTo(targets[0], { visualizePathStyle: { stroke: constants.STROKE_COLOR.REPAIR } });
 					}
 				} else {
 					console.log(creep.name + ' cannot find a structure to build or repair');
-					util.decreaseLimit('builders');
-					if (Memory.fullUpgraders) {
-						creep.say('I am dead now!');
-						creep.suicide();
-					} else {
-						creep.say('I am upgrader now!');
-						creep.memory.roleState = constants.WORKER_STATE.UPGRADE;
+					util.increaseFreeTicks(creep);
+					if (util.isFree(creep, 5)) {
+						util.decreaseLimit('builders');
+						if (Memory.fullUpgraders) {
+							creep.say('I am dead now!');
+							creep.suicide();
+						} else {
+							creep.say('I am upgrader now!');
+							creep.memory.roleState = constants.WORKER_STATE.UPGRADE;
+						}
 					}
 				}
 			}
@@ -52,6 +57,7 @@ var roleBuilder = {
 		else {
 			var sources = creep.room.find(FIND_SOURCES);
 			var source = util.getHashedTarget(creep, sources);
+			util.resetFreeTicks(creep);
 			if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
 				creep.moveTo(source, { visualizePathStyle: { stroke: constants.STROKE_COLOR.HARVEST } });
 			}

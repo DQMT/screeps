@@ -130,8 +130,11 @@ module.exports = {
         creep.memory.freeTicks = 0;
     },
 
-    isFree: function (creep) {
-        return creep.memory.freeTicks > 10;
+    isFree: function (creep, tolerance) {
+        if (!tolerance) {
+            tolerance = 10;
+        }
+        return creep.memory.freeTicks > tolerance;
     }
 
 };
