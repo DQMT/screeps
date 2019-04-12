@@ -23,8 +23,8 @@ var theSupervisor = {
             console.log('spwan a new havester from ' + structureSpawn);
             return;
         }
-        if (Memory.peace && (!structureSpawn.spawning) && Memory.limits['harvesters'] < Memory.limits['upgraders'] && totalSpawnEnergy < totalSpawnEnergyCapacity) {
-            util.setLimit('harvesters', 6);
+        if (Memory.peace && (!structureSpawn.spawning) && Memory.limits['harvesters'] < 4 && totalSpawnEnergy < totalSpawnEnergyCapacity) {
+            util.setLimit('harvesters', 4);
             return;
         }
 
@@ -40,7 +40,7 @@ var theSupervisor = {
             roleLorry.spawnOne(structureSpawn);
             console.log('spwan a new lorry from ' + structureSpawn);
         }
-        
+
         if (
             Memory.limits['builders'] < Memory.limits['upgraders']
             &&
