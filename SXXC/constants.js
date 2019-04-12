@@ -8,6 +8,7 @@ var STROKE_COLOR = {
     HARVEST:'#FFFFFF',
     TRANSFER:'#CDCD00',
     BUILD:'#1874CD',
+    REPAIR:'#1874CD',
     UPGRADE:'#4B0082',
     ATTACK:'#CD0000'
 }

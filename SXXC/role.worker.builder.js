@@ -25,7 +25,7 @@ var roleBuilder = {
 				var target = targets[0];
 				// var target = util.getHashedTarget(creep,targets);
 				if (creep.build(target) == ERR_NOT_IN_RANGE) {
-					creep.moveTo(target, { visualizePathStyle: { stroke: '#ffffff' } });
+					creep.moveTo(target, { visualizePathStyle: { stroke: constants.STROKE_COLOR.BUILD } });
 				}
 			} else {
 				targets = creep.room.find(FIND_STRUCTURES, {
@@ -34,7 +34,7 @@ var roleBuilder = {
 				targets.sort((a, b) => a.hits - b.hits);
 				if (targets.length > 0) {
 					if (creep.repair(targets[0]) == ERR_NOT_IN_RANGE) {
-						creep.moveTo(targets[0], { visualizePathStyle: { stroke: '#ffffff' } });
+						creep.moveTo(targets[0], { visualizePathStyle: { stroke: constants.STROKE_COLOR.REPAIR } });
 					}
 				} else {
 					console.log(creep.name + ' cannot find a structure to build or repair');
@@ -53,7 +53,7 @@ var roleBuilder = {
 			var sources = creep.room.find(FIND_SOURCES);
 			var source = util.getHashedTarget(creep, sources);
 			if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
-				creep.moveTo(source, { visualizePathStyle: { stroke: '#ffaa00' } });
+				creep.moveTo(source, { visualizePathStyle: { stroke: constants.STROKE_COLOR.HARVEST } });
 			}
 		}
 	}
