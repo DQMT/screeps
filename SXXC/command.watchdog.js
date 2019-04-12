@@ -1,9 +1,27 @@
 var util = require('util');
 var constants = require('constants');
+var roleClaimer = require('role.claimer');
 /**
  * The watchdog check system state and update report regularly.
  * 
  */
+function watchColony(structureSpawn) {
+    var claimers = _.filter(Game.creeps, (creep) => creep.memory.role == 'claimer');
+    var need = false;
+    if (!structureSpawn.spawning) {
+        if (!claimers || claimers.length == 0) {
+            need = true;
+        } else {
+            if (claimers.length == 1 && claimers[0].ticksToLive < 200) {
+                need = true;
+            }
+        }
+        if (need) {
+            roleClaimer.spawnOne(structureSpawn);
+        }
+
+    }
+}
 
 function watchDefence(structureSpawn) {
     var targets = structureSpawn.room.find(FIND_HOSTILE_CREEPS);
@@ -70,10 +88,12 @@ var theWatchdog = {
     watch: function (structureSpawn) {
         watchCreeps();
         if (structureSpawn) {
+            watchColony(structureSpawn);
             watchDefence(structureSpawn);
             watchSpawning(structureSpawn);
         } else {
             _.filter(Game.spawns, (spawn) => {
+                watchColony(spawn);
                 watchDefence(spawn);
                 watchSpawning(spawn);
             });
