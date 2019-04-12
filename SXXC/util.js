@@ -116,6 +116,22 @@ module.exports = {
 
     getMostFreeSource: function (creep) {
         return Game.getObjectById(getMostFreeSourceId(creep));
+    },
+
+    increaseFreeTicks: function (creep) {
+        if (!creep.memory.freeTicks) {
+            creep.memory.freeTicks = 1;
+        } else {
+            creep.memory.freeTicks = creep.memory.freeTicks + 1;
+        }
+    },
+
+    resetFreeTicks: function (creep) {
+        creep.memory.freeTicks = 0;
+    },
+
+    isFree: function (creep) {
+        return creep.memory.freeTicks > 10;
     }
 
 };

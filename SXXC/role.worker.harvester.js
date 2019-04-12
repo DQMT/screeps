@@ -49,15 +49,17 @@ var roleHarvester = {
                     structure = targets[0];
                 } else {
                     console.log(creep.name+' cannot find a structure to transfer');
-                    util.decreaseLimitTo1('harvesters');
-                    if(Memory.fullUpgraders){
-                        creep.say('I am dead now!');
-                        creep.suicide();
-                    }else{
-                        creep.say('I am upgrader now!');
-                        creep.memory.roleState = constants.WORKER_STATE.UPGRADE;
+                    util.increaseFreeTicks(creep);
+                    if(util.isFree(creep)){
+                        util.decreaseLimitTo1('harvesters');
+                        if(Memory.fullUpgraders){
+                            creep.say('I am dead now!');
+                            creep.suicide();
+                        }else{
+                            creep.say('I am upgrader now!');
+                            creep.memory.roleState = constants.WORKER_STATE.UPGRADE;
+                        }
                     }
-                    
                 }
             }
             if (structure) {
@@ -65,6 +67,7 @@ var roleHarvester = {
                     creep.memory.structure = null;
                     return;
                 }
+                util.resetFreeTicks(creep);
                 if (creep.transfer(structure, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                     //  console.log('harvester ' + creep.id+ ' move to'+ JSON.stringify(structure.id));
                     creep.moveTo(structure, { visualizePathStyle: { stroke: constants.STROKE_COLOR.TRANSFER } });
@@ -81,6 +84,7 @@ var roleHarvester = {
                 creep.memory.source = target.id;
                 source = target;
             }
+            util.resetFreeTicks(creep);
             if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(source, { visualizePathStyle: { stroke: constants.STROKE_COLOR.HARVEST } });
             }
