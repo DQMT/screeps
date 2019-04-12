@@ -30,7 +30,7 @@ var roleLorry = {
 
             if (structure != undefined) {
                 if (creep.transfer(structure, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(structure);
+                    creep.moveTo(structure, { visualizePathStyle: { stroke: constants.STROKE_COLOR.LORRY } });
                 }
             }
         }
@@ -39,7 +39,7 @@ var roleLorry = {
             if (droppedEnergy) {
                 creep.say('DI DI DI');
                 if (creep.pickup(droppedEnergy) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(droppedEnergy);
+                    creep.moveTo(droppedEnergy, { visualizePathStyle: { stroke: constants.STROKE_COLOR.LORRY });
                 }
             } else {
                 let container = creep.pos.findClosestByPath(FIND_STRUCTURES, {
@@ -50,7 +50,7 @@ var roleLorry = {
                 }
                 if (container != undefined) {
                     if (creep.withdraw(container, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                        creep.moveTo(container);
+                        creep.moveTo(container, { visualizePathStyle: { stroke: constants.STROKE_COLOR.LORRY });
                     }
                 }
             }
@@ -61,7 +61,7 @@ var roleLorry = {
     spawnOne: function (structureSpawn) {
         var newName = 'Lorry_' + Game.time;
         structureSpawn.spawnCreep([CARRY, MOVE, MOVE], newName,
-            { memory: { role: 'lorry'} });
+            { memory: { role: 'lorry' } });
 
     },
 

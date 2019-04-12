@@ -10,7 +10,8 @@ var STROKE_COLOR = {
     BUILD:'#1874CD',
     REPAIR:'#1874CD',
     UPGRADE:'#4B0082',
-    ATTACK:'#CD0000'
+    ATTACK:'#CD0000',
+    LORRY:'#000000'
 }
 
 module.exports = {
