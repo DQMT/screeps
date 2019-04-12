@@ -10,13 +10,13 @@ function getEnergySources(creep) {
             return source.energy > 0;
         }
     });
-    // if (!targets || targets.length == 0) {
-    //     targets = Game.rooms['W4S37'].find(FIND_SOURCES, {
-    //         filter: (source) => {
-    //             return source.energy > 0;
-    //         }
-    //     });
-    // }
+    if (!targets || targets.length == 0) {
+        targets = Game.rooms['W4S37'].find(FIND_SOURCES, {
+            filter: (source) => {
+                return source.energy > 0;
+            }
+        });
+    }
     return targets;
 }
 
