@@ -12,8 +12,8 @@ var roleClaimer = {
     },
     /** @param {Creep} creep */
     run: function (creep) {
-        var target = Game.rooms['W4S37'].controller;
-        if (target) {
+        if (Game.rooms['W4S37']) {
+            var target = Game.rooms['W4S37'].controller;
             if (creep.reserveController(target) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(target, { visualizePathStyle: { stroke: '#ffffff' } });
             }
