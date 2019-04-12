@@ -17,6 +17,7 @@ function watchColony(structureSpawn) {
             }
         }
         if (need) {
+            console.log('spawn a new claimer: ');
             roleClaimer.spawnOne(structureSpawn);
         }
 
