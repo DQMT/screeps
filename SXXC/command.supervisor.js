@@ -62,6 +62,9 @@ var theSupervisor = {
             if (creep.memory.role == 'footman') {
                 militaryFootman.run(creep);
             }
+            if (creep.memory.role == 'lorry') {
+                roleLorry.run(creep);
+            }
         }
     },
 
