@@ -25,7 +25,7 @@ var theSupervisor = {
             return;
         }
         if (Memory.peace && (!structureSpawn.spawning) && Memory.limits['harvesters'] < Memory.limits['upgraders'] && totalSpawnEnergy < totalSpawnEnergyCapacity) {
-            util.setLimit('harvesters', 4);
+            util.setLimit('harvesters', 6);
             return;
         }
 
