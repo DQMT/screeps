@@ -67,7 +67,7 @@ var roleHarvester = {
                 }
                 if (creep.transfer(structure, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                     //  console.log('harvester ' + creep.id+ ' move to'+ JSON.stringify(structure.id));
-                    creep.moveTo(structure, { visualizePathStyle: { stroke: '#C1FFC1' } });
+                    creep.moveTo(structure, { visualizePathStyle: { stroke: constants.STROKE_COLOR.TRANSFER } });
                 }
             }
         }else{//harvest
@@ -82,7 +82,7 @@ var roleHarvester = {
                 source = target;
             }
             if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(source, { visualizePathStyle: { stroke: '#ffaa00' } });
+                creep.moveTo(source, { visualizePathStyle: { stroke: constants.STROKE_COLOR.HARVEST } });
             }
 
         }
