@@ -1,5 +1,6 @@
 var roleWorker = require('role.worker');
 var roleLorry = require('role.lorry');
+var roleClaimer = require('role.claimer');
 var militaryFootman = require('military.footman');
 var constants = require('constants');
 var util = require('util');
@@ -65,6 +66,9 @@ var theSupervisor = {
             }
             if (creep.memory.role == 'lorry') {
                 roleLorry.run(creep);
+            }
+            if (creep.memory.role == 'claimer') {
+                roleClaimer.run(creep);
             }
         }
     },
