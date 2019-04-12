@@ -35,7 +35,7 @@ var roleLorry = {
             }
         }
         else {
-            const droppedEnergy = creep.pos.findClosestByRange(FIND_DROPPED_ENERGY);
+            const droppedEnergy = creep.pos.findClosestByRange(FIND_DROPPED_RESOURCES);
             if (droppedEnergy) {
                 creep.say('DI DI DI');
                 if (creep.pickup(droppedEnergy) == ERR_NOT_IN_RANGE) {
