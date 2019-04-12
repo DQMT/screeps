@@ -15,9 +15,9 @@ module.exports.loop = function () {
         builders: 4
     });
     // util.setLimits({
-    //     harvesters: 5,
-    //     upgraders: 2,
-    //     builders: 2
+    //     harvesters: 6,
+    //     upgraders: 5,
+    //     builders: 4
     // });
     watchdog.watch();
     supervisor.keepSpawning();
