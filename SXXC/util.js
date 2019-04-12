@@ -15,7 +15,8 @@ module.exports = {
                 limits = {
                     harvesters: 3,
                     upgraders: 3,
-                    builders: 3
+                    builders: 3,
+                    lorries: 1
                 }
             } else {
                 limits = param;

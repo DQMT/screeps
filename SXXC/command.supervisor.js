@@ -1,20 +1,19 @@
 var roleWorker = require('role.worker');
+var roleLorry = require('role.lorry');
 var militaryFootman = require('military.footman');
 var constants = require('constants');
 var util = require('util');
-var watchdog = require('command.watchdog');
+
 /**
  * The supervisor make sure every creep work correctly.
  */
-
-
-
 var theSupervisor = {
     keepSpawning: function () {
         var structureSpawn = Game.spawns['shaxianxiaochi'];
         var harvesters = Memory.watch['harvesters'];
         var upgraders = Memory.watch['upgraders'];
         var builders = Memory.watch['builders'];
+        var lorries = Memory.watch['lorries'];
         var totalSpawnEnergy = structureSpawn.memory['totalSpawnEnergy'];
         var totalSpawnEnergyCapacity = structureSpawn.memory['totalSpawnEnergyCapacity'];
 
@@ -37,7 +36,11 @@ var theSupervisor = {
             roleWorker.spawnBiggestOne(structureSpawn, constants.WORKER_STATE.BUILD);
             console.log('spwan a new builder from ' + structureSpawn);
         }
-
+        if (Memory.peace && lorries < Memory.limits.lorries && totalSpawnEnergy >= roleLorry.cost(structureSpawn)) {
+            roleLorry.spawnOne(structureSpawn);
+            console.log('spwan a new lorry from ' + structureSpawn);
+        }
+        
         if (
             Memory.limits['builders'] < Memory.limits['upgraders']
             &&

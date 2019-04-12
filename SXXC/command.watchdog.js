@@ -21,8 +21,9 @@ function watchCreeps() {
     var upgraders = _.filter(workers, (creep) => creep.memory.roleState == constants.WORKER_STATE.UPGRADE);
     var builders = _.filter(workers, (creep) => creep.memory.roleState == constants.WORKER_STATE.BUILD);
     var footmen = _.filter(Game.creeps, (creep) => creep.memory.role == 'footman');
+    var lorries = _.filter(Game.creeps, (creep) => creep.memory.role == 'lorry');
 
-    if (upgraders.length > Memory.limits['upgraders'] + 2) {
+    if (upgraders.length > Memory.limits['upgraders'] * 2) {
         Memory.fullUpgraders = true;
     } else {
         Memory.fullUpgraders = false;
@@ -35,13 +36,15 @@ function watchCreeps() {
     Memory.watch['upgraders'] = upgraders.length;
     Memory.watch['builders'] = builders.length;
     Memory.watch['footmen'] = footmen.length;
+    Memory.watch['lorries'] = lorries.length;
 
     if (Game.time % 10 == 0) {
         console.log('workers: ' + workers.length +
             ' harvesters: ' + harvesters.length +
             ' upgraders: ' + upgraders.length +
             ' builders: ' + builders.length +
-            ' footmen: ' + footmen.length);
+            ' footmen: ' + footmen.length +
+            ' lorries: ' + lorries.length);
         console.log('limits: ' + JSON.stringify(Memory.limits));
     }
 }

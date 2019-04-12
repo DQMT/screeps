@@ -21,7 +21,7 @@ function getEnergyContainers(creep) {
                 structure.structureType == STRUCTURE_SPAWN ||
                 structure.structureType == STRUCTURE_EXTENSION ||
                 structure.structureType == STRUCTURE_CONTAINER ||
-                structure.structureType == STRUCTURE_ROAD
+                structure.structureType == STRUCTURE_STORAGE
             );
         }
     });
@@ -40,7 +40,7 @@ var roleHarvester = {
 			creep.memory.transfering = true;
 			creep.say('transfer');
         }
-        if (creep.memory.transfering) {//transer
+        if (creep.memory.transfering) {//transfer
             var structure;
             if (!creep.memory.structure || (structure = Game.getObjectById(creep.memory.structure)) == null) {
                 var targets = getEnergyContainers(creep);
