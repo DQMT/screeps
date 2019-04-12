@@ -10,7 +10,7 @@ function getEnergySources(creep) {
             return source.energy > 0;
         }
     });
-    if(Game.rooms['W4S37']){
+    if (Game.rooms['W4S37']) {
         if (!targets || targets.length == 0) {
             targets = Game.rooms['W4S37'].find(FIND_SOURCES, {
                 filter: (source) => {
@@ -84,7 +84,7 @@ var roleHarvester = {
             }
         } else {//harvest
             var source;
-            if (!creep.memory.source || (source = Game.getObjectById(creep.memory.source)) == null) {
+            if (!creep.memory.source || (source = Game.getObjectById(creep.memory.source)) == null || source.energy == 0) {
                 var target = util.getHashedTarget(creep, getEnergySources(creep));
                 if (!target) {
                     console.log(creep.name + ' cannot find a source');
