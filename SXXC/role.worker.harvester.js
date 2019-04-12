@@ -21,7 +21,7 @@ function getEnergySources(creep) {
 }
 
 function getEnergyContainers(creep) {
-    var targets = creep.room.find(FIND_STRUCTURES, {
+    var targets = Game.rooms['W5S37'].find(FIND_STRUCTURES, {
         filter: (structure) => {
             return structure.energy < structure.energyCapacity && (
                 structure.structureType == STRUCTURE_TOWER ||
