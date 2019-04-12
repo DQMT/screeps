@@ -39,7 +39,7 @@ var roleLorry = {
             if (droppedEnergy) {
                 creep.say('DI DI DI');
                 if (creep.pickup(droppedEnergy) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(droppedEnergy, { visualizePathStyle: { stroke: constants.STROKE_COLOR.LORRY });
+                    creep.moveTo(droppedEnergy, { visualizePathStyle: { stroke: constants.STROKE_COLOR.LORRY } });
                 }
             } else {
                 let container = creep.pos.findClosestByPath(FIND_STRUCTURES, {
@@ -50,7 +50,7 @@ var roleLorry = {
                 }
                 if (container != undefined) {
                     if (creep.withdraw(container, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                        creep.moveTo(container, { visualizePathStyle: { stroke: constants.STROKE_COLOR.LORRY });
+                        creep.moveTo(container, { visualizePathStyle: { stroke: constants.STROKE_COLOR.LORRY } });
                     }
                 }
             }
