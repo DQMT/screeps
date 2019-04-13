@@ -59,7 +59,7 @@ function watchCreeps() {
     Memory.watch['builders'] = builders.length;
     Memory.watch['footmen'] = footmen.length;
     Memory.watch['lorries'] = lorries.length;
-
+    
     if (Game.time % 10 == 0) {
         console.log('workers: ' + workers.length +
             ' harvesters: ' + harvesters.length +
