@@ -21,7 +21,7 @@ var roleBuilder = {
 
 		if (creep.memory.building) {
 
-			var targets = creep.pos.findClosestByPath(FIND_CONSTRUCTION_SITES);
+			var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
 			if (targets.length) {
 				var target = targets[0];
 				// var target = util.getHashedTarget(creep,targets);
@@ -32,7 +32,7 @@ var roleBuilder = {
 			} else {
 				targets = creep.room.find(FIND_STRUCTURES, {
 					filter: object => (object.structureType != STRUCTURE_WALL && object.structureType != STRUCTURE_RAMPART && object.hits < object.hitsMax) || (object.structureType == STRUCTURE_WALL && object.hits < 10000)
-					|| (object.structureType == STRUCTURE_RAMPART && object.hits < 10000)
+						|| (object.structureType == STRUCTURE_RAMPART && object.hits < 10000)
 				});
 				targets.sort((a, b) => a.hits - b.hits);
 				if (targets.length > 0) {
@@ -58,10 +58,10 @@ var roleBuilder = {
 		}
 		else {
 			var source = util.getHashedTarget(creep, util.getEnergySources(creep));
-                if (!source) {
-                    console.log(creep.name + ' cannot find a source');
-                    return;
-                }
+			if (!source) {
+				console.log(creep.name + ' cannot find a source');
+				return;
+			}
 			util.resetFreeTicks(creep);
 			if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
 				creep.moveTo(source, { visualizePathStyle: { stroke: constants.STROKE_COLOR.HARVEST } });
