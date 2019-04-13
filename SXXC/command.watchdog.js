@@ -72,6 +72,9 @@ function watchCreeps() {
         console.log(JSON.stringify(Memory.watch));
         console.log('limits: ' + JSON.stringify(Memory.limits));
     }
+    Game.spawns.forEach(s=>{
+        console.log(s.name+' energyAvailable : '+s.room.energyAvailable);
+    })
 }
 
 function watchSpawning(structureSpawn) {
