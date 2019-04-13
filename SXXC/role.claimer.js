@@ -12,21 +12,26 @@ var roleClaimer = {
     },
     /** @param {Creep} creep */
     run: function (creep) {
-        if (Game.rooms['W4S37']) {
-            var target = Game.rooms['W4S37'].controller;
+        if (Game.rooms[creep.memory.roomName]) {
+            var target = Game.rooms[creep.memory.roomName].controller;
             if (creep.reserveController(target) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(target, { visualizePathStyle: { stroke: '#ffffff' } });
             }
         } else {
-            creep.moveTo(49, 23);
+            if(creep.memory.roomName=='W4S37'){
+                creep.moveTo(49, 23);
+            }
+            if(creep.memory.roomName=='W5S38'){
+                creep.moveTo(25, 49);
+            }
         }
 
     },
     /** @param {StructureSpawn} structureSpawn **/
-    spawnOne: function (structureSpawn) {
+    spawnOne: function (structureSpawn, roomName) {
         var newName = 'Claimer' + Game.time;
         structureSpawn.spawnCreep([CLAIM, MOVE], newName,
-            { memory: { role: 'claimer' } });
+            { memory: { role: 'claimer', roomName: roomName } });
 
     },
 

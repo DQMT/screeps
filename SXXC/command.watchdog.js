@@ -6,24 +6,30 @@ var roleClaimer = require('role.claimer');
  * 
  */
 function watchColony(structureSpawn) {
+    var colonies = ['W4S37', 'W5S38'];
     var claimers = _.filter(Game.creeps, (creep) => creep.memory.role == 'claimer');
-    var need = false;
-    if (!structureSpawn.spawning) {
-        if (!claimers || claimers.length == 0) {
-            need = true;
-        } else {
-            if (claimers.length == 1 && claimers[0].ticksToLive < 200) {
-                need = true;
-            }
-        }
-        if (need) {
-            var totalSpawnEnergy = structureSpawn.memory['totalSpawnEnergy'];
-            if (totalSpawnEnergy >= roleClaimer.cost()) {
-                console.log('spawn a new claimer');
-                roleClaimer.spawnOne(structureSpawn);
-            }
-        }
 
+    if (!structureSpawn.spawning) {
+        colonies.forEach(colony => {
+            var need = false;
+            var cla = _.filter(claimers, (creep) => creep.memory.roomName == colony);
+            if (!cla || cla.length == 0) {
+                need = true;
+            } else {
+                cla.sort((a, b) => b.ticksToLive - a.ticksToLive);
+                if (cla[0].ticksToLive < 200) {
+                    need = true;
+                }
+            }
+            if (need) {
+                var totalSpawnEnergy = structureSpawn.memory['totalSpawnEnergy'];
+                console.log('need more claimer!totalSpawnEnergy=' + totalSpawnEnergy);
+                if (totalSpawnEnergy >= roleClaimer.cost()) {
+                    console.log('spawn a new claimer');
+                    roleClaimer.spawnOne(structureSpawn, colony);
+                }
+            }
+        });
     }
 }
 
