@@ -51,8 +51,7 @@ var theSupervisor = {
         if (
             Memory.limits['builders'] < 2
             &&
-            (structureSpawn.room.find(FIND_CONSTRUCTION_SITES).length ||
-                structureSpawn.room.find(FIND_STRUCTURES, { filter: object => object.hits < object.hitsMax }).length)
+            (structureSpawn.room.find(FIND_CONSTRUCTION_SITES).length > 0)
             && Memory.peace
             && (!structureSpawn.spawning)
         ) {
@@ -96,7 +95,7 @@ var theSupervisor = {
                 }
                 var damagedStructures = tower.room.find(FIND_STRUCTURES, {
                     filter: object => (object.structureType != STRUCTURE_WALL && object.structureType != STRUCTURE_RAMPART && object.hits < object.hitsMax) || (object.structureType == STRUCTURE_WALL && object.hits < 10000)
-                    || (object.structureType == STRUCTURE_RAMPART && object.hits < 10000)
+                        || (object.structureType == STRUCTURE_RAMPART && object.hits < 10000)
                 });
                 damagedStructures.sort((a, b) => a.hits - b.hits);
                 if (damagedStructures.length > 0) {
