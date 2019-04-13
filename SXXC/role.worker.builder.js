@@ -55,8 +55,11 @@ var roleBuilder = {
 			}
 		}
 		else {
-			var sources = creep.room.find(FIND_SOURCES);
-			var source = util.getHashedTarget(creep, sources);
+			var source = util.getHashedTarget(creep, util.getEnergySources(creep));
+                if (!source) {
+                    console.log(creep.name + ' cannot find a source');
+                    return;
+                }
 			util.resetFreeTicks(creep);
 			if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
 				creep.moveTo(source, { visualizePathStyle: { stroke: constants.STROKE_COLOR.HARVEST } });

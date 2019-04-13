@@ -4,27 +4,7 @@ var constants = require('constants');
  * A harvester continously harvest energy and transfer energy to your structures
  * body part need: [WORK, CARRY, MOVE]
  */
-function getEnergySources(creep) {
-    var targets = creep.room.find(FIND_SOURCES, {
-        filter: (source) => {
-            return source.energy > 0;
-        }
-    });
 
-    if (Game.rooms['W4S37']) {
-        if (!targets || targets.length == 0) {
-            targets = Game.rooms['W4S37'].find(FIND_SOURCES, {
-                filter: (source) => {
-                    return source.energy > 0;
-                }
-            });
-            if (targets.length > 0) {
-                creep.say('long distance source!');
-            }
-        }
-    }
-    return targets;
-}
 
 function getEnergyContainers(creep) {
     var targets = Game.rooms['W5S37'].find(FIND_STRUCTURES, {
@@ -101,7 +81,7 @@ var roleHarvester = {
         } else {//harvest
             var source;
             if (!creep.memory.source || (source = Game.getObjectById(creep.memory.source)) == null || source.energy == 0) {
-                var target = util.getHashedTarget(creep, getEnergySources(creep));
+                var target = util.getHashedTarget(creep, util.getEnergySources(creep));
                 if (!target) {
                     console.log(creep.name + ' cannot find a source');
                     return;

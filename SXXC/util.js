@@ -145,6 +145,26 @@ module.exports = {
             return structrue.energy < structrue.energyCapacity;
         }
         return structrue.store['energy'] < structrue.storeCapacity;
-    }
+    },
+    getEnergySources: function (creep) {
+        var targets = creep.room.find(FIND_SOURCES, {
+            filter: (source) => {
+                return source.energy > 0;
+            }
+        });
 
+        if (Game.rooms['W5S38']) {
+            if (!targets || targets.length == 0) {
+                targets = Game.rooms['W5S38'].find(FIND_SOURCES, {
+                    filter: (source) => {
+                        return source.energy > 0;
+                    }
+                });
+                if (targets.length > 0) {
+                    creep.say('long distance source!');
+                }
+            }
+        }
+        return targets;
+    }
 };
