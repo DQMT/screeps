@@ -28,7 +28,7 @@ var roleWorker = {
     maxLevel: function (structureSpawn) {
         var totalSpawnEnergy = structureSpawn.memory['totalSpawnEnergy'];
         var level = parseInt(totalSpawnEnergy / 200);
-        return  level > 1 ? level : 1;
+        return level > 1 ? level : 1;
     },
     /** @param {StructureSpawn} structureSpawn **/
     spawnBiggestOne: function (structureSpawn, state) {
@@ -43,7 +43,7 @@ var roleWorker = {
             body.push(CARRY);
             body.push(MOVE);
         }
-        var newName = 'Worker_' + Game.time;
+        var newName = 'Worker_' + Game.time + '@' + level;
         var sourceId = util.getMostFreeSourceId;
         if (state) {
             structureSpawn.spawnCreep(body, newName,
