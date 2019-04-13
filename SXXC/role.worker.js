@@ -23,7 +23,6 @@ var roleWorker = {
         level = level > 1 ? level : 1;
         level = level < levelLimit ? level : levelLimit;
         var cost = 200 * level;
-        console.log('worker cost '+cost);
         return cost < 200 ? 200 : cost;
     },
 
