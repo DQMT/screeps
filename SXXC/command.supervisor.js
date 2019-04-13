@@ -18,8 +18,10 @@ var theSupervisor = {
         var totalSpawnEnergy = structureSpawn.memory['totalSpawnEnergy'];
         var totalSpawnEnergyCapacity = structureSpawn.memory['totalSpawnEnergyCapacity'];
 
-        if(harvesters <2){
+        if (harvesters < 2) {
             Memory.limits['workerLevel'] = roleWorker.maxLevel(structureSpawn);
+        } else {
+            Memory.limits['workerLevel'] = 10;
         }
 
         //We can also use StructureSpawn.renewCreep to maintain the needed number of creeps.
@@ -93,7 +95,7 @@ var theSupervisor = {
                     tower.attack(closestHostile);
                 }
                 var damagedStructures = tower.room.find(FIND_STRUCTURES, {
-                    filter: object => object.hits < object.hitsMax
+                    filter: object => (object.structureType != STRUCTURE_WALL && object.hits < object.hitsMax) || (object.structureType == STRUCTURE_WALL && object.hits < 10000)
                 });
                 damagedStructures.sort((a, b) => a.hits - b.hits);
                 if (damagedStructures.length > 0) {
