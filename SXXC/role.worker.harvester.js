@@ -57,7 +57,7 @@ var roleHarvester = {
             if (!creep.memory.structure || (structure = Game.getObjectById(creep.memory.structure)) == null || structure.energy == structure.energyCapacity) {
                 var targets = getEnergyContainers(creep);
                 if (targets.length > 0) {
-                    creep.memory.structure = targets[0].id;
+                    creep.memory.structure = targets[0]['id'];
                     structure = targets[0];
                 } else {
                     console.log(creep.name + ' cannot find a structure to transfer');
@@ -81,7 +81,6 @@ var roleHarvester = {
                 }
                 util.resetFreeTicks(creep);
                 if (creep.transfer(structure, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                    //  console.log('harvester ' + creep.id+ ' move to'+ JSON.stringify(structure.id));
                     creep.moveTo(structure, { visualizePathStyle: { stroke: constants.STROKE_COLOR.TRANSFER } });
                 }
             }
@@ -93,7 +92,7 @@ var roleHarvester = {
                     console.log(creep.name + ' cannot find a source');
                     return;
                 }
-                creep.memory.source = target.id;
+                creep.memory.source = target['id'];
                 source = target;
             }
             util.resetFreeTicks(creep);
