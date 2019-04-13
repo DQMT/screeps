@@ -18,12 +18,14 @@ var roleClaimer = {
                 creep.moveTo(target, { visualizePathStyle: { stroke: '#ffffff' } });
             }
         } else {
-            if(creep.memory.roomName=='W4S37'){
-                creep.moveTo(49, 23);
-            }
-            if(creep.memory.roomName=='W5S38'){
-                creep.moveTo(25, 49);
-            }
+            var exit = creep.room.findExitTo(creep.memory.roomName);
+            creep.moveTo(creep.pos.findClosestByRange(exit));
+            // if(creep.memory.roomName=='W4S37'){
+            //     creep.moveTo(49, 23);
+            // }
+            // if(creep.memory.roomName=='W5S38'){
+            //     creep.moveTo(25, 49);
+            // }
         }
 
     },
