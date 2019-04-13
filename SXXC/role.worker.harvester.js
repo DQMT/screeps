@@ -54,7 +54,7 @@ var roleHarvester = {
         }
         if (creep.memory.transfering) {//transfer
             var structure;
-            if (!creep.memory.structure || (structure = Game.getObjectById(creep.memory.structure)) == null || structure.energy == structure.energyCapacity) {
+            if (creep.memory.structure==null || (structure = Game.getObjectById(creep.memory.structure)) == null || structure.energy == structure.energyCapacity) {
                 var targets = getEnergyContainers(creep);
                 if (targets.length > 0) {
                     creep.memory.structure = targets[0]['id'];
