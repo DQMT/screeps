@@ -23,7 +23,7 @@ function watchColony(structureSpawn) {
             }
             if (need) {
                 var totalSpawnEnergy = structureSpawn.memory['totalSpawnEnergy'];
-                console.log('need more claimer!totalSpawnEnergy=' + totalSpawnEnergy);
+                // console.log('need more claimer!totalSpawnEnergy=' + totalSpawnEnergy);
                 if (totalSpawnEnergy >= roleClaimer.cost()) {
                     console.log('spawn a new claimer');
                     roleClaimer.spawnOne(structureSpawn, colony);

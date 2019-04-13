@@ -7,6 +7,12 @@ module.exports = {
         if (!Memory.system) {
             var system = {};
             system['home'] = 'W5S37';
+            var limits = {
+                workers: 10,
+                lorries: 1
+            }
+            system['limits'] = limits;
+            Memory.system = system;
         }
     },
     homeRoom: function () {
