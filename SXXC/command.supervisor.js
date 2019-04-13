@@ -44,7 +44,7 @@ var theSupervisor = {
         }
 
         if (
-            Memory.limits['builders'] < Memory.limits['upgraders']
+            Memory.limits['builders'] < 4
             &&
             (structureSpawn.room.find(FIND_CONSTRUCTION_SITES).length ||
                 structureSpawn.room.find(FIND_STRUCTURES, { filter: object => object.hits < object.hitsMax }).length)
