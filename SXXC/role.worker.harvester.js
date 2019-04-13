@@ -18,9 +18,9 @@ function getEnergySources(creep) {
                     return source.energy > 0;
                 }
             });
-        }
-        if (targets.length > 0) {
-            creep.say('long distance source!');
+            if (targets.length > 0) {
+                creep.say('long distance source!');
+            }
         }
     }
     return targets;
