@@ -48,7 +48,7 @@ var roleLorry = {
                 let container = creep.pos.findClosestByPath(FIND_STRUCTURES, {
                     filter: s => s.structureType == STRUCTURE_CONTAINER
                 });
-                if (container == undefined) {
+                if (container == undefined || container.energy == 0) {
                     container = creep.room.storage;
                 }
                 if (container != undefined) {
