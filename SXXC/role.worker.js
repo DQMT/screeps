@@ -18,7 +18,11 @@ var WORK_PLAYER = {
 var roleWorker = {
     cost: function (structureSpawn) {
         var totalSpawnEnergyCapacity = structureSpawn.memory['totalSpawnEnergyCapacity'];
-        var cost = 200 * parseInt(totalSpawnEnergyCapacity / 200);
+        var level = parseInt(totalSpawnEnergyCapacity / 200);
+        var levelLimit = Memory.limits['wockerLevel'] ? Memory.limits['wockerLevel']:4;
+        level = level > 1 ? level : 1;
+        level = level < levelLimit ? level : levelLimit;
+        var cost = 200 * level;
         return cost < 200 ? 200 : cost;
     },
 
@@ -26,7 +30,9 @@ var roleWorker = {
     spawnBiggestOne: function (structureSpawn, state) {
         var totalSpawnEnergyCapacity = structureSpawn.memory['totalSpawnEnergyCapacity'];
         var level = parseInt(totalSpawnEnergyCapacity / 200);
+        var levelLimit = Memory.limits['wockerLevel'] ? Memory.limits['wockerLevel']:4;
         level = level > 1 ? level : 1;
+        level = level < levelLimit ? level : levelLimit;
         var body = [];
         for (var i = 0; i < level; i++) {
             body.push(WORK);
