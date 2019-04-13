@@ -44,11 +44,11 @@ var roleLorry = {
                     creep.moveTo(droppedEnergy, { visualizePathStyle: { stroke: constants.STROKE_COLOR.LORRY } });
                 }
             } else {
-                var tombStones = creep.pos.findClosestByRange(FIND_TOMBSTONES);
-                if (tombStones) {
-                    creep.say('tombStones');
-                    if (creep.withdraw(tombStones) == ERR_NOT_IN_RANGE) {
-                        creep.moveTo(tombStones, { visualizePathStyle: { stroke: constants.STROKE_COLOR.LORRY } });
+                var tombStone = creep.pos.findClosestByRange(FIND_TOMBSTONES);
+                if (tombStone) {
+                    creep.say('tombStone');
+                    if (creep.withdraw(tombStone) == ERR_NOT_IN_RANGE) {
+                        creep.moveTo(tombStone, { visualizePathStyle: { stroke: constants.STROKE_COLOR.LORRY } });
                     }
                 } else {
                     let container = creep.pos.findClosestByPath(FIND_STRUCTURES, {
