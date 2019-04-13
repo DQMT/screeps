@@ -29,12 +29,24 @@ function getEnergySources(creep) {
 function getEnergyContainers(creep) {
     var targets = Game.rooms['W5S37'].find(FIND_STRUCTURES, {
         filter: (structure) => {
-            return ((
+            return (
                 structure.structureType == STRUCTURE_SPAWN ||
                 structure.structureType == STRUCTURE_EXTENSION ||
                 structure.structureType == STRUCTURE_TOWER
-            ) && structure.energy < structure.energyCapacity);
-            //  || ((structure.structureType == STRUCTURE_CONTAINER ||  structure.structureType == STRUCTURE_STORAGE) && structure.store['energy'] < structure.storeCapacity);
+            ) && util.needEnergy(structure)
+
+        }
+    });
+    if (targets.length > 0) {
+        return targets;
+    }
+    targets = Game.rooms['W5S37'].find(FIND_STRUCTURES, {
+        filter: (structure) => {
+            return (
+                structure.structureType == STRUCTURE_CONTAINER ||
+                structure.structureType == STRUCTURE_STORAGE
+            ) && util.needEnergy(structure)
+
         }
     });
     return targets;
@@ -54,7 +66,7 @@ var roleHarvester = {
         }
         if (creep.memory.transfering) {//transfer
             var structure;
-            if (creep.memory.structure==null || (structure = Game.getObjectById(creep.memory.structure)) == null || structure.energy == structure.energyCapacity) {
+            if (creep.memory.structure == null || (structure = Game.getObjectById(creep.memory.structure)) == null || !util.needEnergy(structure)) {
                 var targets = getEnergyContainers(creep);
                 if (targets.length > 0) {
                     creep.memory.structure = targets[0]['id'];
@@ -75,7 +87,7 @@ var roleHarvester = {
                 }
             }
             if (structure) {
-                if (structure.energy == structure.energyCapacity) {
+                if (!util.needEnergy(structure)) {
                     creep.memory.structure = null;
                     return;
                 }

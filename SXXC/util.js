@@ -136,6 +136,12 @@ module.exports = {
             tolerance = 10;
         }
         return creep.memory.freeTicks > tolerance;
+    },
+    needEnergy: function (structrue) {
+        if (structrue.energy) {
+            return structrue.energy < structrue.energyCapacity;
+        }
+        return structrue.store['energy'] < structrue.storeCapacity;
     }
 
 };
