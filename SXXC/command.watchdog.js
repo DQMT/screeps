@@ -75,6 +75,7 @@ function watchCreeps() {
             var spawn = Game.spawns[s];
             console.log(spawn.name + ' energyAvailable : ' + spawn.room.energyAvailable);
         }
+        console.log('\n');
     }
 
 }
