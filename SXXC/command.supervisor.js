@@ -21,7 +21,7 @@ var theSupervisor = {
         if (harvesters < 2) {
             Memory.limits['workerLevel'] = roleWorker.maxLevel(structureSpawn);
         } else {
-            Memory.limits['workerLevel'] = 4;
+            // Memory.limits['workerLevel'] = 4;
         }
 
         //We can also use StructureSpawn.renewCreep to maintain the needed number of creeps.
