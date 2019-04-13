@@ -71,10 +71,12 @@ function watchCreeps() {
     if (Game.time % 10 == 0) {
         console.log(JSON.stringify(Memory.watch));
         console.log('limits: ' + JSON.stringify(Memory.limits));
+        for (var s in Memory.spawns) {
+            var spawn = Game.spawns[s];
+            console.log(spawn.name + ' energyAvailable : ' + spawn.room.energyAvailable);
+        }
     }
-    Game.spawns.forEach(s=>{
-        console.log(s.name+' energyAvailable : '+s.room.energyAvailable);
-    })
+
 }
 
 function watchSpawning(structureSpawn) {
