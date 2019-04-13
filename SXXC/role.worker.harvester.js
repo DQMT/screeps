@@ -10,7 +10,7 @@ function getEnergySources(creep) {
             return source.energy > 0;
         }
     });
-    
+
     if (Game.rooms['W4S37']) {
         if (!targets || targets.length == 0) {
             targets = Game.rooms['W4S37'].find(FIND_SOURCES, {
@@ -19,7 +19,7 @@ function getEnergySources(creep) {
                 }
             });
         }
-        if(targets.length>0){
+        if (targets.length > 0) {
             creep.say('long distance source!');
         }
     }
@@ -29,13 +29,12 @@ function getEnergySources(creep) {
 function getEnergyContainers(creep) {
     var targets = Game.rooms['W5S37'].find(FIND_STRUCTURES, {
         filter: (structure) => {
-            return structure.energy < structure.energyCapacity && (
+            return (structure.energy < structure.energyCapacity && (
                 structure.structureType == STRUCTURE_SPAWN ||
                 structure.structureType == STRUCTURE_EXTENSION ||
-                structure.structureType == STRUCTURE_TOWER ||
-                structure.structureType == STRUCTURE_CONTAINER ||
-                structure.structureType == STRUCTURE_STORAGE
-            );
+                structure.structureType == STRUCTURE_TOWER 
+             )) ||(structure.store.engrgy < structure.storeCapacity && (structure.structureType == STRUCTURE_CONTAINER ||
+                    structure.structureType == STRUCTURE_STORAGE));
         }
     });
     return targets;
