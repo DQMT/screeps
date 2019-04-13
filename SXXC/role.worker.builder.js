@@ -61,7 +61,7 @@ var roleBuilder = {
 			}
 		}
 		else {
-			var source = util.getHashedTarget(creep, util.getEnergySources(creep));
+			var source = util.getHashedTarget(creep, util.getEnergySources(creep, true));
 			if (!source) {
 				console.log(creep.name + ' cannot find a source');
 				return;

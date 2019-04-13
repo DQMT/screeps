@@ -146,25 +146,46 @@ module.exports = {
         }
         return structrue.store['energy'] < structrue.storeCapacity;
     },
-    getEnergySources: function (creep) {
-        var targets = creep.room.find(FIND_SOURCES, {
-            filter: (source) => {
-                return source.energy > 0;
+    getEnergySources: function (creep, colony) {
+        var targets;
+        if (colony) {
+            if (Game.rooms['W5S38']) {
+                if (!targets || targets.length == 0) {
+                    targets = Game.rooms['W5S38'].find(FIND_SOURCES, {
+                        filter: (source) => {
+                            return source.energy > 0;
+                        }
+                    });
+                }
             }
-        });
-
-        if (Game.rooms['W5S38']) {
-            if (!targets || targets.length == 0) {
-                targets = Game.rooms['W5S38'].find(FIND_SOURCES, {
+            if (!targets.length > 0) {
+                targets = creep.room.find(FIND_SOURCES, {
                     filter: (source) => {
                         return source.energy > 0;
                     }
                 });
-                if (targets.length > 0) {
-                    creep.say('long distance source!');
+            }
+            return targets;
+        } else {
+            targets = creep.room.find(FIND_SOURCES, {
+                filter: (source) => {
+                    return source.energy > 0;
+                }
+            });
+            if (Game.rooms['W5S38']) {
+                if (!targets || targets.length == 0) {
+                    targets = Game.rooms['W5S38'].find(FIND_SOURCES, {
+                        filter: (source) => {
+                            return source.energy > 0;
+                        }
+                    });
+                    if (targets.length > 0) {
+                        creep.say('long distance source!');
+                    }
                 }
             }
+            return targets;
         }
-        return targets;
+
     }
 };
