@@ -15,13 +15,13 @@ module.exports.loop = function () {
         builders: 4,
         lorries: 1
     });
-    // util.setLimits({
-    //     harvesters: 6,
-    //     upgraders: 5,
-    //     builders: 4,
-    //     lorries: 1,
-    //     workerLevel:3
-    // });
+    util.setLimits({
+        harvesters: 4,
+        upgraders: 2,
+        builders: 2,
+        lorries: 1,
+        workerLevel: 4
+    });
     watchdog.watch();
     supervisor.keepSpawning();
     supervisor.keepDefence();

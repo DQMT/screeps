@@ -1,24 +1,17 @@
-var supervisor = require('./command/supervisor');
+var system = require('./system');
 
 module.exports.loop = function () {
+    system.init();
+    system.cleanMemory();
 
-    var tower = Game.getObjectById('d33a8ae27570153d7426a289');
-    if(tower) {
-        var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
-            filter: (structure) => structure.hits < structure.hitsMax
-        });
-        if(closestDamagedStructure) {
-            tower.repair(closestDamagedStructure);
-        }
+    watchdog.watch();
+    supervisor.keepSpawning();
+    supervisor.keepDefence();
+    supervisor.urge();
 
-        var closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
-        if(closestHostile) {
-            tower.attack(closestHostile);
-        }
-    }
-
-    for(var name in Game.creeps) {
-        var creep = Game.creeps[name];
-        supervisor.urge(creep);
-    }
+    // var creep = Game.creeps['cla'];
+    // var target = creep.room.controller;
+    // if (creep.reserveController(target) == ERR_NOT_IN_RANGE) {
+    //     creep.moveTo(target, { visualizePathStyle: { stroke: '#ffffff' } });
+    // }
 }
