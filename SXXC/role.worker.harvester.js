@@ -58,7 +58,7 @@ var roleHarvester = {
     run: function (creep) {
         if (creep.memory.transfering && creep.carry.energy == 0) {
             creep.memory.transfering = false;
-            creep.memory.structure == null;
+            creep.memory.structure = null;
             creep.say('harvest');
         }
         if (!creep.memory.transfering && creep.carry.energy == creep.carryCapacity) {
