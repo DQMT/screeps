@@ -44,6 +44,8 @@ var roleLorry = {
                     creep.moveTo(droppedEnergy, { visualizePathStyle: { stroke: constants.STROKE_COLOR.LORRY } });
                 }
             } else {
+                creep.moveTo(20,31);
+                return;
                 var tombStone = creep.pos.findClosestByRange(FIND_TOMBSTONES);
                 if (tombStone) {
                     creep.say('tombStone');
