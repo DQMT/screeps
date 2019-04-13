@@ -30,8 +30,9 @@ var roleUpgrader = {
 		}
 
 		if (creep.memory.upgrading) {
+		
 			if (creep.upgradeController(Game.rooms['W5S37'].controller) == ERR_NOT_IN_RANGE) {
-				creep.moveTo(creep.room.controller, { visualizePathStyle: { stroke: constants.STROKE_COLOR.UPGRADE } });
+				creep.moveTo(Game.rooms['W5S37'].controller, { visualizePathStyle: { stroke: constants.STROKE_COLOR.UPGRADE } });
 			}
 		}
 		else {
