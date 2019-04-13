@@ -31,7 +31,7 @@ var roleWorker = {
     spawnBiggestOne: function (structureSpawn, state) {
         var totalSpawnEnergyCapacity = structureSpawn.memory['totalSpawnEnergyCapacity'];
         var level = parseInt(totalSpawnEnergyCapacity / 200);
-        var levelLimit = Memory.limits['workerLevel'] ? Memory.limits['workerLevel']:4;
+        var levelLimit = Memory.limits['workerLevel'] ? Memory.limits['workerLevel']:10;
         level = level > 1 ? level : 1;
         level = level < levelLimit ? level : levelLimit;
         var body = [];
