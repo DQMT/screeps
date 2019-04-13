@@ -95,7 +95,8 @@ var theSupervisor = {
                     tower.attack(closestHostile);
                 }
                 var damagedStructures = tower.room.find(FIND_STRUCTURES, {
-                    filter: object => (object.structureType != STRUCTURE_WALL && object.hits < object.hitsMax) || (object.structureType == STRUCTURE_WALL && object.hits < 10000)
+                    filter: object => (object.structureType != STRUCTURE_WALL && object.structureType != STRUCTURE_RAMPART && object.hits < object.hitsMax) || (object.structureType == STRUCTURE_WALL && object.hits < 10000)
+                    || (object.structureType == STRUCTURE_RAMPART && object.hits < 10000)
                 });
                 damagedStructures.sort((a, b) => a.hits - b.hits);
                 if (damagedStructures.length > 0) {
