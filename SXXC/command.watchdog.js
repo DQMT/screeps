@@ -17,8 +17,11 @@ function watchColony(structureSpawn) {
             }
         }
         if (need) {
-            console.log('spawn a new claimer: ');
-            roleClaimer.spawnOne(structureSpawn);
+            var totalSpawnEnergyCapacity = structureSpawn.memory['totalSpawnEnergyCapacity'];
+            if (totalSpawnEnergyCapacity >= roleClaimer.cost()) {
+                console.log('spawn a new claimer: ');
+                roleClaimer.spawnOne(structureSpawn);
+            }
         }
 
     }

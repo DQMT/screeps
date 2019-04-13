@@ -19,7 +19,8 @@ module.exports.loop = function () {
     //     harvesters: 6,
     //     upgraders: 5,
     //     builders: 4,
-    //     lorries: 1
+    //     lorries: 1,
+    //     workerLevel:3
     // });
     watchdog.watch();
     supervisor.keepSpawning();
