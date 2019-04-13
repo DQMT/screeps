@@ -34,7 +34,7 @@ function getEnergyContainers(creep) {
                 structure.structureType == STRUCTURE_EXTENSION ||
                 structure.structureType == STRUCTURE_TOWER
             ) && structure.energy < structure.energyCapacity) || ((structure.structureType == STRUCTURE_CONTAINER ||
-                structure.structureType == STRUCTURE_STORAGE) && structure.store.engrgy < structure.storeCapacity);
+                structure.structureType == STRUCTURE_STORAGE) && structure.store['energy'] < structure.storeCapacity);
         }
     });
     return targets;
