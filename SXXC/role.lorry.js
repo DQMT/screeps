@@ -39,14 +39,14 @@ var roleLorry = {
         else {
             const droppedEnergy = creep.pos.findClosestByRange(FIND_DROPPED_RESOURCES);
             if (droppedEnergy) {
-                creep.say('DI DI DI');
+                creep.say('droppedEnergy');
                 if (creep.pickup(droppedEnergy) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(droppedEnergy, { visualizePathStyle: { stroke: constants.STROKE_COLOR.LORRY } });
                 }
             } else {
                 var tombStones = creep.pos.findClosestByRange(FIND_TOMBSTONES);
                 if (tombStones) {
-                    creep.say('DI DI DI');
+                    creep.say('tombStones');
                     if (creep.withdraw(tombStones) == ERR_NOT_IN_RANGE) {
                         creep.moveTo(tombStones, { visualizePathStyle: { stroke: constants.STROKE_COLOR.LORRY } });
                     }
@@ -58,6 +58,7 @@ var roleLorry = {
                         container = creep.room.storage;
                     }
                     if (container != undefined) {
+                        creep.say('container or storage');
                         if (creep.withdraw(container, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE || creep.withdraw(container, RESOURCE_ENERGY) == ERR_NOT_ENOUGH_RESOURCES) {
                             creep.moveTo(container, { visualizePathStyle: { stroke: constants.STROKE_COLOR.LORRY } });
                         }
