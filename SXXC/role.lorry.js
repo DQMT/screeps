@@ -61,9 +61,10 @@ var roleLorry = {
                     }
                     if (container != undefined) {
                         creep.say('container or storage');
-                        if (creep.withdraw(container, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE || creep.withdraw(container, RESOURCE_ENERGY) == ERR_NOT_ENOUGH_RESOURCES) {
-                            creep.moveTo(container, { visualizePathStyle: { stroke: constants.STROKE_COLOR.LORRY } });
-                        }
+                        creep.moveTo(20,31);
+                        // if (creep.withdraw(container, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE || creep.withdraw(container, RESOURCE_ENERGY) == ERR_NOT_ENOUGH_RESOURCES) {
+                        //     creep.moveTo(container, { visualizePathStyle: { stroke: constants.STROKE_COLOR.LORRY } });
+                        // }
                     }
                 }
             }
