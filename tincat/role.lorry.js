@@ -3,12 +3,12 @@ var constants = require('constants');
 
 /**
  * A lorry continously pickup energy and transfer energy to your structures
- * body part need: [CARRY, MOVE, MOVE]
+ * body part need: [CARRY, WORK, MOVE]
  */
 
 var roleLorry = {
     cost: function (structureSpawn) {
-        return 150;
+        return 200;
     },
     /** @param {Creep} creep */
     run: function (creep) {
@@ -70,7 +70,7 @@ var roleLorry = {
     /** @param {StructureSpawn} structureSpawn **/
     spawnOne: function (structureSpawn) {
         var newName = 'Lorry_' + Game.time;
-        structureSpawn.spawnCreep([CARRY, MOVE, MOVE], newName,
+        structureSpawn.spawnCreep([CARRY, WORK, MOVE], newName,
             { memory: { role: 'lorry' } });
 
     },
