@@ -19,7 +19,7 @@ var roleWorker = {
     cost: function (structureSpawn) {
         var totalSpawnEnergyCapacity = structureSpawn.memory['totalSpawnEnergyCapacity'];
         var level = parseInt(totalSpawnEnergyCapacity / 200);
-        var levelLimit = Memory.limits['wockerLevel'] ? Memory.limits['wockerLevel']:4;
+        var levelLimit = Memory.limits['workerLevel'] ? Memory.limits['workerLevel']:4;
         level = level > 1 ? level : 1;
         level = level < levelLimit ? level : levelLimit;
         var cost = 200 * level;
