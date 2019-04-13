@@ -21,7 +21,11 @@ var roleBuilder = {
 
 		if (creep.memory.building) {
 
-			var targets = creep.room.find(FIND_CONSTRUCTION_SITES) || Game.rooms['W5S38'].find(FIND_CONSTRUCTION_SITES);
+			var targets = creep.room.find(FIND_CONSTRUCTION_SITES)
+			if (!target.length > 0) {
+				targets = Game.rooms['W5S38'].find(FIND_CONSTRUCTION_SITES);
+			}
+
 			if (targets.length) {
 				var target = targets[0];
 				// var target = util.getHashedTarget(creep,targets);
