@@ -16,6 +16,11 @@ if (creep.name == 'Worker_5841201') {
 
 Game.spawns['shaxianxiaochi'].spawnCreep([ATTACK, ATTACK, MOVE, MOVE, MOVE, MOVE], 'dadi', { memory: { role: 'attacker' } });
 
+
+var result = Game.spawns['shaxianxiaochi'].renewCreep(Game.creeps['']);
+console.log(result);
+
+
 var creep = Game.creeps['dadi'];
 var hos = creep.room.find(FIND_HOSTILE_SPAWNS);
 var closestHostile = hos[0];
