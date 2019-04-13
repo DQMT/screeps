@@ -150,13 +150,11 @@ module.exports = {
         var targets;
         if (colony) {
             if (Game.rooms['W5S38']) {
-                if (!targets || targets.length == 0) {
-                    targets = Game.rooms['W5S38'].find(FIND_SOURCES, {
-                        filter: (source) => {
-                            return source.energy > 0;
-                        }
-                    });
-                }
+                targets = Game.rooms['W5S38'].find(FIND_SOURCES, {
+                    filter: (source) => {
+                        return source.energy > 0;
+                    }
+                });
             }
             if (!targets.length > 0) {
                 targets = creep.room.find(FIND_SOURCES, {
