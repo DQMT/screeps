@@ -2,8 +2,8 @@ var util = require('util');
 var constants = require('constants');
 
 /**
- * A claimer continously pickup energy and transfer energy to your structures
- * body part need: [CARRY, MOVE, MOVE]
+ * A claimer 
+ * body part need: [CARRY, MOVE]
  */
 
 var roleClaimer = {
