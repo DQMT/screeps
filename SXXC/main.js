@@ -16,11 +16,11 @@ module.exports.loop = function () {
         lorries: 1
     });
     util.setLimits({
-        harvesters: 6,
+        harvesters: 4,
         upgraders: 2,
-        builders: 3,
+        builders: 2,
         lorries: 1,
-        workerLevel: 3
+        workerLevel: 5
     });
     watchdog.watch();
     supervisor.keepSpawning();
