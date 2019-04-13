@@ -44,29 +44,17 @@ var roleLorry = {
                     creep.moveTo(droppedEnergy, { visualizePathStyle: { stroke: constants.STROKE_COLOR.LORRY } });
                 }
             } else {
-                creep.moveTo(20,31);
-                return;
-                var tombStone = creep.pos.findClosestByRange(FIND_TOMBSTONES);
-                if (tombStone) {
-                    creep.say('tombStone');
-                    var result = creep.withdraw(tombStone);
-                    console.log('tomestone result = ' + result);
-                    if (result != OK) {
-                        creep.moveTo(tombStone, { visualizePathStyle: { stroke: constants.STROKE_COLOR.LORRY } });
-                    }
-                } else {
-                    let container = creep.pos.findClosestByPath(FIND_STRUCTURES, {
-                        filter: s => s.structureType == STRUCTURE_CONTAINER
-                    });
-                    if (container == undefined) {
-                        container = creep.room.storage;
-                    }
-                    if (container != undefined) {
-                        creep.say('container or storage');
-                        creep.moveTo(20,31);
-                        // if (creep.withdraw(container, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE || creep.withdraw(container, RESOURCE_ENERGY) == ERR_NOT_ENOUGH_RESOURCES) {
-                        //     creep.moveTo(container, { visualizePathStyle: { stroke: constants.STROKE_COLOR.LORRY } });
-                        // }
+                // creep.moveTo(20,31);
+                let container = creep.pos.findClosestByPath(FIND_STRUCTURES, {
+                    filter: s => s.structureType == STRUCTURE_CONTAINER
+                });
+                if (container == undefined) {
+                    container = creep.room.storage;
+                }
+                if (container != undefined) {
+                    creep.say('container or storage');
+                    if (creep.withdraw(container, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE || creep.withdraw(container, RESOURCE_ENERGY) == ERR_NOT_ENOUGH_RESOURCES) {
+                        creep.moveTo(container, { visualizePathStyle: { stroke: constants.STROKE_COLOR.LORRY } });
                     }
                 }
             }
