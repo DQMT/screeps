@@ -49,7 +49,7 @@ var roleLorry = {
                     creep.say('tombStone');
                     var result = creep.withdraw(tombStone);
                     console.log('tomestone result = ' + result);
-                    if (result == ERR_NOT_IN_RANGE) {
+                    if (result != OK) {
                         creep.moveTo(tombStone, { visualizePathStyle: { stroke: constants.STROKE_COLOR.LORRY } });
                     }
                 } else {
