@@ -20,7 +20,8 @@ var roleBuilder = {
 		}
 
 		if (creep.memory.building) {
-			var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
+
+			var targets = creep.pos.findClosestByPath(FIND_CONSTRUCTION_SITES);
 			if (targets.length) {
 				var target = targets[0];
 				// var target = util.getHashedTarget(creep,targets);
@@ -30,7 +31,8 @@ var roleBuilder = {
 				}
 			} else {
 				targets = creep.room.find(FIND_STRUCTURES, {
-					filter: object => object.hits < object.hitsMax
+					filter: object => (object.structureType != STRUCTURE_WALL && object.structureType != STRUCTURE_RAMPART && object.hits < object.hitsMax) || (object.structureType == STRUCTURE_WALL && object.hits < 10000)
+					|| (object.structureType == STRUCTURE_RAMPART && object.hits < 10000)
 				});
 				targets.sort((a, b) => a.hits - b.hits);
 				if (targets.length > 0) {
