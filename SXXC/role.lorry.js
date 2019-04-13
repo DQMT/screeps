@@ -45,20 +45,20 @@ var roleLorry = {
                 }
             } else {
                 var tombStones = creep.pos.findClosestByRange(FIND_TOMBSTONES);
-                if(tombStones){
+                if (tombStones) {
                     creep.say('DI DI DI');
                     if (creep.withdraw(tombStones) == ERR_NOT_IN_RANGE) {
                         creep.moveTo(tombStones, { visualizePathStyle: { stroke: constants.STROKE_COLOR.LORRY } });
                     }
-                }else{
+                } else {
                     let container = creep.pos.findClosestByPath(FIND_STRUCTURES, {
-                        filter: s => s.structureType == STRUCTURE_CONTAINER && s.store[RESOURCE_ENERGY] > 0
+                        filter: s => s.structureType == STRUCTURE_CONTAINER
                     });
                     if (container == undefined) {
                         container = creep.room.storage;
                     }
                     if (container != undefined) {
-                        if (creep.withdraw(container, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                        if (creep.withdraw(container, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE || creep.withdraw(container, RESOURCE_ENERGY) == ERR_NOT_ENOUGH_RESOURCES) {
                             creep.moveTo(container, { visualizePathStyle: { stroke: constants.STROKE_COLOR.LORRY } });
                         }
                     }
