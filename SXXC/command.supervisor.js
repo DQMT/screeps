@@ -89,11 +89,12 @@ var theSupervisor = {
                 if (closestHostile) {
                     tower.attack(closestHostile);
                 }
-                var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
-                    filter: (structure) => structure.hits < structure.hitsMax
+                var damagedStructures = tower.room.find(FIND_STRUCTURES, {
+                    filter: object => object.hits < object.hitsMax
                 });
-                if (closestDamagedStructure) {
-                    tower.repair(closestDamagedStructure);
+                damagedStructures.sort((a, b) => a.hits - b.hits);
+                if (damagedStructures.length > 0) {
+                    tower.repair(damagedStructures[0]);
                 }
             }
         }
