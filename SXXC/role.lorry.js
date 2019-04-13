@@ -47,7 +47,9 @@ var roleLorry = {
                 var tombStone = creep.pos.findClosestByRange(FIND_TOMBSTONES);
                 if (tombStone) {
                     creep.say('tombStone');
-                    if (creep.withdraw(tombStone) == ERR_NOT_IN_RANGE) {
+                    var result = creep.withdraw(tombStone);
+                    console.log('tomestone result = ' + result);
+                    if (result == ERR_NOT_IN_RANGE) {
                         creep.moveTo(tombStone, { visualizePathStyle: { stroke: constants.STROKE_COLOR.LORRY } });
                     }
                 } else {

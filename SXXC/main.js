@@ -20,7 +20,7 @@ module.exports.loop = function () {
         upgraders: 2,
         builders: 2,
         lorries: 1,
-        workerLevel: 4
+        workerLevel: 3
     });
     watchdog.watch();
     supervisor.keepSpawning();
