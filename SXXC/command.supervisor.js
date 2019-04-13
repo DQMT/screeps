@@ -49,14 +49,14 @@ var theSupervisor = {
         }
 
         if (
-            Memory.limits['builders'] < 4
+            Memory.limits['builders'] < 2
             &&
             (structureSpawn.room.find(FIND_CONSTRUCTION_SITES).length ||
                 structureSpawn.room.find(FIND_STRUCTURES, { filter: object => object.hits < object.hitsMax }).length)
             && Memory.peace
             && (!structureSpawn.spawning)
         ) {
-            util.setLimit('builders', 4);
+            util.setLimit('builders', 2);
         }
     },
 
