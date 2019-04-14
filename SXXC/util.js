@@ -150,7 +150,12 @@ module.exports = {
         return structrue.store['energy'] < structrue.storeCapacity;
     },
     getEnergySources: function (creep, colony) {
-        var targets;
+        if(!colony){
+            var ss = ['5bbcac9d9099fc012e635dc9','5bbcac9d9099fc012e635dca','5bbcacae9099fc012e63600f','5bbcacae9099fc012e636010'];
+            var targets = [];
+            ss.forEach(s=>targets.push(Game.getObjectById(s)));
+            return targets;
+        }
         if (colony && Game.rooms['W5S38']) {
             if (Game.rooms['W5S38']) {
                 targets = Game.rooms['W5S38'].find(FIND_SOURCES, {
