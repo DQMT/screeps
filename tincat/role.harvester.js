@@ -13,7 +13,7 @@ var roleHarvester = {
         return [WORK, CARRY, MOVE];
     },
     newName: function () {
-        return 'Harvester@1_' + Game.time;
+        return 'Harvester@' + this.level() + '_' + Game.time;
     },
 
     run: function (creep) {
