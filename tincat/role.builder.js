@@ -37,7 +37,11 @@ var roleBuilder = {
                     creep.moveTo(structure, { visualizePathStyle: { stroke: constants.STROKE_COLOR.BUILD } });
                 }
             } else {
-                util.moveToAnotherRoom(creep);
+                if (creep.memory.roomName && creep.room.name != creep.memory.roomName) {
+                    util.moveToRoom(creep, creep.memory.roomName);
+                } else {
+                    util.moveToAnotherRoom(creep);
+                }
                 return;
             }
         } else {

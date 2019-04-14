@@ -8,7 +8,10 @@
  */
 
 module.exports = {
-   moveToAnotherRoom:function(creep){
-       
-   }
+    moveToAnotherRoom: function (creep) {
+
+    },
+    moveToRoom: function (creep, roomName) {
+
+    }
 };

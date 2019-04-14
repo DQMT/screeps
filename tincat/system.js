@@ -58,6 +58,9 @@ module.exports = {
         Memory.system['bases'].forEach(b => bases.push(Game.rooms[b]));
         return bases;
     },
+    colonyRoomNames:function(){
+        return  Memory.system['colonies'];
+    },
     availableStructureSpawns(needEnergy) {
         var need = needEnergy ? needEnergy : 0;
         var spawns = [];
