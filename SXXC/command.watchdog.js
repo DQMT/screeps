@@ -35,11 +35,18 @@ function watchColony(structureSpawn) {
 
 function watchDefence(structureSpawn) {
     var targets = structureSpawn.room.find(FIND_HOSTILE_CREEPS);
-    if (targets.length > 0) {
+    if (targets.length > 0 && Memory.peace) {
         Memory.peace = false;
         console.log('hostile targets found : ' + targets.length);
     } else {
         Memory.peace = true;
+    }
+    if (Game.time % 10 == 30) {
+        if (!Memory.peace) {
+            var log = Memory.log;
+            log.push(new Date() + ' ' + Game.time + ' hostile targets found : ' + targets.length);
+            Memory.log = log;
+        }
     }
 }
 

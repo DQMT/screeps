@@ -9,6 +9,9 @@
 
 module.exports = {
     init: function (param) {
+        if(!Memory.log){
+            Memory.log = [];
+        }
         if (!Memory.limits) {
             var limits;
             if (!param) {
