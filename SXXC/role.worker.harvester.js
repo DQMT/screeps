@@ -1,4 +1,4 @@
-var util = require('util');
+var util = require('./util');
 var constants = require('constants');
 /**
  * A harvester continously harvest energy and transfer energy to your structures
@@ -53,8 +53,9 @@ var roleHarvester = {
             if (creep.memory.structure == null || (structure = Game.getObjectById(creep.memory.structure)) == null || !util.needEnergy(structure)) {
                 var targets = getEnergyContainers(creep);
                 if (targets.length > 0) {
-                    creep.memory.structure = targets[0]['id'];
-                    structure = targets[0];
+                    var tt = util.getHashedTarget(creep,targets);
+                    creep.memory.structure = tt['id'];
+                    structure = tt;
                 } else {
                     console.log(creep.name + ' cannot find a structure to transfer');
                     util.increaseFreeTicks(creep);
