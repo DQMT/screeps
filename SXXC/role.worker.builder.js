@@ -46,7 +46,7 @@ var roleBuilder = {
 					}
 				} else {
 					console.log(creep.name + ' cannot find a structure to build or repair');
-					util.moveToAnotherRoom();
+					util.moveToAnotherRoom(creep);
 					return;
 					// util.increaseFreeTicks(creep);
 					// if (util.isFree(creep, 5)) {
