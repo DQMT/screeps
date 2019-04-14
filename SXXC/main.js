@@ -16,9 +16,9 @@ module.exports.loop = function () {
         lorries: 1
     });
     util.setLimits({
-        harvesters: 6,
-        upgraders: 3,
-        builders: 3,
+        harvesters: 7,
+        upgraders: 4,
+        builders: 2,
         lorries: 1,
         workerLevel: 5
     });
