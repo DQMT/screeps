@@ -7,7 +7,7 @@ var constants = require('constants');
  */
 
 function getEnergySources(creep) {
-	var targets =  Game.rooms['W5S37'].find(FIND_SOURCES, {
+	var targets =  Game.rooms['W5S38'].find(FIND_SOURCES, {
 		filter: (source) => {
 			return source.energy > 0;
 		}
