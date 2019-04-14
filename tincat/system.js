@@ -81,19 +81,30 @@ module.exports = {
     bindSource: function (sourceId) {
         var sources = Memory.system['sources'];
         sources.forEach(s => {
-            console.log(JSON.stringify(s));
             if (s['id'] == sourceId) {
                 s['binds'] = s['binds'] + 1;
-                console.log(s['binds']);
             }
         });
         Memory.system['sources'] = sources;
         console.log('add bind ' + sourceId);
         console.log('add bind ' + JSON.stringify(Memory.system['sources']));
     },
+    unbindSource: function(sourceId){
+        var sources = Memory.system['sources'];
+        sources.forEach(s => {
+            if (s['id'] == sourceId) {
+                s['binds'] = s['binds'] - 1;
+            }
+        });
+        Memory.system['sources'] = sources;
+        console.log('remove bind ' + sourceId);
+        console.log('remove bind ' + JSON.stringify(Memory.system['sources']));
+    },
     cleanMemory: function () {
         for (var name in Memory.creeps) {
             if (!Game.creeps[name]) {
+                var sourceId = Memory.creeps[name].source;
+                this.unbindSource(sourceId);
                 delete Memory.creeps[name];
                 console.log('Clearing non-existing creep memory:', name);
             }

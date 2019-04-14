@@ -35,7 +35,7 @@ var theSupervisor = {
             var creep = Game.creeps[name];
             rolePlayer[creep.memory.role].run(creep);
         }
-    },
+    }
 
 };
 
