@@ -7,16 +7,32 @@ var constants = require('constants');
 
 
 function getEnergyContainers(creep) {
-    var targets = Game.rooms['W5S37'].find(FIND_STRUCTURES, {
-        filter: (structure) => {
-            return (
-                structure.structureType == STRUCTURE_SPAWN ||
-                structure.structureType == STRUCTURE_EXTENSION ||
-                structure.structureType == STRUCTURE_TOWER
-            ) && util.needEnergy(structure)
+    var targets;
+    if (creep.room.name == 'W5S37') {
+        targets = [];
+        var t = creep.pos.findClosestByRange((FIND_STRUCTURES, {
+            filter: (structure) => {
+                return (
+                    structure.structureType == STRUCTURE_SPAWN ||
+                    structure.structureType == STRUCTURE_EXTENSION ||
+                    structure.structureType == STRUCTURE_TOWER
+                ) && util.needEnergy(structure)
 
-        }
-    });
+            }
+        }));
+        targets.push(t);
+    } else {
+        targets = Game.rooms['W5S37'].find(FIND_STRUCTURES, {
+            filter: (structure) => {
+                return (
+                    structure.structureType == STRUCTURE_SPAWN ||
+                    structure.structureType == STRUCTURE_EXTENSION ||
+                    structure.structureType == STRUCTURE_TOWER
+                ) && util.needEnergy(structure)
+
+            }
+        });
+    }
     if (targets.length > 0) {
         return targets;
     }
