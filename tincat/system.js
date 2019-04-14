@@ -53,9 +53,6 @@ module.exports = {
         })
         Memory.system['sources'] = sources;
     },
-    homeRoom: function () {
-        return Game.rooms[system['home']];
-    },
     cleanMemory: function () {
         for (var name in Memory.creeps) {
             if (!Game.creeps[name]) {
