@@ -39,6 +39,8 @@ var roleHarvester = {
                 if (creep.transfer(structure, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(structure);
                 }
+            }else{
+                console.log(creep.name + 'cannot find a structure!');
             }
         } else {
             var source = Game.getObjectById(creep.memory.source);
