@@ -6,8 +6,13 @@ module.exports.loop = function () {
     // system.clear();
     system.init(['sim']);
     system.cleanMemory();
-    watchdog.watch();
+    system.setLimits({
+        harvesters: 5,
+        upgraders: 2,
+        builders: 2,
+        mrhandys:1
+    });
+    watchdog.watchEverything();
     supervisor.keep();
     supervisor.urge();
-
 }

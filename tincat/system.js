@@ -13,6 +13,7 @@ module.exports = {
      */
     init: function (bases, colonies) {
         if (!Memory.system) {
+            Memory.peace = true;
             var system = {};
             system['bases'] = bases;
             system['colonies'] = [];
@@ -52,6 +53,13 @@ module.exports = {
             })
             Memory.system['sources'] = sources;
         }
+    },
+    setLimits: function (limits) {
+        Memory.limits = limits;
+    },
+    setLimit: function (item, limit) {
+        console.log('setLimit : ' + item + ' = ' + limit);
+        Memory.limits[item] = limit;
     },
     bases: function () {
         var bases = [];

@@ -25,7 +25,7 @@ var theSupervisor = {
         if (availableSpawns.length > 0 && availableSources.length > 0) {
             var structureSpawns;
             /**keep spawning upgrader */
-            if (Memory.watch['harvester'] > 4 && Memory.peace && Memory.watch['upgraders'] < Memory.limits.upgraders) {
+            if (Memory.watch['harvesters'] > 4 && Memory.peace && Memory.watch['upgraders'] < Memory.limits.upgraders) {
                 structureSpawns = system.availableStructureSpawns(roleUpgrader.cost());
                 if (structureSpawns.length > 0) {
                     if (OK == structureSpawns[0].spawnCreep(
@@ -34,7 +34,7 @@ var theSupervisor = {
                         { memory: { role: 'upgrader', source: availableSources[0] } }
                     )) {
                         console.log('spawn a new upgrader to source: ' + availableSources[0] +
-                            'from ' + structureSpawns[0]['id']);
+                            ' from ' + structureSpawns[0]['id']);
                         system.bindSource(availableSources[0]);
                         return;
                     };
@@ -42,7 +42,7 @@ var theSupervisor = {
             }
 
             /**keep spawning builder */
-            if (Memory.watch['harvester'] > 4 && Memory.peace && Memory.watch['builders'] < Memory.limits.builders) {
+            if (Memory.watch['harvesters'] > 4 && Memory.peace && Memory.watch['builders'] < Memory.limits.builders) {
                 structureSpawns = system.availableStructureSpawns(roleBuilder.cost());
                 if (structureSpawns.length > 0) {
                     if (OK == structureSpawns[0].spawnCreep(
@@ -58,19 +58,22 @@ var theSupervisor = {
             }
 
             /** keep spawning harvester */
-            structureSpawns = system.availableStructureSpawns(roleHarvester.cost());
-            if (structureSpawns.length > 0) {
-                if (OK == structureSpawns[0].spawnCreep(
-                    roleHarvester.body(),
-                    roleHarvester.newName(),
-                    { memory: { role: 'harvester', source: availableSources[0] } }
-                )) {
-                    console.log('spawn a new harvester to source: ' + availableSources[0] +
-                        'from ' + structureSpawns[0]['id']);
-                    system.bindSource(availableSources[0]);
-                    return;
-                };
+            if (Memory.watch['harvesters'] < Memory.limits.harvesters) {
+                structureSpawns = system.availableStructureSpawns(roleHarvester.cost());
+                if (structureSpawns.length > 0) {
+                    if (OK == structureSpawns[0].spawnCreep(
+                        roleHarvester.body(),
+                        roleHarvester.newName(),
+                        { memory: { role: 'harvester', source: availableSources[0] } }
+                    )) {
+                        console.log('spawn a new harvester to source: ' + availableSources[0] +
+                            ' from ' + structureSpawns[0]['id']);
+                        system.bindSource(availableSources[0]);
+                        return;
+                    };
+                }
             }
+
 
             /** keep spawning claimer*/
             structureSpawns = system.availableStructureSpawns(roleClaimer.cost());
@@ -95,7 +98,7 @@ var theSupervisor = {
                             { memory: { role: 'claimer', roomName: colony } }
                         )) {
                             console.log('spawn a new claimer to room: ' + colony +
-                                'from ' + structureSpawns[0]['id']);
+                                ' from ' + structureSpawns[0]['id']);
                             return;
                         };
                     }
@@ -103,18 +106,19 @@ var theSupervisor = {
             }
 
             /** keep spawning mrhandy */
-            structureSpawns = system.availableStructureSpawns(roleMrhandy.cost());
-            if (structureSpawns.length > 0) {
-                if (OK == structureSpawns[0].spawnCreep(
-                    roleMrhandy.body(),
-                    roleMrhandy.newName(),
-                    { memory: { role: 'mrhandy' } }
-                )) {
-                    console.log('spawn a new mrhandy from ' + structureSpawns[0]['id']);
-                    return;
-                };
+            if(Memory.watch['mrhandys'] < Memory.limits.mrhandys){
+                structureSpawns = system.availableStructureSpawns(roleMrhandy.cost());
+                if (structureSpawns.length > 0) {
+                    if (OK == structureSpawns[0].spawnCreep(
+                        roleMrhandy.body(),
+                        roleMrhandy.newName(),
+                        { memory: { role: 'mrhandy' } }
+                    )) {
+                        console.log('spawn a new mrhandy from ' + structureSpawns[0]['id']);
+                        return;
+                    };
+                }
             }
-
         }
     },
     urge: function () {
