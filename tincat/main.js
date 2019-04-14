@@ -10,6 +10,7 @@ module.exports.loop = function () {
         harvesters: 5,
         upgraders: 2,
         builders: 2,
+        repairers: 2,
         mrhandys:1
     });
     watchdog.watchEverything();
