@@ -13,7 +13,7 @@ module.exports = {
      */
     init: function (bases, colonies) {
         if (!Memory.system) {
-            Memory.peace = true;
+
             var system = {};
             system['bases'] = bases;
             system['colonies'] = [];
@@ -53,6 +53,9 @@ module.exports = {
             })
             Memory.system['sources'] = sources;
         }
+        if (!Memory.peace) {
+            Memory.peace = true;
+        }
     },
     setLimits: function (limits) {
         Memory.limits = limits;
@@ -66,8 +69,11 @@ module.exports = {
         Memory.system['bases'].forEach(b => bases.push(Game.rooms[b]));
         return bases;
     },
-    colonyRoomNames:function(){
-        return  Memory.system['colonies'];
+    baseRoomNames: function () {
+        return Memory.system['bases'];
+    },
+    colonyRoomNames: function () {
+        return Memory.system['colonies'];
     },
     availableStructureSpawns(needEnergy) {
         var need = needEnergy ? needEnergy : 0;
@@ -100,7 +106,7 @@ module.exports = {
         console.log('add bind ' + sourceId);
         console.log('add bind ' + JSON.stringify(Memory.system['sources']));
     },
-    unbindSource: function(sourceId){
+    unbindSource: function (sourceId) {
         var sources = Memory.system['sources'];
         sources.forEach(s => {
             if (s['id'] == sourceId) {

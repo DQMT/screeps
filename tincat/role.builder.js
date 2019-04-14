@@ -50,7 +50,7 @@ var roleBuilder = {
                 source = Game.getObjectById(creep.memory.source);
             } else {
                 source = creep.pos.findClosestByPath(FIND_SOURCES, {
-                    filter: s.energy > 0
+                    filter: s => s.energy > 0
                 });
             }
             if (!source) {

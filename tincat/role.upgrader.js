@@ -1,4 +1,5 @@
 var constants = require('./constants');
+var system = require('./system');
 
 
 
@@ -30,7 +31,9 @@ var roleUpgrader = {
             if (creep.memory.target) {
                 structure = Game.getObjectById(creep.memory.target);
             } else {
-                structure = Game.rooms['W5S37'].controller;
+                var bases = system.baseRoomNames();
+                console.log(bases);
+                structure = Game.rooms[bases[0]].controller;
             }
             if (structure != undefined) {
                 if (creep.upgradeController(structure) == ERR_NOT_IN_RANGE) {
@@ -53,7 +56,6 @@ var roleUpgrader = {
             }
         }
     }
-
 }
 
 module.exports = roleUpgrader;
