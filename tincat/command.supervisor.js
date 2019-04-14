@@ -18,7 +18,7 @@ var theSupervisor = {
         if (availableSources.length > 0) {
             var structureSpawns = system.availableStructureSpawns(roleHarvester.cost());
             if (structureSpawns.length > 0) {
-                if (OK = structureSpawns[0].spawnCreep(
+                if (OK == structureSpawns[0].spawnCreep(
                     roleHarvester.body(),
                     roleHarvester.newName(),
                     { memory: { role: 'harvester', source: availableSources[0] } }

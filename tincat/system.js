@@ -54,13 +54,17 @@ module.exports = {
         return sources;
     },
     bindSource: function (sourceId) {
-        var sources = Memory.system.sources;
+        var sources = Memory.system['sources'];
         sources.forEach(s => {
+            console.log(JSON.stringify(s));
             if (s['id'] == sourceId) {
                 s['binds'] = s['binds'] + 1;
+                console.log(s['binds']);
             }
         });
-        Memory.system.sources = sources;
+        Memory.system['sources'] = sources;
+        console.log('add bind ' + sourceId);
+        console.log('add bind ' + Memory.system['sources']);
     },
     registerSources: function () {
         var sources = [];
