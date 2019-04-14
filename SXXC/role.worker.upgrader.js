@@ -7,7 +7,11 @@ var constants = require('constants');
  */
 
 function getEnergySources(creep) {
-	var targets =  Game.rooms['W5S38'].find(FIND_SOURCES, {
+	var room = Game.rooms['W5S38'];
+	if (!room) {
+		room = Game.rooms['W5S37'];
+	}
+	var targets = room.find(FIND_SOURCES, {
 		filter: (source) => {
 			return source.energy > 0;
 		}
@@ -30,7 +34,7 @@ var roleUpgrader = {
 		}
 
 		if (creep.memory.upgrading) {
-		
+
 			if (creep.upgradeController(Game.rooms['W5S37'].controller) == ERR_NOT_IN_RANGE) {
 				creep.moveTo(Game.rooms['W5S37'].controller, { visualizePathStyle: { stroke: constants.STROKE_COLOR.UPGRADE } });
 			}
