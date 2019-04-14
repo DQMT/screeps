@@ -4,6 +4,7 @@ var roleUpgrader = require('./role.upgrader');
 var roleBuilder = require('./role.builder');
 var roleClaimer = require('./role.claimer');
 var roleMrhandy = require('./role.mrhandy');
+var roleRepairer = require('./role.repairer');
 
 var rolePlayer = {
     'harvester': roleHarvester,
@@ -51,6 +52,22 @@ var theSupervisor = {
                         { memory: { role: 'builder' } }
                     )) {
                         console.log('spawn a new builder from ' + structureSpawns[0]['id']);
+                        // system.bindSource(availableSources[0]);
+                        return;
+                    };
+                }
+            }
+
+            /**keep spawning repairer */
+            if (Memory.watch['harvesters'] > 4 && Memory.peace && Memory.watch['repairers'] < Memory.limits.repairers) {
+                structureSpawns = system.availableStructureSpawns(roleRepairer.cost());
+                if (structureSpawns.length > 0) {
+                    if (OK == structureSpawns[0].spawnCreep(
+                        roleRepairer.body(),
+                        roleRepairer.newName(),
+                        { memory: { role: 'repairer' } }
+                    )) {
+                        console.log('spawn a new repairer from ' + structureSpawns[0]['id']);
                         // system.bindSource(availableSources[0]);
                         return;
                     };
