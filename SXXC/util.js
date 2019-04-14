@@ -148,7 +148,7 @@ module.exports = {
     },
     getEnergySources: function (creep, colony) {
         var targets;
-        if (colony) {
+        if (colony && Game.rooms['W5S38']) {
             if (Game.rooms['W5S38']) {
                 targets = Game.rooms['W5S38'].find(FIND_SOURCES, {
                     filter: (source) => {

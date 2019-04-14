@@ -26,6 +26,31 @@ module.exports = {
                 system['colonies'] = colonies;
             }
             Memory.system = system;
+            var sources = [];
+            //init source
+            Memory.system['bases'].forEach(base => {
+                var ss = Game.rooms[base].find(FIND_SOURCES);
+                for (var i = 0; i < ss.length; i++) {
+                    var resource = {
+                        'id': ss[i]['id'],
+                        'maxBinds': 3,
+                        'binds': 0
+                    };
+                    sources.push(resource);
+                }
+            })
+            Memory.system['colonies'].forEach(base => {
+                var ss = Game.rooms[base].find(FIND_SOURCES);
+                for (var i = 0; i < ss.length; i++) {
+                    var resource = {
+                        'id': ss[i]['id'],
+                        'maxBinds': 3,
+                        'binds': 0
+                    };
+                    sources.push(resource);
+                }
+            })
+            Memory.system['sources'] = sources;
         }
     },
     bases: function () {
@@ -64,33 +89,7 @@ module.exports = {
         });
         Memory.system['sources'] = sources;
         console.log('add bind ' + sourceId);
-        console.log('add bind ' + Memory.system['sources']);
-    },
-    registerSources: function () {
-        var sources = [];
-        Memory.system['bases'].forEach(base => {
-            var ss = Game.rooms[base].find(FIND_SOURCES);
-            for (var i = 0; i < ss.length; i++) {
-                var resource = {
-                    'id': ss[i]['id'],
-                    'maxBinds': 3,
-                    'binds': 0
-                };
-                sources.push(resource);
-            }
-        })
-        Memory.system['colonies'].forEach(base => {
-            var ss = Game.rooms[base].find(FIND_SOURCES);
-            for (var i = 0; i < ss.length; i++) {
-                var resource = {
-                    'id': ss[i]['id'],
-                    'maxBinds': 3,
-                    'binds': 0
-                };
-                sources.push(resource);
-            }
-        })
-        Memory.system['sources'] = sources;
+        console.log('add bind ' + JSON.stringify(Memory.system['sources']));
     },
     cleanMemory: function () {
         for (var name in Memory.creeps) {
