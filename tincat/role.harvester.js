@@ -10,6 +10,9 @@ var roleHarvester = {
 
     },
     body: function () {
+
+    },
+    newName:function(){
         
     }
 

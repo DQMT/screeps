@@ -1,5 +1,5 @@
-var util = require('util');
-var constants = require('constants');
+var util = require('./util');
+var constants = require('./constants');
 
 var theWatchdog = {
 

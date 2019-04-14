@@ -1,4 +1,5 @@
 var system = require('./system');
+var supervisor = require('./command.supervisor');
 
 module.exports.loop = function () {
     system.clear();
@@ -6,7 +7,7 @@ module.exports.loop = function () {
     // system.setColonies(['W5S38','W4S37']);
     system.registerSources();
     system.cleanMemory();
-    
 
+    supervisor.keep();
 
 }

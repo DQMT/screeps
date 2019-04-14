@@ -28,15 +28,49 @@ module.exports = {
             Memory.system = system;
         }
     },
-
+    bases: function () {
+        var bases = [];
+        Memory.system['bases'].forEach(b => bases.push(Game.rooms[b]));
+        return bases;
+    },
+    availableStructureSpawns(needEnergy) {
+        var need = needEnergy ? needEnergy : 0;
+        var spawns = [];
+        for (const i in Game.spawns) {
+            var s = Game.spawns[i];
+            if (!s.spawning && s.room.energyAvailable >= need) {
+                spawns.push(s);
+            }
+        }
+        return spawns;
+    },
+    availableSources: function () {
+        var sources = [];
+        Memory.system.sources.forEach(s => {
+            if (s['binds'] < s['maxBinds']) {
+                sources.push(s['id']);
+            }
+        })
+        return sources;
+    },
+    bindSource: function (sourceId) {
+        var sources = Memory.system.sources;
+        sources.forEach(s => {
+            if (s['id'] == sourceId) {
+                s['binds'] = s['binds'] + 1;
+            }
+        });
+        Memory.system.sources = sources;
+    },
     registerSources: function () {
         var sources = [];
         Memory.system['bases'].forEach(base => {
             var ss = Game.rooms[base].find(FIND_SOURCES);
             for (var i = 0; i < ss.length; i++) {
-                var resource = {};
-                resource[ss[i]['id']] = {
-                    'maxBinds': 3, 'binds': 0
+                var resource = {
+                    'id': ss[i]['id'],
+                    'maxBinds': 3,
+                    'binds': 0
                 };
                 sources.push(resource);
             }
@@ -44,9 +78,10 @@ module.exports = {
         Memory.system['colonies'].forEach(base => {
             var ss = Game.rooms[base].find(FIND_SOURCES);
             for (var i = 0; i < ss.length; i++) {
-                var resource = {};
-                resource[ss[i]['id']] = {
-                    'maxBinds': 3, 'binds': 0
+                var resource = {
+                    'id': ss[i]['id'],
+                    'maxBinds': 3,
+                    'binds': 0
                 };
                 sources.push(resource);
             }
