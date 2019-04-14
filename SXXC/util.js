@@ -9,7 +9,7 @@
 
 module.exports = {
     init: function (param) {
-        if(!Memory.log){
+        if (!Memory.log) {
             Memory.log = [];
         }
         if (!Memory.limits) {
@@ -188,5 +188,25 @@ module.exports = {
             return targets;
         }
 
+    },
+    moveToAnotherRoom: function (creep) {
+        var currentRoom = creep.room.name;
+        switch (currentRoom) {
+            case 'W5S37':
+                this.moveToRoom(creep, 'W4S37');
+                break;
+            case 'W4S37':
+                this.moveToRoom(creep, 'W5S38');
+                break;
+            case 'W5S38':
+                this.moveToRoom(creep, 'W5S37');
+                break;
+        }
+    },
+    moveToRoom: function (creep, roomName) {
+        if (creep.room.name != roomName) {
+            var exit = creep.room.findExitTo(roomName);
+            creep.moveTo(creep.pos.findClosestByRange(exit));
+        }
     }
 };

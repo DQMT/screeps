@@ -1,4 +1,4 @@
-var util = require('util');
+var util = require('./util');
 var constants = require('constants');
 
 /**
@@ -46,17 +46,19 @@ var roleBuilder = {
 					}
 				} else {
 					console.log(creep.name + ' cannot find a structure to build or repair');
-					util.increaseFreeTicks(creep);
-					if (util.isFree(creep, 5)) {
-						util.decreaseLimit('builders');
-						if (Memory.fullUpgraders) {
-							creep.say('I am dead now!');
-							creep.suicide();
-						} else {
-							creep.say('I am upgrader now!');
-							creep.memory.roleState = constants.WORKER_STATE.UPGRADE;
-						}
-					}
+					util.moveToAnotherRoom();
+					return;
+					// util.increaseFreeTicks(creep);
+					// if (util.isFree(creep, 5)) {
+					// 	util.decreaseLimit('builders');
+					// 	if (Memory.fullUpgraders) {
+					// 		creep.say('I am dead now!');
+					// 		creep.suicide();
+					// 	} else {
+					// 		creep.say('I am upgrader now!');
+					// 		creep.memory.roleState = constants.WORKER_STATE.UPGRADE;
+					// 	}
+					// }
 				}
 			}
 		}
