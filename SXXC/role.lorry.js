@@ -67,7 +67,7 @@ var roleLorry = {
         structureSpawn.spawnCreep([CARRY, MOVE, MOVE], newName,
             { memory: { role: 'lorry' } });
 
-    },
+    }
 
 }
 module.exports = roleLorry;
