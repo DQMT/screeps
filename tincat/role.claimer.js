@@ -7,9 +7,19 @@ var constants = require('constants');
  */
 
 var roleClaimer = {
-    cost: function (structureSpawn) {
+    level: function () {
+        return 1;
+    },
+    cost: function () {
         return 650;
     },
+    body: function () {
+        return [CLAIM, MOVE];
+    },
+    newName: function () {
+        return 'Claimer@' + this.level() + '_' + Game.time;
+    },
+
     /** @param {Creep} creep */
     run: function (creep) {
         if (Game.rooms[creep.memory.roomName]) {
@@ -20,22 +30,8 @@ var roleClaimer = {
         } else {
             var exit = creep.room.findExitTo(creep.memory.roomName);
             creep.moveTo(creep.pos.findClosestByRange(exit));
-            // if(creep.memory.roomName=='W4S37'){
-            //     creep.moveTo(49, 23);
-            // }
-            // if(creep.memory.roomName=='W5S38'){
-            //     creep.moveTo(25, 49);
-            // }
         }
 
-    },
-    /** @param {StructureSpawn} structureSpawn **/
-    spawnOne: function (structureSpawn, roomName) {
-        var newName = 'Claimer' + Game.time;
-        structureSpawn.spawnCreep([CLAIM, MOVE], newName,
-            { memory: { role: 'claimer', roomName: roomName } });
-
-    },
-
+    }
 }
 module.exports = roleClaimer;
