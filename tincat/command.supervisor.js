@@ -1,7 +1,10 @@
-var constants = require('./constants');
-var util = require('./util');
 var system = require('./system');
 var roleHarvester = require('./role.harvester');
+
+
+var rolePlayer = {
+    'harvester': roleHarvester
+}
 
 /**
  * The supervisor make sure every creep work correctly.
@@ -26,7 +29,13 @@ var theSupervisor = {
                 };
             }
         }
-    }
+    },
+    urge: function () {
+        for (var name in Game.creeps) {
+            var creep = Game.creeps[name];
+            rolePlayer[creep.memory.role].run(creep);
+        }
+    },
 
 };
 

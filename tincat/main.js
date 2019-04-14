@@ -9,5 +9,6 @@ module.exports.loop = function () {
     system.cleanMemory();
 
     supervisor.keep();
+    supervisor.urge();
 
 }
