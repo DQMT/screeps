@@ -39,8 +39,8 @@ module.exports = {
                     sources.push(resource);
                 }
             })
-            Memory.system['colonies'].forEach(base => {
-                var ss = Game.rooms[base].find(FIND_SOURCES);
+            Memory.system['colonies'].forEach(colony => {
+                var ss = Game.rooms[colony].find(FIND_SOURCES);
                 for (var i = 0; i < ss.length; i++) {
                     var resource = {
                         'id': ss[i]['id'],
