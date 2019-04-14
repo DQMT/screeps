@@ -6,12 +6,12 @@ Game.spawns['shaxianxiaochi'].spawnCreep([WORK, CARRY, MOVE], 'Harvester1', { me
 
 Game.spawns['shaxianxiaochi'].spawnCreep([WORK, CARRY, MOVE], 'Upgrader1', { memory: { role: 'upgrader' } });
 
-if (creep.name == 'Worker_5841201') {
-    if (creep.signController(creep.room.controller, "Fools die… as you well know.") == ERR_NOT_IN_RANGE) {
-        creep.moveTo(creep.room.controller);
-        return;
-    }
+var creep = Game.creeps['Claimer5940831'];
+if (creep.signController(creep.room.controller, "Fools die… as you well know.") == ERR_NOT_IN_RANGE) {
+    creep.moveTo(creep.room.controller);
+    return;
 }
+
 
 
 Game.spawns['shaxianxiaochi'].spawnCreep([ATTACK, ATTACK, MOVE, MOVE, MOVE, MOVE], 'dadi', { memory: { role: 'attacker' } });
