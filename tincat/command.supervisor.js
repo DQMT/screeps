@@ -3,10 +3,14 @@ var roleHarvester = require('./role.harvester');
 var roleUpgrader = require('./role.upgrader');
 var roleBuilder = require('./role.builder');
 var roleClaimer = require('./role.claimer');
-
+var roleMrhandy = require('./role.mrhandy');
 
 var rolePlayer = {
-    'harvester': roleHarvester
+    'harvester': roleHarvester,
+    'upgrader': roleUpgrader,
+    'builder': roleBuilder,
+    'claimer': roleClaimer,
+    'mrhandy': roleMrhandy
 }
 
 /**
@@ -98,10 +102,20 @@ var theSupervisor = {
                 });
             }
 
+            /** keep spawning mrhandy */
+            structureSpawns = system.availableStructureSpawns(roleMrhandy.cost());
+            if (structureSpawns.length > 0) {
+                if (OK == structureSpawns[0].spawnCreep(
+                    roleMrhandy.body(),
+                    roleMrhandy.newName(),
+                    { memory: { role: 'mrhandy' } }
+                )) {
+                    console.log('spawn a new mrhandy from ' + structureSpawns[0]['id']);
+                    return;
+                };
+            }
+
         }
-
-
-
     },
     urge: function () {
         for (var name in Game.creeps) {
