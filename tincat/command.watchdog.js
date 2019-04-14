@@ -29,7 +29,7 @@ function watchCreeps() {
 var theWatchdog = {
 
     watch: function () {
-
+        watchCreeps();
     }
 };
 
