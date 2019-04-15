@@ -13,6 +13,8 @@ module.exports.loop = function () {
         repairers: 2,
         mrhandys:1
     });
+    system.setMaxBinds('5bbcacae9099fc012e63600f',5);
+    system.setMaxBinds('5bbcacae9099fc012e636010',5);
     watchdog.watchEverything();
     supervisor.keep();
     supervisor.urge();

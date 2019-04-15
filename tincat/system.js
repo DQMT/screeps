@@ -18,8 +18,11 @@ module.exports = {
             system['bases'] = bases;
             system['colonies'] = [];
             var limits = {
-                workers: 10,
-                lorries: 1
+                harvesters: 5,
+                upgraders: 2,
+                builders: 2,
+                repairers: 2,
+                mrhandys: 1
             }
             system['limits'] = limits;
             system['sources'] = [];
@@ -56,6 +59,15 @@ module.exports = {
         if (!Memory.peace) {
             Memory.peace = true;
         }
+    },
+    setMaxBinds: function (id, maxBinds) {
+        var sources = Memory.system.sources;
+        sources.forEach(s => {
+            if (s['id'] == id) {
+                s['maxBinds'] = maxBinds;
+            }
+        })
+        Memory.system.sources = sources;
     },
     setLimits: function (limits) {
         Memory.limits = limits;
