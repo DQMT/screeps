@@ -24,13 +24,20 @@ module.exports = {
             return array[0];
         }
     },
+    fixEdge(creep) {
+        if (creep.pos.y == 0 || creep.pos.y == 0 || creep.pos.y == 0 || creep.pos.y == 0) {
+            creep.move(BOTTOM);
+            return;
+        }
+    },
     moveToAnotherRoom: function (creep) {
+
         if (creep.memory.endRoom && creep.memory.endRoom != creep.room.name) {
             // console.log('endRoom = '+creep.memory.endRoom+' now = '+creep.room.name);
-            if(Game.rooms[creep.memory.endRoom]){
+            if (Game.rooms[creep.memory.endRoom]) {
                 creep.moveTo(Game.rooms[creep.memory.endRoom].controller);
-            }else{
-                this.moveToRoom(creep,creep.memory.endRoom);
+            } else {
+                this.moveToRoom(creep, creep.memory.endRoom);
             }
             return;
         }
