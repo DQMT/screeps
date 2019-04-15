@@ -40,6 +40,7 @@ var roleBuilder = {
                 if (creep.memory.roomName && creep.room.name != creep.memory.roomName) {
                     util.moveToRoom(creep, creep.memory.roomName);
                 } else {
+                    util.beforeMoveToAnotherRoom(creep);
                     util.moveToAnotherRoom(creep);
                 }
                 return;
@@ -54,6 +55,7 @@ var roleBuilder = {
                 });
             }
             if (!source) {
+                util.beforeMoveToAnotherRoom(creep);
                 util.moveToAnotherRoom(creep);
                 return;
             }

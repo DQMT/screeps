@@ -35,6 +35,7 @@ var roleMrhandy = {
                 if (creep.memory.roomName && creep.room.name != creep.memory.roomName) {
                     util.moveToRoom(creep, creep.memory.roomName);
                 } else {
+                    util.beforeMoveToAnotherRoom(creep);
                     util.moveToAnotherRoom(creep);
                 }
                 return;
@@ -57,6 +58,7 @@ var roleMrhandy = {
                 }
                 return;
             }
+            util.beforeMoveToAnotherRoom(creep);
             util.moveToAnotherRoom(creep);
             return;
         }

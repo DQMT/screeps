@@ -32,9 +32,9 @@ var roleRepairer = {
             } else {
                 structure = creep.pos.findClosestByPath(FIND_STRUCTURES, {
                     filter: object => (object.structureType != STRUCTURE_WALL && object.structureType != STRUCTURE_RAMPART && object.hits < object.hitsMax)
-                     || (object.structureType == STRUCTURE_WALL && object.hits < 10000)
+                        || (object.structureType == STRUCTURE_WALL && object.hits < 10000)
                         || (object.structureType == STRUCTURE_RAMPART && object.hits < 10000)
-                    });
+                });
             }
             if (structure != undefined) {
                 if (creep.repair(structure) == ERR_NOT_IN_RANGE) {
@@ -44,6 +44,7 @@ var roleRepairer = {
                 if (creep.memory.roomName && creep.room.name != creep.memory.roomName) {
                     util.moveToRoom(creep, creep.memory.roomName);
                 } else {
+                    util.beforeMoveToAnotherRoom(creep);
                     util.moveToAnotherRoom(creep);
                 }
                 return;
@@ -58,6 +59,7 @@ var roleRepairer = {
                 });
             }
             if (!source) {
+                util.beforeMoveToAnotherRoom(creep);
                 util.moveToAnotherRoom(creep);
                 return;
             }

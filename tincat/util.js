@@ -24,6 +24,9 @@ module.exports = {
             return array[0];
         }
     },
+    beforeMoveToAnotherRoom: function (creep) {
+        creep.memory.endRoom = undefined;
+    },
     moveToAnotherRoom: function (creep) {
         if (creep.memory.endRoom) {
             this.moveToRoom(creep, endRoom);
