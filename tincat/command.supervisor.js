@@ -33,7 +33,7 @@ var theSupervisor = {
                         if (OK == structureSpawns[0].spawnCreep(
                             roleUpgrader.body(),
                             roleUpgrader.newName(),
-                            { memory: { role: 'upgrader', source: availableSources[0] } }
+                            { memory: { role: 'upgrader', source: availableSources[0], bindSource: availableSources[0] } }
                         )) {
                             console.log('spawn a new upgrader to source: ' + availableSources[0] +
                                 ' from ' + structureSpawns[0]['id']);
@@ -50,7 +50,7 @@ var theSupervisor = {
                         if (OK == structureSpawns[0].spawnCreep(
                             roleHarvester.body(),
                             roleHarvester.newName(),
-                            { memory: { role: 'harvester', source: availableSources[0] } }
+                            { memory: { role: 'harvester', source: availableSources[0], bindSource: availableSources[0] } }
                         )) {
                             console.log('spawn a new harvester to source: ' + availableSources[0] +
                                 ' from ' + structureSpawns[0]['id']);

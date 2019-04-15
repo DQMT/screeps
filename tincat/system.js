@@ -141,8 +141,9 @@ module.exports = {
     cleanMemory: function () {
         for (var name in Memory.creeps) {
             if (!Game.creeps[name]) {
-                var sourceId = Memory.creeps[name].source;
-                this.unbindSource(sourceId);
+                if (Memory.creeps[name].bindSource) {
+                    this.unbindSource(Memory.creeps[name].bindSource);
+                }
                 delete Memory.creeps[name];
                 console.log('Clearing non-existing creep memory:', name);
             }
