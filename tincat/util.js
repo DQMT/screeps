@@ -25,7 +25,7 @@ module.exports = {
         }
     },
     moveToAnotherRoom: function (creep) {
-        if (creep.memory.endRoom && creep.memory.endRoom != creep.room.name) {
+        if (creep.memory.endRoom) {
             this.moveToRoom(creep, endRoom);
             return;
         }
