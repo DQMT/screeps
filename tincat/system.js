@@ -36,6 +36,7 @@ module.exports = {
                 var ss = Game.rooms[base].find(FIND_SOURCES);
                 for (var i = 0; i < ss.length; i++) {
                     var resource = {
+                        'room': base,
                         'id': ss[i]['id'],
                         'maxBinds': 3,
                         'binds': 0
@@ -47,6 +48,7 @@ module.exports = {
                 var ss = Game.rooms[colony].find(FIND_SOURCES);
                 for (var i = 0; i < ss.length; i++) {
                     var resource = {
+                        'room': colony,
                         'id': ss[i]['id'],
                         'maxBinds': 3,
                         'binds': 0
