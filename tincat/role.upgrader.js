@@ -32,7 +32,6 @@ var roleUpgrader = {
                 structure = Game.getObjectById(creep.memory.target);
             } else {
                 var bases = system.baseRoomNames();
-                console.log(bases);
                 structure = Game.rooms[bases[0]].controller;
             }
             if (structure != undefined) {
