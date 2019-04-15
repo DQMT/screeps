@@ -1,5 +1,6 @@
 var util = require('./util');
 var constants = require('./constants');
+var system = require('./system');
 
 function watchCreeps() {
     var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
@@ -27,11 +28,36 @@ function watchCreeps() {
     }
 }
 
+function watchDefence() {
+    var baseRoomNames = system.baseRoomNames();
+
+    if (Game.time % 20 == 0) {
+        baseRoomNames.forEach(element => {
+            if (Game.rooms[element]) {
+                var targets = Game.rooms[element].find(FIND_HOSTILE_CREEPS);
+                if (targets.length > 0) {
+                    Memory.peace = false;
+                    console.log('hostile targets found : ' + targets.length);
+                } else {
+                    Memory.peace = true;
+                }
+                if (!Memory.peace) {
+                    var log = Memory.log;
+                    log.push(new Date() + ' ' + Game.time + ' hostile targets found : ' + targets.length);
+                    Memory.log = log;
+                }
+            }
+        });
+
+    }
+}
+
 
 var theWatchdog = {
 
     watchEverything: function () {
         watchCreeps();
+        watchDefence();
     }
 };
 
