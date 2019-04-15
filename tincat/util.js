@@ -26,11 +26,11 @@ module.exports = {
     },
     moveToAnotherRoom: function (creep) {
         if (creep.memory.endRoom && creep.memory.endRoom != creep.room.name) {
-            console.log('endRoom = '+creep.memory.endRoom+' now = '+creep.room.name);
+            // console.log('endRoom = '+creep.memory.endRoom+' now = '+creep.room.name);
             creep.moveTo(Game.rooms[creep.memory.endRoom].controller);
             return;
         }
-        console.log('endRoom = '+creep.memory.endRoom+' now = '+creep.room.name);
+        // console.log('endRoom = '+creep.memory.endRoom+' now = '+creep.room.name);
         var rooms = ['W4S37', 'W5S38', 'W5S37'];
         var startRoom = creep.room.name;
         var endRoom = this.findNextInArray(rooms, startRoom);
