@@ -27,7 +27,11 @@ module.exports = {
     moveToAnotherRoom: function (creep) {
         if (creep.memory.endRoom && creep.memory.endRoom != creep.room.name) {
             // console.log('endRoom = '+creep.memory.endRoom+' now = '+creep.room.name);
-            creep.moveTo(Game.rooms[creep.memory.endRoom].controller);
+            if(Game.rooms[creep.memory.endRoom]){
+                creep.moveTo(Game.rooms[creep.memory.endRoom].controller);
+            }else{
+                this.moveToRoom(creep,creep.memory.endRoom);
+            }
             return;
         }
         // console.log('endRoom = '+creep.memory.endRoom+' now = '+creep.room.name);

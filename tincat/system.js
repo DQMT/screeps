@@ -69,6 +69,13 @@ module.exports = {
     //     })
     //     Memory.system.sources = sources;
     // },
+    clearBinds: function () {
+        var sources = Memory.system.sources;
+        sources.forEach(s => {
+            s['binds'] = 0;
+        })
+        Memory.system.sources = sources;
+    },
     setMaxBinds: function (id, maxBinds) {
         var sources = Memory.system.sources;
         sources.forEach(s => {
