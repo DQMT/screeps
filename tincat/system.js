@@ -62,6 +62,13 @@ module.exports = {
             Memory.peace = true;
         }
     },
+    // setRooms: function () {
+    //     var sources = Memory.system.sources;
+    //     sources.forEach(s => {
+    //         s['room'] = Game.getObjectById(s['id']).room.name;
+    //     })
+    //     Memory.system.sources = sources;
+    // },
     setMaxBinds: function (id, maxBinds) {
         var sources = Memory.system.sources;
         sources.forEach(s => {
@@ -113,7 +120,7 @@ module.exports = {
         var sources = Memory.system['sources'];
         sources.forEach(s => {
             if (s['id'] == sourceId) {
-                s['binds'] = s['binds'] + 1;
+                s['binds'] = s['binds'] + 1 > s['maxBinds'] ? s['maxBinds'] : s['binds'] + 1;
             }
         });
         Memory.system['sources'] = sources;
@@ -124,7 +131,7 @@ module.exports = {
         var sources = Memory.system['sources'];
         sources.forEach(s => {
             if (s['id'] == sourceId) {
-                s['binds'] = s['binds'] - 1;
+                s['binds'] = s['binds'] - 1 < 0 ? 0 : s['binds'] - 1;
             }
         });
         Memory.system['sources'] = sources;
