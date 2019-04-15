@@ -22,22 +22,41 @@ var theSupervisor = {
         var availableSources = system.availableSources();
         var availableSpawns = system.availableStructureSpawns();
 
-        if (availableSpawns.length > 0 && availableSources.length > 0) {
-            var structureSpawns;
-            /**keep spawning upgrader */
-            if (Memory.watch['harvesters'] > 4 && Memory.peace && Memory.watch['upgraders'] < Memory.limits.upgraders) {
-                structureSpawns = system.availableStructureSpawns(roleUpgrader.cost());
-                if (structureSpawns.length > 0) {
-                    if (OK == structureSpawns[0].spawnCreep(
-                        roleUpgrader.body(),
-                        roleUpgrader.newName(),
-                        { memory: { role: 'upgrader', source: availableSources[0] } }
-                    )) {
-                        console.log('spawn a new upgrader to source: ' + availableSources[0] +
-                            ' from ' + structureSpawns[0]['id']);
-                        system.bindSource(availableSources[0]);
-                        return;
-                    };
+        if (availableSpawns.length > 0) {
+            if (availableSources.length > 0) {
+                var structureSpawns;
+                /**keep spawning upgrader */
+                if (Memory.watch['harvesters'] > 4 && Memory.peace && Memory.watch['upgraders'] < Memory.limits.upgraders) {
+                    structureSpawns = system.availableStructureSpawns(roleUpgrader.cost());
+                    if (structureSpawns.length > 0) {
+                        if (OK == structureSpawns[0].spawnCreep(
+                            roleUpgrader.body(),
+                            roleUpgrader.newName(),
+                            { memory: { role: 'upgrader', source: availableSources[0] } }
+                        )) {
+                            console.log('spawn a new upgrader to source: ' + availableSources[0] +
+                                ' from ' + structureSpawns[0]['id']);
+                            system.bindSource(availableSources[0]);
+                            return;
+                        };
+                    }
+                }
+
+                /** keep spawning harvester */
+                if (Memory.watch['harvesters'] < Memory.limits.harvesters) {
+                    structureSpawns = system.availableStructureSpawns(roleHarvester.cost());
+                    if (structureSpawns.length > 0) {
+                        if (OK == structureSpawns[0].spawnCreep(
+                            roleHarvester.body(),
+                            roleHarvester.newName(),
+                            { memory: { role: 'harvester', source: availableSources[0] } }
+                        )) {
+                            console.log('spawn a new harvester to source: ' + availableSources[0] +
+                                ' from ' + structureSpawns[0]['id']);
+                            system.bindSource(availableSources[0]);
+                            return;
+                        };
+                    }
                 }
             }
 
@@ -73,22 +92,6 @@ var theSupervisor = {
                 }
             }
 
-            /** keep spawning harvester */
-            if (Memory.watch['harvesters'] < Memory.limits.harvesters) {
-                structureSpawns = system.availableStructureSpawns(roleHarvester.cost());
-                if (structureSpawns.length > 0) {
-                    if (OK == structureSpawns[0].spawnCreep(
-                        roleHarvester.body(),
-                        roleHarvester.newName(),
-                        { memory: { role: 'harvester', source: availableSources[0] } }
-                    )) {
-                        console.log('spawn a new harvester to source: ' + availableSources[0] +
-                            ' from ' + structureSpawns[0]['id']);
-                        system.bindSource(availableSources[0]);
-                        return;
-                    };
-                }
-            }
 
             /** keep spawning claimer*/
             structureSpawns = system.availableStructureSpawns(roleClaimer.cost());
@@ -121,7 +124,7 @@ var theSupervisor = {
             }
 
             /** keep spawning mrhandy */
-            if(Memory.watch['mrhandys'] < Memory.limits.mrhandys){
+            if (Memory.watch['mrhandys'] < Memory.limits.mrhandys) {
                 structureSpawns = system.availableStructureSpawns(roleMrhandy.cost());
                 if (structureSpawns.length > 0) {
                     if (OK == structureSpawns[0].spawnCreep(

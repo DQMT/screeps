@@ -4,7 +4,7 @@ var constants = require('./constants');
 
 var roleHarvester = {
     level: function () {
-        return 1;
+        return 3;
     },
     cost: function () {
         return 200;
