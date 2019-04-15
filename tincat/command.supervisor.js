@@ -19,7 +19,6 @@ var rolePlayer = {
  */
 var theSupervisor = {
     keep: function () {
-        var bases = system.bases();
         var availableSources = system.availableSources();
         var availableSpawns = system.availableStructureSpawns();
 
@@ -90,7 +89,6 @@ var theSupervisor = {
                     };
                 }
             }
-
 
             /** keep spawning claimer*/
             structureSpawns = system.availableStructureSpawns(roleClaimer.cost());
