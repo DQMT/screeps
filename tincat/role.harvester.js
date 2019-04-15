@@ -4,7 +4,7 @@ var system = require('./system');
 
 var roleHarvester = {
     level: function () {
-        return 2;
+        return 3;
     },
     cost: function () {
         return 200 * this.level();
