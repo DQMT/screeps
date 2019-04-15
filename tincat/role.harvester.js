@@ -40,7 +40,7 @@ var roleHarvester = {
                     creep.moveTo(structure);
                 }
             } else {
-                util.moveToRoom(creep, system.baseRoomNames[0]);
+                util.moveToRoom(creep, system.baseRoomNames()[0]);
                 // console.log(creep.name + 'cannot find a structure!');
             }
         } else {
