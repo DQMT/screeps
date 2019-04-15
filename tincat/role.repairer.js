@@ -1,5 +1,6 @@
 var constants = require('./constants');
 var util = require('./util');
+var system = require('./system');
 
 
 var roleRepairer = {
@@ -26,6 +27,11 @@ var roleRepairer = {
             creep.say('repair');
         }
         if (creep.memory.repairing) {
+            var basesNames = system.baseRoomNames();
+            if (util.findIndexInArray(basesNames, creep.room.name) != -1) {
+                util.moveToAnotherRoom(creep);
+                return;
+            }
             var structure;
             if (creep.memory.target) {
                 structure = Game.getObjectById(creep.memory.target);
