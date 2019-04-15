@@ -50,7 +50,7 @@ var roleRepairer = {
             if (creep.memory.target) {
                 structure = Game.getObjectById(creep.memory.target);
             } else {
-                structure = creep.pos.findClosestByPath(FIND_STRUCTURES, {
+                structure = creep.pos.findClosestByPath(FIND_MY_STRUCTURES, {
                     filter: object => (object.structureType != STRUCTURE_WALL && object.structureType != STRUCTURE_RAMPART && object.hits < object.hitsMax)
                         || (object.structureType == STRUCTURE_WALL && object.hits < 10000)
                         || (object.structureType == STRUCTURE_RAMPART && object.hits < 10000)
