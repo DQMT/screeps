@@ -8,27 +8,32 @@
  */
 
 module.exports = {
-    moveToAnotherRoom: function (creep) {
-        var currentRoom = creep.room.name;
-        switch (currentRoom) {
-            case 'W5S37':
-                this.moveToRoom(creep, 'W4S37');
-                break;
-            case 'W4S37':
-                this.moveToRoom(creep, 'W5S38');
-                break;
-            case 'W5S38':
-                this.moveToRoom(creep, 'W5S37');
-                break;
+    findIndexInArray: function (array, item) {
+        for (var i = 0; i < array.length; i++) {
+            if (array[i] == item) {
+                return i;
+            }
         }
-        // var rooms = [];
-        // Memory.system['bases'].forEach(base => {
-        //     rooms.push(base);
-        // });
-        // Memory.system['colonies'].forEach(colony => {
-        //     rooms.push(colony);
-        // });
-
+        return -1;
+    },
+    findNextInArray: function (array, item) {
+        var i = this.findIndexInArray(array, item);
+        if (i < array.length - 1) {
+            return array[i + 1];
+        } else {
+            return array[0];
+        }
+    },
+    moveToAnotherRoom: function (creep) {
+        if (creep.memory.endRoom && creep.memory.endRoom != creep.room.name) {
+            this.moveToRoom(creep, endRoom);
+            return;
+        }
+        var rooms = ['W4S37', 'W5S38', 'W5S37'];
+        var startRoom = creep.room.name;
+        var endRoom = this.findNextInArray(rooms, startRoom);
+        creep.memory.endRoom = endRoom;
+        this.moveToRoom(creep, endRoom);
     },
     moveToRoom: function (creep, roomName) {
         if (creep.room.name != roomName) {
