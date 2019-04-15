@@ -46,7 +46,6 @@ var roleHarvester = {
         } else {
             var source = Game.getObjectById(creep.memory.source);
             if (!source) {
-                util.beforeMoveToAnotherRoom(creep);
                 util.moveToAnotherRoom(creep);
                 return;
             }
