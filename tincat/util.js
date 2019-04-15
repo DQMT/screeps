@@ -26,9 +26,11 @@ module.exports = {
     },
     moveToAnotherRoom: function (creep) {
         if (creep.memory.endRoom && creep.memory.endRoom != creep.room.name) {
-            this.moveToRoom(creep, endRoom);
+            console.log('endRoom = '+creep.memory.endRoom+' now = '+creep.room.name);
+            // this.moveToRoom(creep, endRoom);
             return;
         }
+        console.log('endRoom = '+creep.memory.endRoom+' now = '+creep.room.name);
         var rooms = ['W4S37', 'W5S38', 'W5S37'];
         var startRoom = creep.room.name;
         var endRoom = this.findNextInArray(rooms, startRoom);
