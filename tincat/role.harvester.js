@@ -1,5 +1,5 @@
 var constants = require('./constants');
-
+var util = require('./util');
 
 
 var roleHarvester = {
@@ -39,11 +39,15 @@ var roleHarvester = {
                 if (creep.transfer(structure, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(structure);
                 }
-            }else{
+            } else {
                 console.log(creep.name + 'cannot find a structure!');
             }
         } else {
             var source = Game.getObjectById(creep.memory.source);
+            if (!source) {
+                util.moveToAnotherRoom(creep);
+                return;
+            }
             if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(source, { visualizePathStyle: { stroke: constants.STROKE_COLOR.HARVEST } });
             }
