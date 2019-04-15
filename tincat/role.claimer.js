@@ -11,10 +11,18 @@ var roleClaimer = {
         return 1;
     },
     cost: function () {
-        return 650;
+        return 650 * this.level();
     },
     body: function () {
-        return [CLAIM, MOVE];
+        var body = [];
+        var level = this.level();
+        for (var i = 0; i < level; i++) {
+            body.push(CLAIM);
+        }
+        for (var i = 0; i < level; i++) {
+            body.push(MOVE);
+        }
+        return body;
     },
     newName: function () {
         return 'Claimer@' + this.level() + '_' + Game.time;

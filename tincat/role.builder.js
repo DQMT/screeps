@@ -4,13 +4,27 @@ var util = require('./util');
 
 var roleBuilder = {
     level: function () {
-        return 1;
+        return 2;
     },
     cost: function () {
-        return 350;
+        return 350 * this.level();
     },
     body: function () {
-        return [WORK, CARRY, CARRY, MOVE, MOVE, MOVE];
+        var body = [];
+        var level = this.level();
+        for (var i = 0; i < level; i++) {
+            body.push(WORK);
+        }
+        for (var i = 0; i < level; i++) {
+            body.push(CARRY);
+            body.push(CARRY);
+        }
+        for (var i = 0; i < level; i++) {
+            body.push(MOVE);
+            body.push(MOVE);
+            body.push(MOVE);
+        }
+        return body;
     },
     newName: function () {
         return 'Builder@' + this.level() + '_' + Game.time;

@@ -5,13 +5,24 @@ var system = require('./system');
 
 var roleUpgrader = {
     level: function () {
-        return 1;
+        return 3;
     },
     cost: function () {
-        return 200;
+        return 200 * this.level();
     },
     body: function () {
-        return [WORK, CARRY, MOVE];
+        var body = [];
+        var level = this.level();
+        for (var i = 0; i < level; i++) {
+            body.push(WORK);
+        }
+        for (var i = 0; i < level; i++) {
+            body.push(CARRY);
+        }
+        for (var i = 0; i < level; i++) {
+            body.push(MOVE);
+        }
+        return body;
     },
     newName: function () {
         return 'Upgrader@' + this.level() + '_' + Game.time;
