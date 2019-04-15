@@ -1,6 +1,6 @@
 var constants = require('./constants');
 var util = require('./util');
-
+var system = require('./system');
 
 var roleHarvester = {
     level: function () {
@@ -40,6 +40,7 @@ var roleHarvester = {
                     creep.moveTo(structure);
                 }
             } else {
+                util.moveToRoom(creep, system.baseRoomNames[0]);
                 console.log(creep.name + 'cannot find a structure!');
             }
         } else {
