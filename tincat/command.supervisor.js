@@ -145,6 +145,41 @@ var theSupervisor = {
             var creep = Game.creeps[name];
             rolePlayer[creep.memory.role].run(creep);
         }
+    },
+    keepDefence: function () {
+        var structureSpawn = Game.spawns['shaxianxiaochi'];
+        var towers = structureSpawn.room.find(FIND_STRUCTURES, {
+            filter: (structure) => {
+                return (
+                    structure.structureType == STRUCTURE_TOWER
+                );
+            }
+        });
+        if (towers.length) {
+            for (var i = 0; i < towers.length; i++) {
+                var tower = towers[i];
+                var closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
+                if (closestHostile) {
+                    tower.attack(closestHostile);
+                }
+                var damagedStructures = tower.room.find(FIND_STRUCTURES, {
+                    filter: object => (object.structureType != STRUCTURE_WALL && object.structureType != STRUCTURE_RAMPART && object.hits < object.hitsMax) || (object.structureType == STRUCTURE_WALL && object.hits < 10000)
+                        || (object.structureType == STRUCTURE_RAMPART && object.hits < 10000)
+                });
+                damagedStructures.sort((a, b) => a.hits - b.hits);
+                if (damagedStructures.length > 0) {
+                    tower.repair(damagedStructures[0]);
+                }
+            }
+        }
+
+        // if (Memory.peace == false) {
+        //     var totalSpawnEnergy = structureSpawn.memory['totalSpawnEnergy'];
+        //     if (totalSpawnEnergy >= militaryFootman.cost(structureSpawn)) {
+        //         militaryFootman.spawnBiggestOne(structureSpawn);
+        //         console.log('spwan a new footman from ' + structureSpawn);
+        //     }
+        // }
     }
 
 };
