@@ -8,6 +8,9 @@
  */
 
 module.exports = {
+    signWords: function () {
+        return 'Fools die… as you well know.';
+    },
     findIndexInArray: function (array, item) {
         for (var i = 0; i < array.length; i++) {
             if (array[i] == item) {
@@ -31,23 +34,22 @@ module.exports = {
         }
     },
     moveToAnotherRoom: function (creep) {
-
-        if (creep.memory.endRoom && creep.memory.endRoom != creep.room.name) {
-            // console.log('endRoom = '+creep.memory.endRoom+' now = '+creep.room.name);
-            if (Game.rooms[creep.memory.endRoom]) {
-                creep.moveTo(Game.rooms[creep.memory.endRoom].controller);
-            } else {
-                this.moveToRoom(creep, creep.memory.endRoom);
+        if (creep.memory.endRoom) {
+            var er = Game.rooms[creep.memory.endRoom];
+            if (er) {
+                if (creep.signController(er.controller) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(er.controller);
+                    return;
+                } else {
+                    creep.memory.endRoom = undefined;
+                    return;
+                }
             }
-            return;
+            this.moveToRoom(creep, er);
+        } else {
+            var rooms = ['W4S37', 'W5S38', 'W5S37'];
+            creep.memory.endRoom = this.findNextInArray(rooms, creep.room.name);
         }
-        // console.log('endRoom = '+creep.memory.endRoom+' now = '+creep.room.name);
-        var rooms = ['W4S37', 'W5S38', 'W5S37'];
-        var startRoom = creep.room.name;
-        var endRoom = this.findNextInArray(rooms, startRoom);
-        creep.memory.endRoom = endRoom;
-        creep.moveTo(Game.rooms[creep.memory.endRoom].controller);
-        // this.moveToRoom(creep, endRoom);
     },
     moveToRoom: function (creep, roomName) {
         if (creep.room.name != roomName) {

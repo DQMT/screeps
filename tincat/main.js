@@ -16,5 +16,6 @@ module.exports.loop = function () {
     system.setMaxBinds('5bbcabeb9099fc012e634811',9);
     watchdog.watchEverything();
     supervisor.keep();
+    supervisor.keepDefence();
     supervisor.urge();
 }
