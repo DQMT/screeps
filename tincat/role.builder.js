@@ -4,7 +4,7 @@ var util = require('./util');
 
 var roleBuilder = {
     level: function () {
-        return 3;
+        return 1;
     },
     cost: function () {
         return 350 * this.level();

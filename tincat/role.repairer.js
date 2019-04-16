@@ -5,7 +5,7 @@ var system = require('./system');
 
 var roleRepairer = {
     level: function () {
-        return 2;
+        return 1;
     },
     cost: function () {
         return 350 * this.level();
