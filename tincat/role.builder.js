@@ -4,10 +4,10 @@ var util = require('./util');
 
 var roleBuilder = {
     level: function () {
-        return 3;
+        return 1;
     },
     cost: function () {
-        return 350 * this.level();
+        return 300 * this.level();
     },
     body: function () {
         var body = [];
@@ -20,7 +20,6 @@ var roleBuilder = {
             body.push(CARRY);
         }
         for (var i = 0; i < level; i++) {
-            body.push(MOVE);
             body.push(MOVE);
             body.push(MOVE);
         }
