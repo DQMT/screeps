@@ -3,7 +3,7 @@ var supervisor = require('./command.supervisor');
 var watchdog = require('./command.watchdog');
 
 module.exports.loop = function () {
-    system.clear();
+    // system.clear();
     system.init(['W17N44']);
     system.cleanMemory();
     system.setLimits({
