@@ -61,6 +61,11 @@ var theSupervisor = {
                 }
             }
 
+            var sids = system.allSourceIds();
+            sids.forEach(id => {
+                
+            });
+
             /**keep spawning builder */
             if (roleHarvester.enough() && Memory.peace && Memory.watch['builders'] < Memory.limits.builders) {
                 structureSpawns = system.availableStructureSpawns(roleBuilder.cost());

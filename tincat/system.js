@@ -80,12 +80,14 @@ module.exports = {
         })
         Memory.system.sources = sources;
     },
-    setMaxDrills: function (id, maxDrillers, drillers) {
+    setMaxDrills: function (id, maxDrillers, drillers, maxLorries, lorries) {
         var sources = Memory.system.sources;
         sources.forEach(s => {
             if (s['id'] == id) {
                 s['maxDrillers'] = maxDrillers;
                 s['drillers'] = drillers;
+                s['maxLorries'] = maxLorries;
+                s['lorries'] = lorries;
             }
         })
         Memory.system.sources = sources;
@@ -127,6 +129,13 @@ module.exports = {
             }
         }
         return spawns;
+    },
+    allSourceIds: function () {
+        var sources = [];
+        Memory.system.sources.forEach(s => {
+            sources.push(s['id']);
+        })
+        return sources;
     },
     availableSources: function () {
         var sources = [];

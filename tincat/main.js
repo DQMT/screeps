@@ -13,7 +13,9 @@ module.exports.loop = function () {
         repairers: 0,
         mrhandys:0
     });
-    system.setMaxBinds('5bbcabeb9099fc012e634811',9);
+    // system.setMaxBinds('5bbcabeb9099fc012e634811',9);
+    system.setMaxDrills('5bbcabeb9099fc012e634810',1,0,1,0);
+    system.setMaxDrills('5bbcabeb9099fc012e634811',1,0,1,0);
     watchdog.watchEverything();
     supervisor.keep();
     supervisor.keepDefence();
