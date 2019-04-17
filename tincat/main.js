@@ -7,10 +7,10 @@ module.exports.loop = function () {
     system.init(['W17N44']);
     system.cleanMemory();
     system.setLimits({
-        harvesters: 0,
-        upgraders: 1,
-        builders: 2,
-        repairers: 0,
+        harvesters: 4,
+        upgraders: 3,
+        builders: 0,
+        repairers: 1,
         mrhandys:0
     });
     // system.setMaxBinds('5bbcabeb9099fc012e634811',9);
