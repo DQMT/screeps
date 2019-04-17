@@ -27,7 +27,7 @@ var theSupervisor = {
             if (availableSources.length > 0) {
                 var structureSpawns;
                 /**keep spawning upgrader */
-                if (Memory.watch['harvesters'] > 4 && Memory.peace && Memory.watch['upgraders'] < Memory.limits.upgraders) {
+                if (roleHarvester.enough() && Memory.peace && Memory.watch['upgraders'] < Memory.limits.upgraders) {
                     structureSpawns = system.availableStructureSpawns(roleUpgrader.cost());
                     if (structureSpawns.length > 0) {
                         if (OK == structureSpawns[0].spawnCreep(
@@ -62,7 +62,7 @@ var theSupervisor = {
             }
 
             /**keep spawning builder */
-            if (Memory.watch['harvesters'] > 4 && Memory.peace && Memory.watch['builders'] < Memory.limits.builders) {
+            if (roleHarvester.enough() && Memory.peace && Memory.watch['builders'] < Memory.limits.builders) {
                 structureSpawns = system.availableStructureSpawns(roleBuilder.cost());
                 if (structureSpawns.length > 0) {
                     if (OK == structureSpawns[0].spawnCreep(
@@ -78,7 +78,7 @@ var theSupervisor = {
             }
 
             /**keep spawning repairer */
-            if (Memory.watch['harvesters'] > 4 && Memory.peace && Memory.watch['repairers'] < Memory.limits.repairers) {
+            if (roleHarvester.enough() && Memory.peace && Memory.watch['repairers'] < Memory.limits.repairers) {
                 structureSpawns = system.availableStructureSpawns(roleRepairer.cost());
                 if (structureSpawns.length > 0) {
                     if (OK == structureSpawns[0].spawnCreep(

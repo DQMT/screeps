@@ -39,7 +39,9 @@ module.exports = {
                         'room': base,
                         'id': ss[i]['id'],
                         'maxBinds': 3,
-                        'binds': 0
+                        'binds': 0,
+                        'maxDrillers': 0,
+                        'drillers': 0
                     };
                     sources.push(resource);
                 }
@@ -51,7 +53,9 @@ module.exports = {
                         'room': colony,
                         'id': ss[i]['id'],
                         'maxBinds': 3,
-                        'binds': 0
+                        'binds': 0,
+                        'maxDrillers': 0,
+                        'drillers': 0
                     };
                     sources.push(resource);
                 }
@@ -73,6 +77,16 @@ module.exports = {
         var sources = Memory.system.sources;
         sources.forEach(s => {
             s['binds'] = 0;
+        })
+        Memory.system.sources = sources;
+    },
+    setMaxDrills: function (id, maxDrillers, drillers) {
+        var sources = Memory.system.sources;
+        sources.forEach(s => {
+            if (s['id'] == id) {
+                s['maxDrillers'] = maxDrillers;
+                s['drillers'] = drillers;
+            }
         })
         Memory.system.sources = sources;
     },
