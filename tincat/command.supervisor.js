@@ -5,6 +5,8 @@ var roleBuilder = require('./role.builder');
 var roleClaimer = require('./role.claimer');
 var roleMrhandy = require('./role.mrhandy');
 var roleRepairer = require('./role.repairer');
+var roleLorry = require('./role.lorry');
+var roleDriller = require('./role.driller');
 
 var rolePlayer = {
     'harvester': roleHarvester,
@@ -61,10 +63,54 @@ var theSupervisor = {
                 }
             }
 
+            /**keep building driller */
             var sids = system.allSourceIds();
-            sids.forEach(id => {
-                
-            });
+            for (var i = 0; i < sids.length; i++) {
+                if (system.needDrill(sids[i])) {
+                    var structureSpawns = system.availableStructureSpawns(roleDriller.cost());
+                    if (structureSpawns.length > 0) {
+                        var source = Game.getObjectById(sids[i]);
+                        var container = source.pos.findClosestByPath(FIND_MY_STRUCTURES, {
+                            filter: (s) => (s.structureType == STRUCTURE_CONTAINER)
+                        });
+                        if (OK == structureSpawns[0].spawnCreep(
+                            roleDriller.body(),
+                            roleDriller.newName(),
+                            { memory: { role: 'driller', source: sids[i], container: container.id } }
+                        )) {
+                            console.log('spawn a new driller to source: ' + sids[i] +
+                                ' from ' + structureSpawns[0]['id']);
+                            system.bindDriller(sids[i]);
+                            return;
+                        };
+                    }
+                }
+            }
+
+            /**keep building lorry */
+            var sids = system.allSourceIds();
+            for (var i = 0; i < sids.length; i++) {
+                if (system.needLorry(sids[i])) {
+                    var structureSpawns = system.availableStructureSpawns(roleLorry.cost());
+                    if (structureSpawns.length > 0) {
+                        var source = Game.getObjectById(sids[i]);
+                        var container = source.pos.findClosestByPath(FIND_MY_STRUCTURES, {
+                            filter: (s) => (s.structureType == STRUCTURE_CONTAINER)
+                        });
+                        if (OK == structureSpawns[0].spawnCreep(
+                            roleLorry.body(),
+                            roleLorry.newName(),
+                            { memory: { role: 'lorry', source: sids[i], container: container.id } }
+                        )) {
+                            console.log('spawn a new lorry to source: ' + sids[i] +
+                                ' from ' + structureSpawns[0]['id']);
+                            system.bindLorry(sids[i]);
+                            return;
+                        };
+                    }
+                }
+            }
+
 
             /**keep spawning builder */
             if (roleHarvester.enough() && Memory.peace && Memory.watch['builders'] < Memory.limits.builders) {

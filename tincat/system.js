@@ -101,6 +101,44 @@ module.exports = {
         })
         Memory.system.sources = sources;
     },
+    bindDriller: function (id) {
+        var sources = Memory.system.sources;
+        sources.forEach(s => {
+            if (s['id'] == id) {
+                s['drillers'] = s['drillers'] + 1;
+            }
+        })
+        Memory.system.sources = sources;
+    },
+    bindLorry: function (id) {
+        var sources = Memory.system.sources;
+        sources.forEach(s => {
+            if (s['id'] == id) {
+                s['lorries'] = s['lorries'] + 1;
+            }
+        })
+        Memory.system.sources = sources;
+    },
+    needDrill: function (id) {
+        var flag = false;
+        var sources = Memory.system.sources;
+        sources.forEach(s => {
+            if (s['id'] == id && s['maxDrillers'] > s['drillers']) {
+                flag = true;
+            }
+        })
+        return flag;
+    },
+    needLorry: function (id) {
+        var flag = false;
+        var sources = Memory.system.sources;
+        sources.forEach(s => {
+            if (s['id'] == id && s['maxLorries'] > s['lorries']) {
+                flag = true;
+            }
+        })
+        return flag;
+    },
     setLimits: function (limits) {
         Memory.limits = limits;
     },
