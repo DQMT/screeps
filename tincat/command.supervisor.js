@@ -70,13 +70,13 @@ var theSupervisor = {
                     var structureSpawns = system.availableStructureSpawns(roleDriller.cost());
                     if (structureSpawns.length > 0) {
                         var source = Game.getObjectById(sids[i]);
-                        var container = source.pos.findClosestByPath(FIND_MY_STRUCTURES, {
+                        var closestContainer = source.pos.findClosestByPath(FIND_MY_STRUCTURES, {
                             filter: (s) => (s.structureType == STRUCTURE_CONTAINER)
                         });
                         if (OK == structureSpawns[0].spawnCreep(
                             roleDriller.body(),
                             roleDriller.newName(),
-                            { memory: { role: 'driller', source: sids[i], container: container.id } }
+                            { memory: { role: 'driller', source: sids[i], container: closestContainer.id } }
                         )) {
                             console.log('spawn a new driller to source: ' + sids[i] +
                                 ' from ' + structureSpawns[0]['id']);
@@ -94,13 +94,13 @@ var theSupervisor = {
                     var structureSpawns = system.availableStructureSpawns(roleLorry.cost());
                     if (structureSpawns.length > 0) {
                         var source = Game.getObjectById(sids[i]);
-                        var container = source.pos.findClosestByPath(FIND_MY_STRUCTURES, {
+                        var closestContainer = source.pos.findClosestByPath(FIND_MY_STRUCTURES, {
                             filter: (s) => (s.structureType == STRUCTURE_CONTAINER)
                         });
                         if (OK == structureSpawns[0].spawnCreep(
                             roleLorry.body(),
                             roleLorry.newName(),
-                            { memory: { role: 'lorry', source: sids[i], container: container.id } }
+                            { memory: { role: 'lorry', source: sids[i], container: closestContainer.id } }
                         )) {
                             console.log('spawn a new lorry to source: ' + sids[i] +
                                 ' from ' + structureSpawns[0]['id']);
