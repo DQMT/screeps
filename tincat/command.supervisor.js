@@ -139,11 +139,11 @@ var theSupervisor = {
                         if (OK == structureSpawns[0].spawnCreep(
                             roleUpgrader.body(),
                             roleUpgrader.newName(),
-                            { memory: { role: 'upgrader', source: thisSource, bindSource: thisSource } }
+                            { memory: { role: 'upgrader', source: thisSource.id, bindSource: thisSource.id } }
                         )) {
-                            console.log('spawn a new upgrader to source: ' + thisSource +
+                            console.log('spawn a new upgrader to source: ' + thisSource.id +
                                 ' from ' + structureSpawns[0]['id']);
-                            system.bindSource(thisSource);
+                            system.bindSource(thisSource.id);
                             return;
                         };
                     }

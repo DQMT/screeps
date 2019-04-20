@@ -54,6 +54,13 @@ function watchDefence() {
     }
 }
 
+function correction() {
+    for (var name in Memory.creeps) {
+        if (Game.creeps[name]) {
+
+        }
+    }
+}
 
 var theWatchdog = {
 
