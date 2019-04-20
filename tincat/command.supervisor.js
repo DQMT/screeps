@@ -14,7 +14,9 @@ var rolePlayer = {
     'builder': roleBuilder,
     'claimer': roleClaimer,
     'mrhandy': roleMrhandy,
-    'repairer': roleRepairer
+    'repairer': roleRepairer,
+    'driller': roleDriller,
+    'lorry': roleLorry
 }
 
 /**
@@ -194,12 +196,12 @@ var theSupervisor = {
     urge: function () {
         for (var name in Game.creeps) {
             var creep = Game.creeps[name];
-            if(rolePlayer[creep.memory.role]){
+            if (rolePlayer[creep.memory.role]) {
                 rolePlayer[creep.memory.role].run(creep);
-            }else{
-                console.log(creep.memory.role+' does not have a player!');
+            } else {
+                console.log(creep.memory.role + ' does not have a player!');
             }
-            
+
         }
     },
     keepDefence: function () {
