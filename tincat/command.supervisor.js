@@ -75,7 +75,7 @@ var theSupervisor = {
                         var closestContainer = source.pos.findClosestByPath(FIND_MY_STRUCTURES, {
                             filter: (s) => (s.structureType == STRUCTURE_CONTAINER)
                         });
-                        if (OK == structureSpawns[0].spawnCreep(
+                        if (closestContainer && OK == structureSpawns[0].spawnCreep(
                             roleDriller.body(),
                             roleDriller.newName(),
                             { memory: { role: 'driller', source: sids[i], container: closestContainer.id } }
