@@ -10,11 +10,11 @@ module.exports = {
         //     { memory: { role: 'scout' } }
         // );
 
-        var scouts = _.filter(Game.creeps, (creep) => creep.memory.role == 'scout');
-        scouts.forEach(element => {
-            element.memory.roomName = 'E48N38';
-            element.moveTo(47, 18);
-        });
+        // var scouts = _.filter(Game.creeps, (creep) => creep.memory.role == 'scout');
+        // scouts.forEach(element => {
+        //     element.memory.roomName = 'E48N38';
+        //     element.moveTo(47, 18);
+        // });
 
         var repairers = _.filter(Game.creeps, (creep) => creep.memory.role == 'repairer');
         repairers.forEach(e => {
@@ -26,7 +26,7 @@ module.exports = {
                 e.dismantle(target);
             }
         });
-        
+
 
     }
 };
