@@ -133,7 +133,9 @@ var theSupervisor = {
                 structureSpawns = system.availableStructureSpawns(roleUpgrader.cost());
                 if (structureSpawns.length > 0) {
                     var thisSource = structureSpawns[0].room.controller.pos.findClosestByPath(FIND_SOURCES);
-                    if (thisSource && util.findIndexInArray(availableSources, thisSource) != -1) {
+                    if (thisSource
+                        //  && util.findIndexInArray(availableSources, thisSource) != -1
+                         ) {
                         if (OK == structureSpawns[0].spawnCreep(
                             roleUpgrader.body(),
                             roleUpgrader.newName(),
