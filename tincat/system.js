@@ -1,3 +1,4 @@
+var util = require('./util');
 /*
  *  system config
  */
@@ -68,6 +69,9 @@ module.exports = {
     },
     addColony: function (roomName, sourceIds) {
         var colonies = Memory.system['colonies'];
+        if (util.findIndexInArray(colonies, roomName) != -1) {
+            return;
+        }
         colonies.push(roomName);
         Memory.system['colonies'] = colonies;
         var sources = Memory.system['sources'];
@@ -83,6 +87,24 @@ module.exports = {
             sources.push(resource);
         })
         Memory.system['sources'] = sources;
+    },
+    removeColony(roomName, sourceIds) {
+        var colonies = Memory.system['colonies'];
+        if (util.findIndexInArray(colonies, roomName) == -1) {
+            return;
+        }
+        util.removeInArray(colonies,roomName);
+        console.log(JSON.stringify(coloniesn));
+        // Memory.system['colonies'] = colonies;
+        var sources = Memory.system['sources'];
+        var n=[];
+        sources.forEach(e=>{
+            if(util.findIndexInArray(sourceIds, e.id) == -1){
+                n.push(e);
+            }
+        })
+        console.log(JSON.stringify(n));
+        // Memory.system['sources'] = n;
     },
     clearBinds: function () {
         var sources = Memory.system.sources;

@@ -12,6 +12,15 @@ module.exports = {
         }
         return -1;
     },
+    removeInArray: function (array, item) {
+        var n = [];
+        array.forEach(e => {
+            if (e != item) {
+                n.push(e);
+            }
+        })
+        return n;
+    },
     findNextInArray: function (array, item) {
         var i = this.findIndexInArray(array, item);
         if (i < array.length - 1) {
