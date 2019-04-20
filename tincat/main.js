@@ -11,9 +11,9 @@ module.exports.loop = function () {
     system.setLimits({
         harvesters: 5,
         upgraders: 5,
-        builders: 3,
+        builders: 2,
         repairers: 0,
-        mrhandys:0
+        mrhandys:1
     });
     system.setMaxBinds('5bbcafcb9099fc012e63b33d',4);
     system.setMaxBinds('5bbcafcb9099fc012e63b33e',5);
