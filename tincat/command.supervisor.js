@@ -216,6 +216,9 @@ var theSupervisor = {
     urge: function () {
         for (var name in Game.creeps) {
             var creep = Game.creeps[name];
+            if(creep.memory.busy){
+                continue;
+            }
             if (rolePlayer[creep.memory.role]) {
                 rolePlayer[creep.memory.role].run(creep);
             } else {
