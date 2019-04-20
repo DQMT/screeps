@@ -1,4 +1,5 @@
 var roleScout = require('./role.scout');
+var constants = require('./constants');
 
 module.exports = {
     exeTempJpb: function () {
