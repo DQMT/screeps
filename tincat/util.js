@@ -50,6 +50,12 @@ module.exports = {
             creep.moveTo(creep.pos.findClosestByRange(exit));
         }
     },
+    randomDirection: function () {
+        var i = parseInt(8 * Math.random()) + 1;
+        return i;
+
+    },
     walkAroundInRoom: function (creep) {
+        creep.move(this.randomDirection());
     }
 };
