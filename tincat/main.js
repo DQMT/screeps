@@ -8,17 +8,17 @@ module.exports.loop = function () {
     system.init(['W17N44']);
     system.cleanMemory();
     system.setLimits({
-        harvesters: 0,
+        harvesters: 3,
         upgraders: 3,
         builders: 0,
         repairers: 1,
         mrhandys:0
     });
-    // system.setMaxBinds('5bbcabeb9099fc012e634811',9);
+    system.setMaxBinds('5bbcabeb9099fc012e634810',1);
     system.setMaxDrills('5bbcabeb9099fc012e634810',1,0,1,0);
     system.setMaxDrills('5bbcabeb9099fc012e634811',1,0,1,0);
     watchdog.watchEverything();
-    supervisor.keep();
+    supervisor.keep(true);
     supervisor.keepDefence();
     supervisor.urge();
 }
