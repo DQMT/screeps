@@ -32,8 +32,14 @@ var roleClaimer = {
     run: function (creep) {
         if (Game.rooms[creep.memory.roomName]) {
             var target = Game.rooms[creep.memory.roomName].controller;
-            if (creep.reserveController(target) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(target, { visualizePathStyle: { stroke: '#ffffff' } });
+            if (target.username) {
+                if (creep.claimController(target) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(target, { visualizePathStyle: { stroke: constants.CLAIM } });
+                }
+            } else {
+                if (creep.reserveController(target) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(target, { visualizePathStyle: { stroke: constants.CLAIM } });
+                }
             }
         } else {
             var exit = creep.room.findExitTo(creep.memory.roomName);

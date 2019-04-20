@@ -11,7 +11,8 @@ var STROKE_COLOR = {
     REPAIR: '#1874CD',
     UPGRADE: '#4B0082',
     ATTACK: '#CD0000',
-    LORRY: '#000000'
+    LORRY: '#000000',
+    CLAIM:'#AAAAAA'
 }
 var MY_ROOM_NAMES = ['E47N38'];
 var MY_SPAWN_NAMES = ['shaxianxiaochi'];
