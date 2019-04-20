@@ -10,9 +10,9 @@ module.exports.loop = function () {
     system.cleanMemory();
     system.setLimits({
         harvesters: 3,
-        upgraders: 3,
-        builders: 0,
-        repairers: 1,
+        upgraders: 2,
+        builders: 1,
+        repairers: 0,
         mrhandys:0
     });
     system.setMaxBinds('5bbcafcb9099fc012e63b33d',3);
