@@ -9,14 +9,14 @@ module.exports.loop = function () {
     system.init(['E47N38']);
     system.cleanMemory();
     system.setLimits({
-        harvesters: 3,
+        harvesters: 5,
         upgraders: 3,
         builders: 2,
         repairers: 0,
-        mrhandys:0
+        mrhandys:1
     });
-    system.setMaxBinds('5bbcafcb9099fc012e63b33d',3);
-    system.setMaxBinds('5bbcafcb9099fc012e63b33e',3);
+    system.setMaxBinds('5bbcafcb9099fc012e63b33d',4);
+    system.setMaxBinds('5bbcafcb9099fc012e63b33e',5);
     // system.setMaxDrills('5bbcabeb9099fc012e634810',1,0,1,0);
     // system.setMaxDrills('5bbcabeb9099fc012e634811',1,0,1,0);
     watchdog.watchEverything();

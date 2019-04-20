@@ -1,5 +1,6 @@
 var util = require('./util');
 var constants = require('./constants');
+var system = require('./system');
 
 var roleMrhandy = {
     level: function () {
@@ -71,10 +72,14 @@ var roleMrhandy = {
                 }
                 return;
             }
-            util.moveToAnotherRoom(creep);
-            return;
+            if (system.singleRoom()) {
+                util.walkAroundInRoom(creep);
+            } else {
+                util.moveToAnotherRoom(creep);
+            }
         }
-    }
+    },
+    
 
 }
 module.exports = roleMrhandy;

@@ -30,7 +30,7 @@ module.exports = {
         if (creep.memory.endRoom) {
             var er = Game.rooms[creep.memory.endRoom];
             if (er) {
-                if (creep.signController(er.controller) == ERR_NOT_IN_RANGE) {
+                if (creep.signController(er.controller, constants.SIGN_WORDS) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(er.controller);
                     return;
                 } else {
@@ -49,5 +49,7 @@ module.exports = {
             var exit = creep.room.findExitTo(roomName);
             creep.moveTo(creep.pos.findClosestByRange(exit));
         }
+    },
+    walkAroundInRoom: function (creep) {
     }
 };
