@@ -1,6 +1,7 @@
 var system = require('./system');
 var supervisor = require('./command.supervisor');
 var watchdog = require('./command.watchdog');
+var job = require('./job');
 
 module.exports.loop = function () {
     // system.clear();
