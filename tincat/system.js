@@ -94,7 +94,7 @@ module.exports = {
             return;
         }
         util.removeInArray(colonies,roomName);
-        console.log(JSON.stringify(coloniesn));
+        console.log(JSON.stringify(colonies));
         // Memory.system['colonies'] = colonies;
         var sources = Memory.system['sources'];
         var n=[];
