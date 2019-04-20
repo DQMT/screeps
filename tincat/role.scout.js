@@ -30,7 +30,8 @@ var roleScout = {
             }
         } else {
             var roomName = creep.memory.roomName;
-            creep.moveTo(roomName);
+            // creep.moveTo(roomName);
+            util.moveToRoom(creep,roomName);
         }
     }
 }
