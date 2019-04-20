@@ -66,13 +66,24 @@ module.exports = {
             Memory.peace = true;
         }
     },
-    // setRooms: function () {
-    //     var sources = Memory.system.sources;
-    //     sources.forEach(s => {
-    //         s['room'] = Game.getObjectById(s['id']).room.name;
-    //     })
-    //     Memory.system.sources = sources;
-    // },
+    addColony: function (roomName, sourceIds) {
+        var colonies = Memory.system['colonies'];
+        colonies.push(roomName);
+        Memory.system['colonies'] = colonies;
+        var sources = Memory.system['sources'];
+        sourceIds.forEach(s => {
+            var resource = {
+                'room': roomName,
+                'id': s,
+                'maxBinds': 3,
+                'binds': 0,
+                'maxDrillers': 0,
+                'drillers': 0
+            };
+            sources.push(resource);
+        })
+        Memory.system['sources'] = sources;
+    },
     clearBinds: function () {
         var sources = Memory.system.sources;
         sources.forEach(s => {
