@@ -135,7 +135,7 @@ var theSupervisor = {
                     var thisSource = structureSpawns[0].room.controller.pos.findClosestByPath(FIND_SOURCES);
                     if (thisSource
                         //  && util.findIndexInArray(availableSources, thisSource) != -1
-                         ) {
+                    ) {
                         if (OK == structureSpawns[0].spawnCreep(
                             roleUpgrader.body(),
                             roleUpgrader.newName(),
@@ -216,7 +216,8 @@ var theSupervisor = {
     urge: function () {
         for (var name in Game.creeps) {
             var creep = Game.creeps[name];
-            if(creep.memory.busy){
+            if (creep.memory.busy) {
+                console.log('creep ' + creep.id + 'is busy');
                 continue;
             }
             if (rolePlayer[creep.memory.role]) {
