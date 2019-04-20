@@ -5,24 +5,21 @@ var system = require('./system');
 
 var roleUpgrader = {
     level: function () {
-        return 1;
+        return 2;
     },
     cost: function () {
-        return 400 * this.level();
+        return 200 * this.level();
     },
     body: function () {
         var body = [];
         var level = this.level();
         for (var i = 0; i < level; i++) {
             body.push(WORK);
-            body.push(WORK);
         }
         for (var i = 0; i < level; i++) {
             body.push(CARRY);
-            body.push(CARRY);
         }
         for (var i = 0; i < level; i++) {
-            body.push(MOVE);
             body.push(MOVE);
         }
         return body;
