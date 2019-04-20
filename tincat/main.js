@@ -5,7 +5,7 @@ var job = require('./job');
 
 module.exports.loop = function () {
     // system.clear();
-    system.init(['W17N44']);
+    system.init(['E47N38']);
     system.cleanMemory();
     system.setLimits({
         harvesters: 3,
@@ -14,9 +14,10 @@ module.exports.loop = function () {
         repairers: 1,
         mrhandys:0
     });
-    system.setMaxBinds('5bbcabeb9099fc012e634810',1);
-    system.setMaxDrills('5bbcabeb9099fc012e634810',1,0,1,0);
-    system.setMaxDrills('5bbcabeb9099fc012e634811',1,0,1,0);
+    system.setMaxBinds('5bbcafcb9099fc012e63b33d',3);
+    system.setMaxBinds('5bbcafcb9099fc012e63b33e',2);
+    // system.setMaxDrills('5bbcabeb9099fc012e634810',1,0,1,0);
+    // system.setMaxDrills('5bbcabeb9099fc012e634811',1,0,1,0);
     watchdog.watchEverything();
     supervisor.keep(true);
     supervisor.keepDefence();
