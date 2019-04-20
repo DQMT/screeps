@@ -14,10 +14,12 @@ var STROKE_COLOR = {
     LORRY: '#000000'
 }
 var MY_ROOM_NAMES = ['E47N38'];
+var MY_SPAWN_NAMES = ['shaxianxiaochi'];
 var SIGN_WORDS = "Leave me alone, please."
 module.exports = {
     SIGN_WORDS: SIGN_WORDS,
     WORKER_STATE: WORKER_STATE,
     STROKE_COLOR: STROKE_COLOR,
-    MY_ROOM_NAMES: MY_ROOM_NAMES
+    MY_ROOM_NAMES: MY_ROOM_NAMES,
+    MY_SPAWN_NAMES: MY_SPAWN_NAMES
 };

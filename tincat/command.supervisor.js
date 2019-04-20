@@ -1,5 +1,6 @@
 var system = require('./system');
 var util = require('./util');
+var constants = require('./constants');
 var roleHarvester = require('./role.harvester');
 var roleUpgrader = require('./role.upgrader');
 var roleBuilder = require('./role.builder');
@@ -231,7 +232,7 @@ var theSupervisor = {
         }
     },
     keepDefence: function () {
-        var structureSpawn = Game.spawns['shaxianxiaochi'];
+        var structureSpawn = Game.spawns[constants.MY_SPAWN_NAMES[0]];
         var towers = structureSpawn.room.find(FIND_STRUCTURES, {
             filter: (structure) => {
                 return (
