@@ -175,7 +175,7 @@ var theSupervisor = {
             /** keep spawning claimer*/
             structureSpawns = system.availableStructureSpawns(roleClaimer.cost());
             if (structureSpawns.length > 0) {
-                var colonies = system.colonyRoomNames();
+                var colonies = ['E48N38'];
                 var claimers = _.filter(Game.creeps, (creep) => creep.memory.role == 'claimer');
                 colonies.forEach(colony => {
                     var need = false;
