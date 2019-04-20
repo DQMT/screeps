@@ -5,7 +5,7 @@ var job = require('./job');
 
 module.exports.loop = function () {
     // system.clear();
-    job.exe();
+    // job.exe();
     system.init(['E47N38']);
     system.cleanMemory();
     system.setLimits({
