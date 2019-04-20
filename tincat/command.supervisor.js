@@ -65,6 +65,22 @@ var theSupervisor = {
                 }
             }
 
+            /**keep spawning builder */
+            if (roleHarvester.enough() && Memory.peace && Memory.watch['builders'] < Memory.limits.builders) {
+                structureSpawns = system.availableStructureSpawns(roleBuilder.cost());
+                if (structureSpawns.length > 0) {
+                    if (OK == structureSpawns[0].spawnCreep(
+                        roleBuilder.body(),
+                        roleBuilder.newName(),
+                        { memory: { role: 'builder' } }
+                    )) {
+                        console.log('spawn a new builder from ' + structureSpawns[0]['id']);
+                        // system.bindSource(availableSources[0]);
+                        return;
+                    };
+                }
+            }
+            
             /**keep building driller */
             var sids = system.allSourceIds();
             for (var i = 0; i < sids.length; i++) {
@@ -124,21 +140,7 @@ var theSupervisor = {
             }
 
 
-            /**keep spawning builder */
-            if (roleHarvester.enough() && Memory.peace && Memory.watch['builders'] < Memory.limits.builders) {
-                structureSpawns = system.availableStructureSpawns(roleBuilder.cost());
-                if (structureSpawns.length > 0) {
-                    if (OK == structureSpawns[0].spawnCreep(
-                        roleBuilder.body(),
-                        roleBuilder.newName(),
-                        { memory: { role: 'builder' } }
-                    )) {
-                        console.log('spawn a new builder from ' + structureSpawns[0]['id']);
-                        // system.bindSource(availableSources[0]);
-                        return;
-                    };
-                }
-            }
+            
 
             /**keep spawning repairer */
             if (roleHarvester.enough() && Memory.peace && Memory.watch['repairers'] < Memory.limits.repairers) {
