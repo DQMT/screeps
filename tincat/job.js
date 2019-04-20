@@ -12,6 +12,7 @@ module.exports = {
         var scouts = _.filter(Game.creeps, (creep) => creep.memory.role == 'scout');
         scouts.forEach(element => {
             element.memory.roomName='E48N38';
+            element.moveTo(47,18);
         });
     }
 };
