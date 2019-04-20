@@ -54,13 +54,16 @@ var roleHarvester = {
                     creep.moveTo(structure);
                 }
             } else {
+                if (system.singleRoom()) {
+                    var controller = creep.room.controller;
+                    creep.say('upgrade!');
+                    if (creep.upgradeController(controller) == ERR_NOT_IN_RANGE) {
+                        creep.moveTo(controller, { visualizePathStyle: { stroke: constants.STROKE_COLOR.UPGRADE } });
+                    }
+                    return;
+                }
                 // console.log(creep.name + 'cannot find a structure!');
                 util.moveToRoom(creep, system.baseRoomNames()[0]);
-                var controller = creep.room.controller;
-                creep.say('upgrade!');
-                if (creep.upgradeController(controller) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(controller, { visualizePathStyle: { stroke: constants.STROKE_COLOR.UPGRADE } });
-                }
             }
         } else {
             var source = Game.getObjectById(creep.memory.source);

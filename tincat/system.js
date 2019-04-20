@@ -216,5 +216,8 @@ module.exports = {
                 console.log('Clearing non-existing creep memory:', name);
             }
         }
+    },
+    singleRoom: function () {
+        return Memory.system['base'].length == 1 && Memory.system['colonies'].length == 0
     }
 };

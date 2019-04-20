@@ -1,5 +1,6 @@
 var constants = require('./constants');
 var util = require('./util');
+var system = require('./system');
 
 
 var roleBuilder = {
@@ -50,6 +51,15 @@ var roleBuilder = {
                     creep.moveTo(structure, { visualizePathStyle: { stroke: constants.STROKE_COLOR.BUILD } });
                 }
             } else {
+                // console.log(creep.name + 'cannot find a structure!');
+                if (system.singleRoom()) {
+                    var controller = creep.room.controller;
+                    creep.say('upgrade!');
+                    if (creep.upgradeController(controller) == ERR_NOT_IN_RANGE) {
+                        creep.moveTo(controller, { visualizePathStyle: { stroke: constants.STROKE_COLOR.UPGRADE } });
+                    }
+                    return;
+                }
                 if (creep.memory.roomName && creep.room.name != creep.memory.roomName) {
                     util.moveToRoom(creep, creep.memory.roomName);
                 } else {
