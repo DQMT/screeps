@@ -12,10 +12,10 @@ var roleDefender = {
         return 1;
     },
     cost: function () {
-        return 320;
+        return 270;
     },
     body: function () {
-        return [TOUCH, MOVE, MOVE, MOVE, ATTACK, ATTACK];
+        return [TOUCH,  MOVE, MOVE, ATTACK, ATTACK];
     },
     newName: function () {
         return 'Defender@' + this.level() + '_' + Game.time;
