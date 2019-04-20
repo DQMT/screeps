@@ -31,7 +31,7 @@ var roleScout = {
         } else {
             var roomName = creep.memory.roomName;
             if (creep.room.name == creep.memory.roomName) {
-                var target = Game.getObjectById('5cb9eb8264eeab642c5fb25b');
+                var target =  creep.pos.findClosestByRange(FIND_HOSTILE_SPAWNS);
                 if (creep.attack(target) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(target, { visualizePathStyle: { stroke: constants.STROKE_COLOR.ATTACK } });
                 }
