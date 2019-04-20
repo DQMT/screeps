@@ -9,9 +9,9 @@ module.exports = {
         //     { memory: { role: 'scout' } }
         // );
         
-        var scouts = _.filter(Game.creeps, (creep) => creep.memory.role == 'repairer');
+        var scouts = _.filter(Game.creeps, (creep) => creep.memory.role == 'scout');
         scouts.forEach(element => {
-            element.memory.role='scout';
+            element.memory.roomName='E48N38';
         });
     }
 };
