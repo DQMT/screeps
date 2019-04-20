@@ -27,7 +27,7 @@ var rolePlayer = {
  * The supervisor make sure every creep work correctly.
  */
 var theSupervisor = {
-    keep: function (spawnHarvesters) {
+    keepSpawning: function (spawnHarvesters) {
         var availableSources = system.availableSources();
         var availableSpawns = system.availableStructureSpawns();
 
@@ -231,7 +231,7 @@ var theSupervisor = {
 
         }
     },
-    keepDefence: function () {
+    keepTower: function () {
         var structureSpawn = Game.spawns[constants.MY_SPAWN_NAMES[0]];
         var towers = structureSpawn.room.find(FIND_STRUCTURES, {
             filter: (structure) => {
@@ -257,7 +257,9 @@ var theSupervisor = {
                 }
             }
         }
-
+    },
+    keepDefence: function () {
+        var structureSpawn = Game.spawns[constants.MY_SPAWN_NAMES[0]];
         if (Memory.peace == false && structureSpawn.room.energyAvailable >= roleDefender.cost()) {
             if (OK == structureSpawn.spawnCreep(
                 roleDefender.body(),

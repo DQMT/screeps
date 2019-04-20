@@ -20,7 +20,8 @@ module.exports.loop = function () {
     // system.setMaxDrills('5bbcabeb9099fc012e634810',1,0,1,0);
     // system.setMaxDrills('5bbcabeb9099fc012e634811',1,0,1,0);
     watchdog.watchEverything();
-    supervisor.keep(true);
+    supervisor.keepTower();
     supervisor.keepDefence();
+    supervisor.keepSpawning(true);
     supervisor.urge();
 }
