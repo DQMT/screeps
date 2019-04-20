@@ -152,10 +152,10 @@ module.exports = {
         return bases;
     },
     baseRoomNames: function () {
-        return Memory.system['bases'];
+        return Memory.system['bases'] ? Memory.system['bases'] : [];
     },
     colonyRoomNames: function () {
-        return Memory.system['colonies'];
+        return Memory.system['colonies'] ? Memory.system['colonies'] : [];
     },
     availableStructureSpawns(needEnergy) {
         var need = needEnergy ? needEnergy : 0;
@@ -218,6 +218,8 @@ module.exports = {
         }
     },
     singleRoom: function () {
-        return Memory.system['base'].length == 1 && Memory.system['colonies'].length == 0
+        var baseRoomNames = this.baseRoomNames();
+        var colonyRoomNames = this.colonyRoomNames();
+        return baseRoomNames.length == 1 && colonyRoomNames.length == 0
     }
 };
