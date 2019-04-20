@@ -10,6 +10,7 @@ var roleRepairer = require('./role.repairer');
 var roleLorry = require('./role.lorry');
 var roleDriller = require('./role.driller');
 var roleDefender = require('./role.defender');
+var roleScout = require('./role.scout');
 
 
 var rolePlayer = {
@@ -20,7 +21,8 @@ var rolePlayer = {
     'mrhandy': roleMrhandy,
     'repairer': roleRepairer,
     'driller': roleDriller,
-    'lorry': roleLorry
+    'lorry': roleLorry,
+    'scout': roleScout
 }
 
 /**
