@@ -12,7 +12,7 @@ module.exports.loop = function () {
         harvesters: 5,
         upgraders: 5,
         builders: 2,
-        repairers: 0,
+        repairers: 2,
         mrhandys:1
     });
     system.setMaxBinds('5bbcafcb9099fc012e63b33d',4);
