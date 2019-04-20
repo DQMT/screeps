@@ -57,6 +57,7 @@ var roleHarvester = {
                 // console.log(creep.name + 'cannot find a structure!');
                 util.moveToRoom(creep, system.baseRoomNames()[0]);
                 var controller = creep.room.controller;
+                creep.say('upgrade!');
                 if (creep.upgradeController(controller) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(controller, { visualizePathStyle: { stroke: constants.STROKE_COLOR.UPGRADE } });
                 }
