@@ -54,8 +54,9 @@ var roleHarvester = {
                     creep.moveTo(structure);
                 }
             } else {
+                console.log(creep.name + 'cannot find a structure!');
                 util.moveToRoom(creep, system.baseRoomNames()[0]);
-                // console.log(creep.name + 'cannot find a structure!');
+                
             }
         } else {
             var source = Game.getObjectById(creep.memory.source);
