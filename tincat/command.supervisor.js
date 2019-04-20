@@ -194,7 +194,12 @@ var theSupervisor = {
     urge: function () {
         for (var name in Game.creeps) {
             var creep = Game.creeps[name];
-            rolePlayer[creep.memory.role].run(creep);
+            if(rolePlayer[creep.memory.role]){
+                rolePlayer[creep.memory.role].run(creep);
+            }else{
+                console.log(creep.memory.role+' does not have a player!');
+            }
+            
         }
     },
     keepDefence: function () {
