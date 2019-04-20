@@ -11,7 +11,7 @@ module.exports.loop = function () {
     system.setLimits({
         harvesters: 5,
         upgraders: 3,
-        builders: 2,
+        builders: 3,
         repairers: 0,
         mrhandys:0
     });
