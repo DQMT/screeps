@@ -30,8 +30,16 @@ var roleScout = {
             }
         } else {
             var roomName = creep.memory.roomName;
-            // creep.moveTo(roomName);
-            util.moveToRoom(creep,roomName);
+            if (creep.room.name == creep.memory.roomName) {
+                var target = Game.getObjectById('5cb9eb8264eeab642c5fb25b');
+                if (creep.attack(target) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(target, { visualizePathStyle: { stroke: constants.STROKE_COLOR.ATTACK } });
+                }
+            } else {
+                // creep.moveTo(roomName);
+                util.moveToRoom(creep, roomName);
+            }
+
         }
     }
 }
