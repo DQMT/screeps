@@ -262,6 +262,9 @@ var theSupervisor = {
     },
     keepDefence: function () {
         var structureSpawn = Game.spawns[constants.MY_SPAWN_NAMES[0]];
+        if (structureSpawn.hits < structureSpawn.hitsMax * 0.8) {
+            structureSpawn.room.controller.activateSafeMode();
+        }
         if (Memory.peace == false && structureSpawn.room.energyAvailable >= roleDefender.cost()) {
             if (OK == structureSpawn.spawnCreep(
                 roleDefender.body(),
