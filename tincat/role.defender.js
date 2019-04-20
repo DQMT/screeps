@@ -1,5 +1,6 @@
 var util = require('./util');
 var constants = require('./constants');
+var system = require('./system');
 
 /**
  * A defender 
@@ -28,7 +29,11 @@ var roleDefender = {
                 creep.moveTo(closestHostile, { visualizePathStyle: { stroke: constants.STROKE_COLOR.ATTACK } });
             }
         }else{
-            util.moveToAnotherRoom(creep);
+            if(system.singleRoom()){
+                util.walkAroundInRoom(creep);
+            }else{
+                util.moveToAnotherRoom(creep);
+            }
         }
     }
 }

@@ -8,6 +8,8 @@ var roleMrhandy = require('./role.mrhandy');
 var roleRepairer = require('./role.repairer');
 var roleLorry = require('./role.lorry');
 var roleDriller = require('./role.driller');
+var roleDefender = require('./role.defender');
+
 
 var rolePlayer = {
     'harvester': roleHarvester,
@@ -255,13 +257,16 @@ var theSupervisor = {
             }
         }
 
-        // if (Memory.peace == false) {
-        //     var totalSpawnEnergy = structureSpawn.memory['totalSpawnEnergy'];
-        //     if (totalSpawnEnergy >= militaryFootman.cost(structureSpawn)) {
-        //         militaryFootman.spawnBiggestOne(structureSpawn);
-        //         console.log('spwan a new footman from ' + structureSpawn);
-        //     }
-        // }
+        if (Memory.peace == false && structureSpawn.room.energyAvailable >= roleDefender.cost()) {
+            if (OK == structureSpawn.spawnCreep(
+                roleDefender.body(),
+                roleDefender.newName(),
+                { memory: { role: 'defender' } }
+            )) {
+                console.log('spawn a new defender from ' + structureSpawn['id']);
+                return;
+            };
+        }
     }
 
 };
