@@ -42,18 +42,29 @@ var roleMrhandy = {
         }
         if (creep.memory.recycling) {
             var container = creep.room.storage;
+            if (!container) {
+                container = creep.pos.findClosestByPath(FIND_MY_STRUCTURES, {
+                    filter: (s) => (s.structureType == STRUCTURE_SPAWN
+                        || s.structureType == STRUCTURE_EXTENSION
+                        || s.structureType == STRUCTURE_TOWER)
+                        && s.energy < s.energyCapacity
+                });
+            }
             if (container) {
                 if (creep.transfer(container, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(container, { visualizePathStyle: { stroke: constants.STROKE_COLOR.LORRY } });
                 }
-            } else {
-                if (creep.memory.roomName && creep.room.name != creep.memory.roomName) {
-                    util.moveToRoom(creep, creep.memory.roomName);
-                } else {
-                    util.moveToAnotherRoom(creep);
-                }
+            }
+            if (system.singleRoom()) {
+                util.walkAroundInRoom(creep);
                 return;
             }
+            if (creep.memory.roomName && creep.room.name != creep.memory.roomName) {
+                util.moveToRoom(creep, creep.memory.roomName);
+            } else {
+                util.moveToAnotherRoom(creep);
+            }
+            return;
         } else {
             var target = creep.pos.findClosestByRange(FIND_DROPPED_RESOURCES);
             if (target) {
@@ -79,7 +90,7 @@ var roleMrhandy = {
             }
         }
     },
-    
+
 
 }
 module.exports = roleMrhandy;
