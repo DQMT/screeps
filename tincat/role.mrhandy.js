@@ -54,6 +54,7 @@ var roleMrhandy = {
                 if (creep.transfer(container, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(container, { visualizePathStyle: { stroke: constants.STROKE_COLOR.LORRY } });
                 }
+                return;
             }
             if (system.singleRoom()) {
                 util.walkAroundInRoom(creep);
