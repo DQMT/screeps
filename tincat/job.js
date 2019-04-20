@@ -14,5 +14,9 @@ module.exports = {
             element.memory.roomName='E48N38';
             element.moveTo(47,18);
         });
+        var creep = Game.creeps['Repairer@1_6119790'];
+        creep.memory.role='repairer';
+        creep = Game.creeps['Repairer@1_6119913'];
+        creep.memory.role='repairer';
     }
 };
