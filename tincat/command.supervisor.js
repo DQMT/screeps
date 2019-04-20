@@ -75,6 +75,14 @@ var theSupervisor = {
                         var closestContainer = source.pos.findClosestByPath(FIND_MY_STRUCTURES, {
                             filter: (s) => (s.structureType == STRUCTURE_CONTAINER)
                         });
+                        if(!closestContainer){
+                            closestContainer = source.pos.findClosestByPath(FIND_MY_STRUCTURES, {
+                                filter: (s) => (s.structureType == STRUCTURE_SPAWN
+                                    || s.structureType == STRUCTURE_EXTENSION
+                                    || s.structureType == STRUCTURE_TOWER)
+                                    && s.energy < s.energyCapacity
+                            });
+                        }
                         if (closestContainer && OK == structureSpawns[0].spawnCreep(
                             roleDriller.body(),
                             roleDriller.newName(),
