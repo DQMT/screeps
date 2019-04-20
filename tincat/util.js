@@ -1,11 +1,4 @@
-/*
- * Module code goes here. Use 'module.exports' to export things:
- * module.exports.thing = 'a thing';
- *
- * You can import it from another modules like this:
- * var mod = require('util');
- * mod.thing == 'a thing'; // true
- */
+var constants = require('./constants');
 
 module.exports = {
     signWords: function () {
@@ -47,7 +40,7 @@ module.exports = {
             }
             this.moveToRoom(creep, er);
         } else {
-            var rooms = ['W4S37', 'W5S38', 'W5S37'];
+            var rooms = constants.MY_ROOM_NAMES;
             creep.memory.endRoom = this.findNextInArray(rooms, creep.room.name);
         }
     },

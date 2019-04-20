@@ -14,7 +14,7 @@ function watchCreeps() {
     var lorries = _.filter(Game.creeps, (creep) => creep.memory.role == 'lorry');
 
     Memory.watch = {};
-    Memory.watch['workers'] = harvesters.length + upgraders.length + builders.length;
+    // Memory.watch['workers'] = harvesters.length + upgraders.length + builders.length;
     Memory.watch['harvesters'] = harvesters.length;
     Memory.watch['upgraders'] = upgraders.length;
     Memory.watch['builders'] = builders.length;
