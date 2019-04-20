@@ -1,11 +1,11 @@
+var roleScout = require('./role.scout');
 
 module.exports = {
     exeTempJpb: function () {
-        var creep = Game.creeps['Upgrader@1_6110940'];
-        if (creep.signController(creep.room.controller, "Leave me alone, please.") == ERR_NOT_IN_RANGE) {
-            creep.moveTo(creep.room.controller);
-            creep.memory.busy=true;
-            return;
-        }
+        var structureSpawn = Game.spawns[constants.MY_SPAWN_NAMES[0]];
+        structureSpawn.spawnCreep(roleScout.body(),
+            roleScout.newName(),
+            { memory: { role: 'repairer' } }
+        );
     }
 };
