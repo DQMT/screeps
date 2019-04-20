@@ -1,4 +1,5 @@
 var system = require('./system');
+var util = require('./util');
 var roleHarvester = require('./role.harvester');
 var roleUpgrader = require('./role.upgrader');
 var roleBuilder = require('./role.builder');
@@ -30,23 +31,6 @@ var theSupervisor = {
         if (availableSpawns.length > 0) {
             if (availableSources.length > 0) {
                 var structureSpawns;
-                /**keep spawning upgrader */
-                if (roleHarvester.enough() && Memory.peace && Memory.watch['upgraders'] < Memory.limits.upgraders) {
-                    structureSpawns = system.availableStructureSpawns(roleUpgrader.cost());
-                    if (structureSpawns.length > 0) {
-                        if (OK == structureSpawns[0].spawnCreep(
-                            roleUpgrader.body(),
-                            roleUpgrader.newName(),
-                            { memory: { role: 'upgrader', source: availableSources[0], bindSource: availableSources[0] } }
-                        )) {
-                            console.log('spawn a new upgrader to source: ' + availableSources[0] +
-                                ' from ' + structureSpawns[0]['id']);
-                            system.bindSource(availableSources[0]);
-                            return;
-                        };
-                    }
-                }
-
                 if (spawnHarvesters) {
                     /** keep spawning harvester */
                     if (Memory.watch['harvesters'] < Memory.limits.harvesters) {
@@ -140,6 +124,26 @@ var theSupervisor = {
                                 return;
                             };
                         }
+                    }
+                }
+            }
+
+            /**keep spawning upgrader */
+            if (roleHarvester.enough() && Memory.peace && Memory.watch['upgraders'] < Memory.limits.upgraders) {
+                structureSpawns = system.availableStructureSpawns(roleUpgrader.cost());
+                if (structureSpawns.length > 0) {
+                    var thisSource = structureSpawns[0].room.controller.pos.findClosestByPath(FIND_SOURCES);
+                    if (thisSource && util.findIndexInArray(availableSources, thisSource) != -1) {
+                        if (OK == structureSpawns[0].spawnCreep(
+                            roleUpgrader.body(),
+                            roleUpgrader.newName(),
+                            { memory: { role: 'upgrader', source: thisSource, bindSource: thisSource } }
+                        )) {
+                            console.log('spawn a new upgrader to source: ' + thisSource +
+                                ' from ' + structureSpawns[0]['id']);
+                            system.bindSource(thisSource);
+                            return;
+                        };
                     }
                 }
             }
