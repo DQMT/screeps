@@ -84,6 +84,10 @@ var roleMrhandy = {
                 }
                 return;
             }
+            var container = creep.pos.findClosestByPath(FIND_MY_STRUCTURES, {
+                filter: (s) => (s.structureType == STRUCTURE_CONTAINER)
+                    && s.energy < s.energyCapacity
+            });
             if (system.singleRoom()) {
                 util.walkAroundInRoom(creep);
             } else {

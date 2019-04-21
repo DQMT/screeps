@@ -32,7 +32,7 @@ var roleClaimer = {
     run: function (creep) {
         if (Game.rooms[creep.memory.roomName]) {
             var target = Game.rooms[creep.memory.roomName].controller;
-            if (target.owner.username) {
+            if (!target.my) {
                 //   var re= creep.moveTo(target, { visualizePathStyle: { stroke: constants.CLAIM } });
                 //   console.log(re);
                 if (creep.attackController(target) == ERR_NOT_IN_RANGE) {
