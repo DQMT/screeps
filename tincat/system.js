@@ -93,7 +93,7 @@ module.exports = {
         if (util.findIndexInArray(colonies, roomName) == -1) {
             return;
         }
-        util.removeInArray(colonies, roomName);
+        colonies = util.removeInArray(colonies, roomName);
         console.log(JSON.stringify(colonies));
         // Memory.system['colonies'] = colonies;
         var sources = Memory.system['sources'];
