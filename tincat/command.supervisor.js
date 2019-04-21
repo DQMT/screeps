@@ -192,7 +192,7 @@ var theSupervisor = {
                         if (OK == structureSpawns[0].spawnCreep(
                             roleClaimer.body(),
                             roleClaimer.newName(),
-                            { memory: { role: 'claimer', roomName: colony } }
+                            { memory: { role: 'claimer', roomName: colony, exitPoint: { x: 49, y: 17 } } }
                         )) {
                             console.log('spawn a new claimer to room: ' + colony +
                                 ' from ' + structureSpawns[0]['id']);

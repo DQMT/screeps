@@ -44,7 +44,12 @@ var roleClaimer = {
                 }
             }
         } else {
-            util.moveToRoom(creep, creep.memory.roomName);
+            var exitPoint = creep.memory.exitPoint;
+            if (exitPoint) {
+                creep.moveTo(exitPoint.x, exitPoint.y);
+            } else {
+                util.moveToRoom(creep, creep.memory.roomName);
+            }
         }
 
     }
