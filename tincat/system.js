@@ -94,8 +94,8 @@ module.exports = {
             return;
         }
         colonies = util.removeInArray(colonies, roomName);
-        console.log(JSON.stringify(colonies));
-        // Memory.system['colonies'] = colonies;
+        console.log('colonies = ' + JSON.stringify(colonies));
+        Memory.system['colonies'] = colonies;
         var sources = Memory.system['sources'];
         var n = [];
         sources.forEach(e => {
@@ -103,8 +103,8 @@ module.exports = {
                 n.push(e);
             }
         })
-        console.log(JSON.stringify(n));
-        // Memory.system['sources'] = n;
+        console.log('n=' + JSON.stringify(n));
+        Memory.system['sources'] = n;
     },
     clearBinds: function () {
         var sources = Memory.system.sources;
