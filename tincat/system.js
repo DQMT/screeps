@@ -88,18 +88,18 @@ module.exports = {
         })
         Memory.system['sources'] = sources;
     },
-    removeColony(roomName, sourceIds) {
+    removeColony: function (roomName, sourceIds) {
         var colonies = Memory.system['colonies'];
         if (util.findIndexInArray(colonies, roomName) == -1) {
             return;
         }
-        util.removeInArray(colonies,roomName);
+        util.removeInArray(colonies, roomName);
         console.log(JSON.stringify(colonies));
         // Memory.system['colonies'] = colonies;
         var sources = Memory.system['sources'];
-        var n=[];
-        sources.forEach(e=>{
-            if(util.findIndexInArray(sourceIds, e.id) == -1){
+        var n = [];
+        sources.forEach(e => {
+            if (util.findIndexInArray(sourceIds, e.id) == -1) {
                 n.push(e);
             }
         })
