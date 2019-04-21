@@ -69,7 +69,16 @@ function correction() {
             }
         }
     }
-    console.log(JSON.stringify(c));
+    console.log('c'+JSON.stringify(c));
+    sources.forEach(source=>{
+        if(c[source.id]){
+            source.binds = c[source.id];
+        }else{
+            source.binds = 0;
+        }
+    });
+    console.log('sources'+JSON.stringify(sources));
+    
 }
 
 var theWatchdog = {
