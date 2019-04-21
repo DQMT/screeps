@@ -1,4 +1,5 @@
 var constants = require('./constants');
+var system = require('./system');
 
 module.exports = {
     signWords: function () {
@@ -66,5 +67,8 @@ module.exports = {
     },
     walkAroundInRoom: function (creep) {
         creep.move(this.randomDirection());
+    },
+    canUpgrade: function (creep) {
+        return system.singleRoom() || this.findIndexInArray(system.baseRoomNames(), creep.room.name) != -1;
     }
 };

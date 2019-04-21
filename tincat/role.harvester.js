@@ -54,7 +54,7 @@ var roleHarvester = {
                     creep.moveTo(structure);
                 }
             } else {
-                if (system.singleRoom()) {
+                if (util.canUpgrade(creep)) {
                     var controller = creep.room.controller;
                     creep.say('upgrade!');
                     if (creep.upgradeController(controller) == ERR_NOT_IN_RANGE) {
