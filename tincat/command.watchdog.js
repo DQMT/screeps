@@ -55,16 +55,27 @@ function watchDefence() {
 }
 
 function correction() {
+    var sources = Memory.system.sources;
+    var c = {};
     for (var name in Memory.creeps) {
         if (Game.creeps[name]) {
-
+            var s = Game.creeps[name].memory.source;
+            if (s) {
+                if (c[s]) {
+                    c[s] = c[s] + 1;
+                } else {
+                    c[s] = 1;
+                }
+            }
         }
     }
+    console.log(JSON.stringify(c));
 }
 
 var theWatchdog = {
 
     watchEverything: function () {
+        correction();
         watchCreeps();
         watchDefence();
     }
