@@ -257,5 +257,8 @@ module.exports = {
     },
     canUpgrade: function (creep) {
         return this.singleRoom() || util.findIndexInArray(this.baseRoomNames(), creep.room.name) != -1;
+    },
+    clearLog: function () {
+        Memory.system.log = [];
     }
 };
