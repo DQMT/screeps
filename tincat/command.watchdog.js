@@ -9,7 +9,7 @@ function watchCreeps() {
     var repairers = _.filter(Game.creeps, (creep) => creep.memory.role == 'repairer');
     var mrhandys = _.filter(Game.creeps, (creep) => creep.memory.role == 'mrhandy');
     var claimers = _.filter(Game.creeps, (creep) => creep.memory.role == 'claimer');
-    var footmen = _.filter(Game.creeps, (creep) => creep.memory.role == 'footman');
+    var scouts = _.filter(Game.creeps, (creep) => creep.memory.role == 'scout');
     var drillers = _.filter(Game.creeps, (creep) => creep.memory.role == 'driller');
     var lorries = _.filter(Game.creeps, (creep) => creep.memory.role == 'lorry');
 
@@ -21,7 +21,7 @@ function watchCreeps() {
     Memory.watch['repairers'] = repairers.length;
     Memory.watch['mrhandys'] = mrhandys.length;
     Memory.watch['claimers'] = claimers.length;
-    Memory.watch['footmen'] = footmen.length;
+    Memory.watch['scouts'] = scouts.length;
     Memory.watch['drillers'] = drillers.length;
     Memory.watch['lorries'] = lorries.length;
     if (Game.time % 10 == 0) {
