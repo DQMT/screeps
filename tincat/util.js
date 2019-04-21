@@ -1,5 +1,4 @@
 var constants = require('./constants');
-var system = require('./system');
 
 module.exports = {
     signWords: function () {
