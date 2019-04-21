@@ -33,15 +33,14 @@ var roleClaimer = {
         if (Game.rooms[creep.memory.roomName]) {
             var target = Game.rooms[creep.memory.roomName].controller;
             if (!target.my) {
-                //   var re= creep.moveTo(target, { visualizePathStyle: { stroke: constants.CLAIM } });
-                //   console.log(re);
-                if (creep.attackController(target) == ERR_NOT_IN_RANGE) {
-                    // console.log('xxx' + JSON.stringify(target));
-                    creep.moveTo(target, { visualizePathStyle: { stroke: constants.CLAIM } });
-                }
-            } else {
-                if (creep.reserveController(target) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(target, { visualizePathStyle: { stroke: constants.CLAIM } });
+                if (target.owner) {
+                    if (creep.attackController(target) == ERR_NOT_IN_RANGE) {
+                        creep.moveTo(target, { visualizePathStyle: { stroke: constants.CLAIM } });
+                    }
+                } else {
+                    if (creep.reserveController(target) == ERR_NOT_IN_RANGE) {
+                        creep.moveTo(target, { visualizePathStyle: { stroke: constants.CLAIM } });
+                    }
                 }
             }
         } else {
