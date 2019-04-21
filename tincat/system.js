@@ -254,5 +254,8 @@ module.exports = {
         var baseRoomNames = this.baseRoomNames();
         var colonyRoomNames = this.colonyRoomNames();
         return baseRoomNames.length == 1 && colonyRoomNames.length == 0
+    },
+    canUpgrade: function (creep) {
+        return this.singleRoom() || util.findIndexInArray(this.baseRoomNames(), creep.room.name) != -1;
     }
 };
