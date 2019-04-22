@@ -67,6 +67,45 @@ module.exports = {
             Memory.peace = true;
         }
     },
+    addBase: function (roomName, sourceIds) {
+        var bases = Memory.system['bases'];
+        if (util.findIndexInArray(bases, roomName) != -1) {
+            return;
+        }
+        bases.push(roomName);
+        Memory.system['bases'] = bases;
+        var sources = Memory.system['sources'];
+        sourceIds.forEach(s => {
+            var resource = {
+                'room': roomName,
+                'id': s,
+                'maxBinds': 3,
+                'binds': 0,
+                'maxDrillers': 0,
+                'drillers': 0
+            };
+            sources.push(resource);
+        })
+        Memory.system['sources'] = sources;
+    },
+    removeBase: function (roomName, sourceIds) {
+        var bases = Memory.system['bases'];
+        if (util.findIndexInArray(bases, roomName) == -1) {
+            return;
+        }
+        bases = util.removeInArray(bases, roomName);
+        console.log('bases = ' + JSON.stringify(bases));
+        Memory.system['bases'] = bases;
+        var sources = Memory.system['sources'];
+        var n = [];
+        sources.forEach(e => {
+            if (util.findIndexInArray(sourceIds, e.id) == -1) {
+                n.push(e);
+            }
+        })
+        console.log('n=' + JSON.stringify(n));
+        Memory.system['sources'] = n;
+    },
     addColony: function (roomName, sourceIds) {
         var colonies = Memory.system['colonies'];
         if (util.findIndexInArray(colonies, roomName) != -1) {

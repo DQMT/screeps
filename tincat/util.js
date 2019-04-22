@@ -69,8 +69,9 @@ module.exports = {
     },
     findMySite: function () {
         for (var name in Game.rooms) {
-            var sites = Game.rooms[name].find(FIND_MY_CONSTRUCTION_SITES);
-            if (sites[0]) {
+            var room = Game.rooms[name];
+            var sites = room.find(FIND_MY_CONSTRUCTION_SITES);
+            if (sites.length > 0) {
                 return sites[0];
             }
         }
