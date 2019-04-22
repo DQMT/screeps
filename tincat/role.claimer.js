@@ -1,5 +1,6 @@
 var util = require('util');
 var constants = require('constants');
+var system = require('./system');
 
 /**
  * A claimer 
@@ -38,9 +39,16 @@ var roleClaimer = {
                         creep.moveTo(target, { visualizePathStyle: { stroke: constants.CLAIM } });
                     }
                 } else {
-                    if (creep.reserveController(target) == ERR_NOT_IN_RANGE) {
-                        creep.moveTo(target, { visualizePathStyle: { stroke: constants.CLAIM } });
+                    if (Game.gcl.level > system.baseRoomNames().length) {
+                        if (creep.claimController(target) == ERR_NOT_IN_RANGE) {
+                            creep.moveTo(target, { visualizePathStyle: { stroke: constants.CLAIM } });
+                        }
+                    } else {
+                        if (creep.reserveController(target) == ERR_NOT_IN_RANGE) {
+                            creep.moveTo(target, { visualizePathStyle: { stroke: constants.CLAIM } });
+                        }
                     }
+
                 }
             }
         } else {
