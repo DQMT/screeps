@@ -51,6 +51,11 @@ var roleBuilder = {
                     creep.moveTo(structure, { visualizePathStyle: { stroke: constants.STROKE_COLOR.BUILD } });
                 }
             } else {
+                structure = util.findMySite();
+                if (structure) {
+                    util.moveToRoom(creep, structure.room.name);
+                    return;
+                }
                 // console.log(creep.name + 'cannot find a structure!');
                 if (system.canUpgrade(creep)) {
                     var controller = creep.room.controller;

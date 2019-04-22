@@ -56,7 +56,10 @@ module.exports = {
     moveToRoom: function (creep, roomName) {
         if (creep.room.name != roomName) {
             var exit = creep.room.findExitTo(roomName);
-            creep.moveTo(creep.pos.findClosestByRange(exit));
+            if (OK == creep.moveTo(creep.pos.findClosestByRange(exit))) {
+                creep.say('move to ' + roomName);
+            };
+
         }
     },
     randomDirection: function () {
