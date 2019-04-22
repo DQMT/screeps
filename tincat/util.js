@@ -55,8 +55,7 @@ module.exports = {
     },
     moveToRoom: function (creep, roomName) {
         if (creep.room.name != roomName) {
-            var exit = creep.room.findExitTo(roomName);
-            if (OK == creep.moveTo(creep.pos.findClosestByRange(exit))) {
+            if (OK == creep.moveTo(roomName)) {
                 creep.say('move to ' + roomName);
             };
 
