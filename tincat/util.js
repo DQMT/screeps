@@ -66,5 +66,14 @@ module.exports = {
     },
     walkAroundInRoom: function (creep) {
         creep.move(this.randomDirection());
+    },
+    findMySite: function () {
+        for (var name in Game.rooms) {
+            var sites = Game.rooms[name].find(FIND_MY_CONSTRUCTION_SITES);
+            if (sites[0]) {
+                return sites[0];
+            }
+        }
+        return null;
     }
 };
