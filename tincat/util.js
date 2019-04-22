@@ -77,5 +77,14 @@ module.exports = {
             }
         }
         return null;
+    },
+    needEnergy: function (structrue) {
+        if (!structrue) {
+            return false;
+        }
+        if (structrue.energy != null && structrue.energy != undefined) {
+            return structrue.energy < structrue.energyCapacity;
+        }
+        return structrue.store['energy'] < structrue.storeCapacity;
     }
 };
