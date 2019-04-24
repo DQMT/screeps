@@ -234,47 +234,57 @@ var theSupervisor = {
         }
     },
     keepTower: function () {
-        var structureSpawn = Game.spawns[constants.MY_SPAWN_NAMES[0]];
-        var towers = structureSpawn.room.find(FIND_STRUCTURES, {
-            filter: (structure) => {
-                return (
-                    structure.structureType == STRUCTURE_TOWER
-                );
+        var bases = system.baseRoomNames();
+        bases.forEach(b => {
+            var towers = Game.rooms[b].find(FIND_STRUCTURES, {
+                filter: (structure) => {
+                    return (
+                        structure.structureType == STRUCTURE_TOWER
+                    );
+                }
+            });
+            if (towers.length) {
+                for (var i = 0; i < towers.length; i++) {
+                    var tower = towers[i];
+                    var closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
+                    if (closestHostile) {
+                        tower.attack(closestHostile);
+                    }
+                    var damagedStructures = tower.room.find(FIND_STRUCTURES, {
+                        filter: object => (object.structureType != STRUCTURE_WALL && object.structureType != STRUCTURE_RAMPART && object.hits < object.hitsMax) || (object.structureType == STRUCTURE_WALL && object.hits < 20000)
+                            || (object.structureType == STRUCTURE_RAMPART && object.hits < 20000)
+                    });
+                    damagedStructures.sort((a, b) => a.hits - b.hits);
+                    if (damagedStructures.length > 0) {
+                        tower.repair(damagedStructures[0]);
+                    }
+                }
             }
         });
-        if (towers.length) {
-            for (var i = 0; i < towers.length; i++) {
-                var tower = towers[i];
-                var closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
-                if (closestHostile) {
-                    tower.attack(closestHostile);
-                }
-                var damagedStructures = tower.room.find(FIND_STRUCTURES, {
-                    filter: object => (object.structureType != STRUCTURE_WALL && object.structureType != STRUCTURE_RAMPART && object.hits < object.hitsMax) || (object.structureType == STRUCTURE_WALL && object.hits < 10000)
-                        || (object.structureType == STRUCTURE_RAMPART && object.hits < 10000)
-                });
-                damagedStructures.sort((a, b) => a.hits - b.hits);
-                if (damagedStructures.length > 0) {
-                    tower.repair(damagedStructures[0]);
-                }
-            }
-        }
     },
+
     keepDefence: function () {
-        var structureSpawn = Game.spawns[constants.MY_SPAWN_NAMES[0]];
-        if (structureSpawn.hits < structureSpawn.hitsMax * 0.8) {
-            structureSpawn.room.controller.activateSafeMode();
-        }
-        if (Memory.peace == false && structureSpawn.room.energyAvailable >= roleDefender.cost()) {
-            if (OK == structureSpawn.spawnCreep(
-                roleDefender.body(),
-                roleDefender.newName(),
-                { memory: { role: 'defender' } }
-            )) {
-                console.log('spawn a new defender from ' + structureSpawn['id']);
-                return;
-            };
-        }
+        var bases = system.baseRoomNames();
+        bases.forEach(b => {
+            var sps = Game.rooms[b].find(FIND_MY_STRUCTURES, {
+                filter: (s) => (s.structureType == STRUCTURE_SPAWN)
+            });
+            sps.forEach(structureSpawn => {
+                if (structureSpawn.hits < structureSpawn.hitsMax * 0.8) {
+                    structureSpawn.room.controller.activateSafeMode();
+                }
+                if (Memory.peace == false && structureSpawn.room.energyAvailable >= roleDefender.cost()) {
+                    if (OK == structureSpawn.spawnCreep(
+                        roleDefender.body(),
+                        roleDefender.newName(),
+                        { memory: { role: 'defender' } }
+                    )) {
+                        console.log('spawn a new defender from ' + structureSpawn['id']);
+                        return;
+                    };
+                }
+            });
+        })
     }
 
 };
