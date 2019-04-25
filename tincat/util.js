@@ -87,4 +87,5 @@ module.exports = {
         }
         return structrue.store['energy'] < structrue.storeCapacity;
     }
+    
 };

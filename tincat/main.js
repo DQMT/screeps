@@ -21,8 +21,13 @@ module.exports.loop = function () {
     system.setMaxBinds('5bbcafcb9099fc012e63b33e',5);
     system.setMaxBinds('5bbcafdc9099fc012e63b4ca',5);
     system.setMaxBinds('5bbcafdc9099fc012e63b4c8',5);
-    // system.setMaxDrills('5bbcabeb9099fc012e634810',1,0,1,0);
-    // system.setMaxDrills('5bbcabeb9099fc012e634811',1,0,1,0);
+
+
+    // system.setMaxDrillsAndLorries('5bbcafcb9099fc012e63b33d',1,2);
+    // system.setMaxDrillsAndLorries('5bbcafcb9099fc012e63b33e',1,2);
+    // system.setMaxDrillsAndLorries('5bbcafdc9099fc012e63b4ca',1,2);
+    // system.setMaxDrillsAndLorries('5bbcafdc9099fc012e63b4c8',1,2);
+    
     watchdog.watchEverything();
     supervisor.keepTower();
     supervisor.keepDefence();

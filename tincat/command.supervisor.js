@@ -80,24 +80,10 @@ var theSupervisor = {
                     if (system.needDrill(sids[i])) {
                         var structureSpawns = system.availableStructureSpawns(roleDriller.cost());
                         if (structureSpawns.length > 0) {
-                            var source = Game.getObjectById(sids[i]);
-                            var closestContainer = source.pos.findClosestByPath(FIND_MY_STRUCTURES, {
-                                filter: (s) => (s.structureType == STRUCTURE_CONTAINER)
-                            });
-                            if (!closestContainer) {
-                                if (Memory.watch['drillers'] < sids.length) {
-                                    closestContainer = source.pos.findClosestByPath(FIND_MY_STRUCTURES, {
-                                        filter: (s) => (s.structureType == STRUCTURE_SPAWN
-                                            || s.structureType == STRUCTURE_EXTENSION
-                                            || s.structureType == STRUCTURE_TOWER)
-                                            && s.energy < s.energyCapacity
-                                    });
-                                }
-                            }
-                            if (closestContainer && OK == structureSpawns[0].spawnCreep(
+                            if (OK == structureSpawns[0].spawnCreep(
                                 roleDriller.body(),
                                 roleDriller.newName(),
-                                { memory: { role: 'driller', source: sids[i], container: closestContainer.id } }
+                                { memory: { role: 'driller', source: sids[i] } }
                             )) {
                                 console.log('spawn a new driller to source: ' + sids[i] +
                                     ' from ' + structureSpawns[0]['id']);
@@ -114,14 +100,10 @@ var theSupervisor = {
                     if (system.needLorry(sids[i])) {
                         var structureSpawns = system.availableStructureSpawns(roleLorry.cost());
                         if (structureSpawns.length > 0) {
-                            var source = Game.getObjectById(sids[i]);
-                            var closestContainer = source.pos.findClosestByPath(FIND_MY_STRUCTURES, {
-                                filter: (s) => (s.structureType == STRUCTURE_CONTAINER)
-                            });
-                            if (closestContainer && OK == structureSpawns[0].spawnCreep(
+                            if (OK == structureSpawns[0].spawnCreep(
                                 roleLorry.body(),
                                 roleLorry.newName(),
-                                { memory: { role: 'lorry', source: sids[i], container: closestContainer.id } }
+                                { memory: { role: 'lorry', source: sids[i] } }
                             )) {
                                 console.log('spawn a new lorry to source: ' + sids[i] +
                                     ' from ' + structureSpawns[0]['id']);
@@ -138,7 +120,8 @@ var theSupervisor = {
                 structureSpawns = system.availableStructureSpawns(roleUpgrader.cost());
                 if (structureSpawns.length > 0) {
                     var thisSource = structureSpawns[0].room.controller.pos.findClosestByPath(FIND_SOURCES);
-                    if (thisSource
+                    var controllerId = system.getControllerIdNeedUpgrader();
+                    if (thisSource && controllerId
                         //  && util.findIndexInArray(availableSources, thisSource) != -1
                     ) {
                         if (OK == structureSpawns[0].spawnCreep(

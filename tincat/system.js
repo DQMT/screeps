@@ -152,7 +152,17 @@ module.exports = {
         })
         Memory.system.sources = sources;
     },
-    setMaxDrills: function (id, maxDrillers, drillers, maxLorries, lorries) {
+    setMaxDrillsAndLorries: function (id, maxDrillers, maxLorries) {
+        var sources = Memory.system.sources;
+        sources.forEach(s => {
+            if (s['id'] == id) {
+                s['maxDrillers'] = maxDrillers;
+                s['maxLorries'] = maxLorries;
+            }
+        })
+        Memory.system.sources = sources;
+    },
+    setDrillsAndLorries: function (id, maxDrillers, drillers, maxLorries, lorries) {
         var sources = Memory.system.sources;
         sources.forEach(s => {
             if (s['id'] == id) {
@@ -299,5 +309,16 @@ module.exports = {
     },
     clearLog: function () {
         Memory.system.log = [];
+    },
+    getControllerIdNeedUpgrader: function () {
+        var bases = this.baseRoomNames();
+        bases.forEach(b => {
+            var controllerId = Game.rooms[b].controller.id;
+            var upgraders = _.filter(Game.creeps, (creep) => (creep.memory.role == 'upgrader' && creep.memory.controller == controllerId));
+            if (upgraders.length == 0) {
+                return controllerId;
+            }
+        })
+        return null;
     }
 };
