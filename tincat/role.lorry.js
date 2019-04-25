@@ -2,6 +2,12 @@ var constants = require('./constants');
 var util = require('./util');
 var system = require('./system');
 
+/**
+ * A driller
+ * body part need: [WORK,WORK,CARRY, MOVE]
+ * memory: {"source":[sourceId]}
+ */
+
 var roleLorry = {
     level: function () {
         return 3;

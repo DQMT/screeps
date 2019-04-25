@@ -2,6 +2,12 @@ var constants = require('./constants');
 var util = require('./util');
 var system = require('./system');
 
+/**
+ * A driller
+ * body part need: [WORK,WORK,CARRY, MOVE]
+ * memory: {"source":[sourceId]}
+ */
+
 var roleDriller = {
     level: function () {
         return 1;
@@ -34,18 +40,17 @@ var roleDriller = {
             creep.say('drill');
         }
         if (creep.memory.drilling) {
-            var container = Game.getObjectById(creep.memory.container);
-            if (!container) {
-                container = creep.pos.findClosestByPath(FIND_MY_STRUCTURES, {
-                    filter: (s) => (s.structureType == STRUCTURE_CONTAINER)
-                });
-            }
-            if (container != undefined) {
+            var source = Game.getObjectById(creep.memory.source);
+            var container = source.pos.findClosestByPath(FIND_MY_STRUCTURES, {
+                filter: (s) => (s.structureType == STRUCTURE_CONTAINER && s.store['energy'] < s.storeCapacity)
+            });
+            if (container) {
                 if (creep.transfer(container, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(container);
                 }
             } else {
-                util.moveToRoom(creep, system.baseRoomNames()[0]);
+                // util.walkAroundInRoom(creep);
+                // util.moveToRoom(creep, system.baseRoomNames()[0]);
                 // console.log(creep.name + 'cannot find a structure!');
             }
         } else {
