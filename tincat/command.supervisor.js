@@ -250,13 +250,14 @@ var theSupervisor = {
                     if (closestHostile) {
                         tower.attack(closestHostile);
                     }
-                    var damagedStructures = tower.room.find(FIND_STRUCTURES, {
-                        filter: object => (object.hits < object.hitsMax)
-                    });
                     // var damagedStructures = tower.room.find(FIND_STRUCTURES, {
-                    //     filter: object => (object.structureType != STRUCTURE_WALL && object.structureType != STRUCTURE_RAMPART && object.hits < object.hitsMax) || (object.structureType == STRUCTURE_WALL && object.hits < 20000)
-                    //         || (object.structureType == STRUCTURE_RAMPART && object.hits < 20000)
+                    //     filter: object => (object.hits < object.hitsMax)
                     // });
+                    var damagedStructures = tower.room.find(FIND_STRUCTURES, {
+                        filter: object => (object.structureType != STRUCTURE_WALL  && object.hits < object.hitsMax) 
+                        || (object.structureType == STRUCTURE_WALL && object.hits < 10000000)
+                           
+                    });
                     damagedStructures.sort((a, b) => a.hits - b.hits);
                     if (damagedStructures.length > 0) {
                         tower.repair(damagedStructures[0]);
