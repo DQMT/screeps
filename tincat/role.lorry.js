@@ -3,8 +3,8 @@ var util = require('./util');
 var system = require('./system');
 
 /**
- * A driller
- * body part need: [WORK,WORK,CARRY, MOVE]
+ * A Lorry
+ * body part need: [CARRY, MOVE]
  * memory: {"source":[sourceId]}
  */
 
@@ -46,19 +46,22 @@ var roleLorry = {
                     || s.structureType == STRUCTURE_TOWER)
                     && s.energy < s.energyCapacity
             });
-            if (structure == undefined) {
+            if (!structure) {
                 structure = creep.room.storage;
             }
-            if (structure != undefined) {
+            if (structure) {
                 if (creep.transfer(structure, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(structure);
                 }
             } else {
-                util.moveToRoom(creep, system.baseRoomNames()[0]);
+                util.walkAroundInRoom(creep);
                 // console.log(creep.name + 'cannot find a structure!');
             }
         } else {
-            var container = Game.getObjectById(creep.memory.container);
+            var source = Game.getObjectById(creep.memory.source);
+            var container = source.pos.findClosestByPath(FIND_MY_STRUCTURES, {
+                filter: (s) => (s.structureType == STRUCTURE_CONTAINER && s.store['energy'] > 0)
+            });
             if (!container) {
                 container = creep.pos.findClosestByPath(FIND_MY_STRUCTURES, {
                     filter: (s) => (s.structureType == STRUCTURE_CONTAINER)
@@ -67,7 +70,6 @@ var roleLorry = {
             if (creep.withdraw(container, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(container, { visualizePathStyle: { stroke: constants.STROKE_COLOR.LORRY } });
             }
-
         }
     }
 
