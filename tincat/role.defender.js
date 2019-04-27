@@ -28,11 +28,18 @@ var roleDefender = {
             if (creep.attack(closestHostile) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(closestHostile, { visualizePathStyle: { stroke: constants.STROKE_COLOR.ATTACK } });
             }
-        }else{
-            if(system.singleRoom()){
-                util.walkAroundInRoom(creep);
-            }else{
-                util.moveToAnotherRoom(creep);
+        } else {
+            var target = creep.pos.findClosestByRange(FIND_HOSTILE_SPAWNS);
+            if (target) {
+                if (creep.attack(target) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(target, { visualizePathStyle: { stroke: constants.STROKE_COLOR.ATTACK } });
+                }
+            } else {
+                if (system.singleRoom()) {
+                    util.walkAroundInRoom(creep);
+                } else {
+                    util.moveToAnotherRoom(creep);
+                }
             }
         }
     }
