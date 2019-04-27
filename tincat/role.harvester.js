@@ -31,6 +31,21 @@ var roleHarvester = {
 
     },
     run: function (creep) {
+        if (creep.memory.updating) {
+            if (creep.carry.energy == 0) {
+                creep.memory.updating = false;
+                creep.memory.transfering = false;
+                creep.say('harvest');
+                return;
+            } else {
+                var controller = creep.room.controller;
+                creep.say('upgrade!');
+                if (creep.upgradeController(controller) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(controller, { visualizePathStyle: { stroke: constants.STROKE_COLOR.UPGRADE } });
+                }
+                return;
+            }
+        }
         if (creep.memory.transfering && creep.carry.energy == 0) {
             creep.memory.transfering = false;
             creep.say('harvest');
@@ -55,11 +70,7 @@ var roleHarvester = {
                 }
             } else {
                 if (system.canUpgrade(creep)) {
-                    var controller = creep.room.controller;
-                    creep.say('upgrade!');
-                    if (creep.upgradeController(controller) == ERR_NOT_IN_RANGE) {
-                        creep.moveTo(controller, { visualizePathStyle: { stroke: constants.STROKE_COLOR.UPGRADE } });
-                    }
+                    creep.memory.updating = true;
                     return;
                 }
                 // console.log(creep.name + 'cannot find a structure!');
