@@ -5,7 +5,7 @@ var system = require('./system');
 
 var roleBuilder = {
     level: function () {
-        return 1;
+        return 2;
     },
     cost: function () {
         return 300 * this.level();
