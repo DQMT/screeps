@@ -23,7 +23,7 @@ var rolePlayer = {
     'driller': roleDriller,
     'lorry': roleLorry,
     'scout': roleScout,
-    'defender':roleDefender
+    'defender': roleDefender
 }
 
 /**
@@ -223,7 +223,7 @@ var theSupervisor = {
         for (var name in Game.creeps) {
             var creep = Game.creeps[name];
             if (creep.memory.busy) {
-                console.log('creep ' + creep.id + 'is busy');
+                // console.log('creep ' + creep.id + ' is busy');
                 continue;
             }
             if (rolePlayer[creep.memory.role]) {
@@ -250,14 +250,15 @@ var theSupervisor = {
                     var closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
                     if (closestHostile) {
                         tower.attack(closestHostile);
+                        continue;
                     }
                     // var damagedStructures = tower.room.find(FIND_STRUCTURES, {
                     //     filter: object => (object.hits < object.hitsMax)
                     // });
                     var damagedStructures = tower.room.find(FIND_STRUCTURES, {
-                        filter: object => (object.structureType != STRUCTURE_WALL  && object.hits < object.hitsMax) 
-                        || (object.structureType == STRUCTURE_WALL && object.hits < 10000000)
-                           
+                        filter: object => (object.structureType != STRUCTURE_WALL && object.hits < object.hitsMax)
+                            || (object.structureType == STRUCTURE_WALL && object.hits < 10000000)
+
                     });
                     damagedStructures.sort((a, b) => a.hits - b.hits);
                     if (damagedStructures.length > 0) {
