@@ -7,8 +7,11 @@ var system = require('./system');
 
 module.exports = {
     exeTempJpb: function () {
-
-
+        var defenders = _.filter(Game.creeps, (creep) => creep.memory.role == 'defender');
+        defenders.forEach(d => {
+            d.memory.busy = true;
+            d.moveTo(new RoomPosition(43, 46, 'E48N38'));
+        });
     },
     exeOnceOn: function () {
         Memory.job.once = true;
@@ -23,7 +26,7 @@ module.exports = {
         this.exeOnceOff();
     },
     exeOnce() {
-        system.removeColony('E48N38', ['5bbcafdc9099fc012e63b4ca', '5bbcafdc9099fc012e63b4c8']);
-        system.addBase('E48N38', ['5bbcafdc9099fc012e63b4ca', '5bbcafdc9099fc012e63b4c8']);
+        // system.removeColony('E48N38', ['5bbcafdc9099fc012e63b4ca', '5bbcafdc9099fc012e63b4c8']);
+        // system.addBase('E48N38', ['5bbcafdc9099fc012e63b4ca', '5bbcafdc9099fc012e63b4c8']);
     }
 };
