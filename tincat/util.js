@@ -54,6 +54,10 @@ module.exports = {
         }
     },
     moveToRoom: function (creep, roomName) {
+        if (!Game.rooms[roomName]) {
+            creep.moveTo(roomName);
+            return;
+        }
         if (creep.room.name != roomName) {
             if (OK == creep.moveTo(Game.rooms[roomName].controller.pos)) {
                 creep.say('Go2' + roomName);
@@ -63,7 +67,6 @@ module.exports = {
     randomDirection: function () {
         var i = parseInt(8 * Math.random()) + 1;
         return i;
-
     },
     walkAroundInRoom: function (creep) {
         creep.move(this.randomDirection());

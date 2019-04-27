@@ -4,7 +4,7 @@ var system = require('./system');
 
 /**
  * A defender 
- * body part need: [TOUCH, MOVE, MOVE, MOVE, ATTACK, ATTACK]
+ * body part need: [TOUGH, MOVE, MOVE, MOVE, ATTACK, ATTACK]
  */
 
 var roleDefender = {
@@ -15,7 +15,7 @@ var roleDefender = {
         return 270;
     },
     body: function () {
-        return [TOUCH,  MOVE, MOVE, ATTACK, ATTACK];
+        return [TOUGH, MOVE, MOVE, ATTACK, ATTACK];
     },
     newName: function () {
         return 'Defender@' + this.level() + '_' + Game.time;
