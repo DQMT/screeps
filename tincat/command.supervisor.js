@@ -255,6 +255,9 @@ var theSupervisor = {
                     // var damagedStructures = tower.room.find(FIND_STRUCTURES, {
                     //     filter: object => (object.hits < object.hitsMax)
                     // });
+                    if (tower.energy < tower.energyCapacity * 0.5) {
+                        continue;
+                    }
                     var damagedStructures = tower.room.find(FIND_STRUCTURES, {
                         filter: object => (object.structureType != STRUCTURE_WALL && object.hits < object.hitsMax)
                             || (object.structureType == STRUCTURE_WALL && object.hits < 10000000)
