@@ -11,15 +11,15 @@ module.exports.loop = function () {
     system.init(['E47N38']);
     system.cleanMemory();
     system.setLimits({
-        harvesters: 14,
-        upgraders: 2,
-        builders: 6,
+        harvesters: 12,
+        upgraders: 4,
+        builders: 4,
         repairers: 0,
         mrhandys:1
     });
     system.setMaxBinds('5bbcafcb9099fc012e63b33d',4);
-    system.setMaxBinds('5bbcafcb9099fc012e63b33e',5);
-    system.setMaxBinds('5bbcafdc9099fc012e63b4ca',5);
+    system.setMaxBinds('5bbcafcb9099fc012e63b33e',4);
+    system.setMaxBinds('5bbcafdc9099fc012e63b4ca',4);
     system.setMaxBinds('5bbcafdc9099fc012e63b4c8',5);
     // system.setMaxDrills('5bbcabeb9099fc012e634810',1,0,1,0);
     // system.setMaxDrills('5bbcabeb9099fc012e634811',1,0,1,0);
