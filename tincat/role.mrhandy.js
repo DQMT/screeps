@@ -79,7 +79,7 @@ var roleMrhandy = {
             target = creep.pos.findClosestByRange(FIND_TOMBSTONES);
             if (target) {
                 creep.say('tombstone!');//todo: other resource type
-                console.log(JSON.stringfy(target.store));
+                // console.log(JSON.stringfy(target.store));
                 if (creep.withdraw(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(target, { visualizePathStyle: { stroke: constants.STROKE_COLOR.LORRY } });
                 }
