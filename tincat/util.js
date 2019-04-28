@@ -89,5 +89,11 @@ module.exports = {
             return structrue.energy < structrue.energyCapacity;
         }
         return structrue.store['energy'] < structrue.storeCapacity;
+    },
+    getNearestCreep: function (structrue, theRole) {
+        return structrue.pos.findClosestByPath(FIND_MY_CREEPS, {
+            filter: (s) => (s.memory.role == theRole
+                && s.carry.energy > 0)
+        });
     }
 };
