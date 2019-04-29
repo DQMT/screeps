@@ -64,7 +64,7 @@ var roleHarvester = {
             if (structure && structure.structureType == STRUCTURE_TOWER) {
                 var nc = util.getNearestCreep(structure, 'harvester');
                 if (nc.id != creep.id) {
-                    structure == undefined;
+                    structure = undefined;
                 }
             }
             if (structure == undefined) {
