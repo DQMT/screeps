@@ -42,6 +42,9 @@ var roleDefender = {
                 }
             }
         }
+    },
+    sign: function (creep) {
+        creep.signController(creep.room.controller, util.signWords);
     }
 }
 module.exports = roleDefender;

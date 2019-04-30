@@ -41,6 +41,9 @@ var roleScout = {
             }
 
         }
+    },
+    sign: function (creep) {
+        creep.signController(creep.room.controller, util.signWords);
     }
 }
 module.exports = roleScout;
