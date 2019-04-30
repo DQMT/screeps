@@ -5,7 +5,7 @@ var util = require('./util');
 
 var roleUpgrader = {
     level: function () {
-        return 2;
+        return 3;
     },
     cost: function () {
         return 200 * this.level();
