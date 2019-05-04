@@ -77,13 +77,16 @@ var roleBuilder = {
             if (creep.memory.source) {
                 source = Game.getObjectById(creep.memory.source);
             } else {
-                source = creep.pos.findClosestByPath(FIND_SOURCES, {
+                source = creep.pos.findClosestByPath(FIND_SOURCES_ACTIVE, {
                     filter: s => s.energy > 0
                 });
             }
             if (!source) {
                 util.moveToAnotherRoom(creep);
                 return;
+            }
+            if (source.energy == 0) {
+                source = creep.pos.findClosestByPath(FIND_SOURCES_ACTIVE);
             }
             if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(source, { visualizePathStyle: { stroke: constants.STROKE_COLOR.HARVEST } });
