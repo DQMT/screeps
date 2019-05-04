@@ -32,7 +32,7 @@ function watchCreeps() {
 
 function watchDefence() {
     var baseRoomNames = system.baseRoomNames();
-
+    var pstate = Memory.peace;
     if (Game.time % 20 == 0) {
         baseRoomNames.forEach(element => {
             if (Game.rooms[element]) {
@@ -43,9 +43,14 @@ function watchDefence() {
                 } else {
                     Memory.peace = true;
                 }
-                if (!Memory.peace) {
+                if (pstate && !Memory.peace) {
                     var log = Memory.log;
                     log.push(new Date() + ' ' + Game.time + ' hostile targets found : ' + targets.length);
+                    Memory.log = log;
+                }
+                if (!pstate && Memory.peace) {
+                    var log = Memory.log;
+                    log.push(new Date() + ' ' + Game.time + ' return to peace ');
                     Memory.log = log;
                 }
             }
