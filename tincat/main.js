@@ -12,8 +12,8 @@ module.exports.loop = function () {
     system.cleanMemory();
     system.setLimits({
         harvesters: 10,
-        upgraders: 6,
-        builders: 4,
+        upgraders: 4,
+        builders: 6,
         repairers: 0,
         mrhandys:1
     });
