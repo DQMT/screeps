@@ -71,17 +71,20 @@ var roleHarvester = {
                 structure = creep.room.storage;
             }
             if (structure != undefined) {
-                if (creep.transfer(structure, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                var result = creep.transfer(structure, RESOURCE_ENERGY);
+                if (result == ERR_NOT_IN_RANGE) {
                     creep.moveTo(structure);
-                }
-            } else {
-                if (system.canUpgrade(creep)) {
-                    creep.memory.updating = true;
+                    return;
+                } else if (result == OK) {
                     return;
                 }
-                // console.log(creep.name + 'cannot find a structure!');
-                util.moveToRoom(creep, system.baseRoomNames()[0]);
             }
+            if (system.canUpgrade(creep)) {
+                creep.memory.updating = true;
+                return;
+            }
+            // console.log(creep.name + 'cannot find a structure!');
+            util.moveToRoom(creep, system.baseRoomNames()[0]);
         } else {
             var source = Game.getObjectById(creep.memory.source);
             if (!source) {

@@ -51,10 +51,13 @@ var roleMrhandy = {
                 });
             }
             if (container) {
-                if (creep.transfer(container, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                var result = creep.transfer(container, RESOURCE_ENERGY);
+                if (result == ERR_NOT_IN_RANGE) {
                     creep.moveTo(container, { visualizePathStyle: { stroke: constants.STROKE_COLOR.LORRY } });
+                    return;
+                } else if (result == OK) {
+                    return;
                 }
-                return;
             }
             if (system.singleRoom()) {
                 util.walkAroundInRoom(creep);
