@@ -42,7 +42,7 @@ var roleMrhandy = {
         }
         if (creep.memory.recycling) {
             var container = creep.room.storage;
-            if (!container) {
+            if (!container || container.store.energy == container.storeCapacity) {
                 container = creep.pos.findClosestByPath(FIND_MY_STRUCTURES, {
                     filter: (s) => (s.structureType == STRUCTURE_SPAWN
                         || s.structureType == STRUCTURE_EXTENSION
