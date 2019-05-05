@@ -34,6 +34,14 @@ var roleBuilder = {
         if (creep.memory.building && creep.carry.energy == 0) {
             creep.memory.building = false;
             creep.say('harvest');
+            if (creep.memory.source) {
+                var source = Game.getObjectById(creep.memory.source);
+                if (source && source.room.name != creep.room.name) {
+                    source = creep.pos.findClosestByPath(FIND_SOURCES);
+                    system.unbindSource(creep.memory.source);
+                    system.bindSource(source.id);
+                }
+            }
         }
         if (!creep.memory.building && creep.carry.energy == creep.carryCapacity) {
             creep.memory.building = true;
