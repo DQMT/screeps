@@ -11,7 +11,7 @@ var roleLorry = require('./role.lorry');
 var roleDriller = require('./role.driller');
 var roleDefender = require('./role.defender');
 var roleScout = require('./role.scout');
-
+var roleMiner = require('./role.miner');
 
 var rolePlayer = {
     'harvester': roleHarvester,
@@ -213,6 +213,21 @@ var theSupervisor = {
                         { memory: { role: 'mrhandy' } }
                     )) {
                         console.log('spawn a new mrhandy from ' + structureSpawns[0]['id']);
+                        return;
+                    };
+                }
+            }
+
+            // keep spawning miners
+            if(Memory.watch['miners'] < Memory.limits.miners){
+                structureSpawns = system.availableStructureSpawns(roleMiner.cost());
+                if (structureSpawns.length > 0) {
+                    if (OK == structureSpawns[0].spawnCreep(
+                        roleMiner.body(),
+                        roleMiner.newName(),
+                        { memory: { role: 'miner' , extractor: '5ccf2926583b2350a74361ae',} }
+                    )) {
+                        console.log('spawn a new miner from ' + structureSpawns[0]['id']);
                         return;
                     };
                 }

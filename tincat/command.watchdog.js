@@ -12,6 +12,7 @@ function watchCreeps() {
     var scouts = _.filter(Game.creeps, (creep) => creep.memory.role == 'scout');
     var drillers = _.filter(Game.creeps, (creep) => creep.memory.role == 'driller');
     var lorries = _.filter(Game.creeps, (creep) => creep.memory.role == 'lorry');
+    var miners = _.filter(Game.creeps, (creep) => creep.memory.role == 'miner');
 
     Memory.watch = {};
     // Memory.watch['workers'] = harvesters.length + upgraders.length + builders.length;
@@ -24,6 +25,8 @@ function watchCreeps() {
     Memory.watch['scouts'] = scouts.length;
     Memory.watch['drillers'] = drillers.length;
     Memory.watch['lorries'] = lorries.length;
+    Memory.watch['miners'] = miners.length;
+    
     if (Game.time % 10 == 0) {
         console.log(JSON.stringify(Memory.watch));
         console.log('limits: ' + JSON.stringify(Memory.limits));
