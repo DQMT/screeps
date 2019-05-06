@@ -15,7 +15,8 @@ module.exports.loop = function () {
         upgraders: 4,
         builders: 6,
         repairers: 0,
-        mrhandys:1
+        mrhandys:1,
+        miners:1
     });
     system.setMaxBinds('5bbcafcb9099fc012e63b33d',4);
     system.setMaxBinds('5bbcafcb9099fc012e63b33e',4);
