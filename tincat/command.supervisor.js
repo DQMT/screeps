@@ -23,7 +23,8 @@ var rolePlayer = {
     'driller': roleDriller,
     'lorry': roleLorry,
     'scout': roleScout,
-    'defender': roleDefender
+    'defender': roleDefender,
+    'miner': roleMiner
 }
 
 /**
@@ -219,13 +220,13 @@ var theSupervisor = {
             }
 
             // keep spawning miners
-            if(Memory.watch['miners'] < Memory.limits.miners){
+            if (Memory.watch['miners'] < Memory.limits.miners) {
                 structureSpawns = system.availableStructureSpawns(roleMiner.cost());
                 if (structureSpawns.length > 0) {
                     if (OK == structureSpawns[0].spawnCreep(
                         roleMiner.body(),
                         roleMiner.newName(),
-                        { memory: { role: 'miner' , extractor: '5ccf2926583b2350a74361ae',} }
+                        { memory: { role: 'miner', extractor: '5ccf2926583b2350a74361ae', } }
                     )) {
                         console.log('spawn a new miner from ' + structureSpawns[0]['id']);
                         return;
