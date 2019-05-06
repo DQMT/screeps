@@ -7,10 +7,9 @@ var system = require('./system');
 
 module.exports = {
     exeTempJpb: function () {
-        var defenders = _.filter(Game.creeps, (creep) => creep.memory.role == 'defender');
-        defenders.forEach(d => {
-            d.memory.busy = true;
-            d.moveTo(new RoomPosition(36, 3, 'E47N36'));
+        var miners = _.filter(Game.creeps, (creep) => creep.memory.role == 'miner');
+        miners.forEach(d => {
+            d.memory.extractor = '5bbcb695d867df5e542079c8';
         });
     },
     exeOnceOn: function () {
