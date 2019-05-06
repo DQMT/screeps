@@ -26,11 +26,11 @@ var roleMiner = {
     },
 
     run: function (creep) {
-        if (creep.memory.transfering && creep.carry.energy == 0) {
+        if (creep.memory.transfering && creep.carry.K == 0) {
             creep.memory.transfering = false;
             creep.say('harvest');
         }
-        if (!creep.memory.transfering && creep.carry.energy == creep.carryCapacity) {
+        if (!creep.memory.transfering && creep.carry.K == creep.carryCapacity) {
             creep.memory.transfering = true;
             creep.say('transfer');
         }
