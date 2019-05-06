@@ -21,8 +21,8 @@ var rolePlayer = {
     'driller': roleDriller,
     'lorry': roleLorry,
     'scout': roleScout,
-    'defender': roleDefender
-    // 'miner': roleMiner
+    'defender': roleDefender,
+    'miner': roleMiner
 }
 
 /**
@@ -243,7 +243,7 @@ var theSupervisor = {
             if (rolePlayer[creep.memory.role]) {
                 rolePlayer[creep.memory.role].run(creep);
             } else {
-                console.log(creep.name + ' role=' + creep.memory.role + ' does not have a player!');
+                console.log(creep.name + JSON.stringify(creep)+' role=' + creep.memory.role + ' does not have a player!');
             }
 
         }
