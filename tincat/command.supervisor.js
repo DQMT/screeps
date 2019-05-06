@@ -226,7 +226,7 @@ var theSupervisor = {
                     if (OK == structureSpawns[0].spawnCreep(
                         roleMiner.body(),
                         roleMiner.newName(),
-                        { memory: { role: 'miner', extractor: '5ccf2926583b2350a74361ae', } }
+                        { memory: { role: 'miner', extractor: '5bbcb695d867df5e542079c8', } }
                     )) {
                         console.log('spawn a new miner from ' + structureSpawns[0]['id']);
                         return;
