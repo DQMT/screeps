@@ -244,7 +244,7 @@ var theSupervisor = {
                 rolePlayer[creep.memory.role].run(creep);
             } else {
                 console.log(creep.name + JSON.stringify(creep.memory)+' role=' + creep.memory.role + ' does not have a player!');
-                if(!creep.memory){
+                if(!creep.memory.role){
                     creep.suicide();
                 }
             }
