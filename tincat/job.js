@@ -9,6 +9,7 @@ module.exports = {
     exeTempJpb: function () {
         var miners = _.filter(Game.creeps, (creep) => creep.memory.role == 'miner');
         miners.forEach(d => {
+            console.log(d.memory.extractor);
             d.memory.extractor = '5bbcb695d867df5e542079c8';
         });
     },
