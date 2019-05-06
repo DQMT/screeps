@@ -21,8 +21,8 @@ var rolePlayer = {
     'driller': roleDriller,
     'lorry': roleLorry,
     'scout': roleScout,
-    'defender': roleDefender,
-    'miner': roleMiner
+    'defender': roleDefender
+    // 'miner': roleMiner
 }
 
 /**
