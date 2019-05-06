@@ -38,9 +38,9 @@ var roleMrhandy = {
         }
         else if (!creep.memory.recycling && creep.carry.energy == creep.carryCapacity) {
             creep.memory.recycling = true;
-            creep.say('DI,recycling!');
         }
         if (creep.memory.recycling) {
+            creep.say('recycling!');
             var container = creep.room.storage;
             if (!container || container.store.energy == container.storeCapacity) {
                 container = creep.pos.findClosestByPath(FIND_MY_STRUCTURES, {
@@ -72,10 +72,9 @@ var roleMrhandy = {
         } else {
             var target = creep.pos.findClosestByRange(FIND_DROPPED_RESOURCES);
             if (target) {
-                creep.say('droppedEnergy!');
+                creep.say('dropped!');
                 if (creep.pickup(target) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(target, { visualizePathStyle: { stroke: constants.STROKE_COLOR.LORRY } });
-
                 }
                 return;
             }
@@ -83,15 +82,14 @@ var roleMrhandy = {
             if (target) {
                 creep.say('tombstone!');//todo: other resource type
                 // console.log(JSON.stringfy(target.store));
-                if (creep.withdraw(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(target, { visualizePathStyle: { stroke: constants.STROKE_COLOR.LORRY } });
+                for (var sourceType in target.store) {
+                    if (creep.withdraw(target, sourceType) == ERR_NOT_IN_RANGE) {
+                        creep.moveTo(target, { visualizePathStyle: { stroke: constants.STROKE_COLOR.LORRY } });
+                        break;
+                    }
                 }
                 return;
             }
-            var container = creep.pos.findClosestByPath(FIND_MY_STRUCTURES, {
-                filter: (s) => (s.structureType == STRUCTURE_CONTAINER)
-                    && util.needEnergy(s)
-            });
             if (system.singleRoom()) {
                 util.walkAroundInRoom(creep);
             } else {
