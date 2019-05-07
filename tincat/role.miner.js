@@ -26,7 +26,7 @@ var roleMiner = {
     },
 
     run: function (creep) {
-        if (creep.memory.transfering && creep.carry.K == 0) {
+        if (creep.memory.transfering && !creep.carry.K) {
             creep.memory.transfering = false;
             creep.say('harvest');
         }
