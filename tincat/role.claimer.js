@@ -52,12 +52,13 @@ var roleClaimer = {
                 }
             }
         } else {
-            var exitPoint = creep.memory.exitPoint;
-            if (exitPoint) {
-                creep.moveTo(exitPoint.x, exitPoint.y);
-            } else {
-                util.moveToRoom(creep, creep.memory.roomName);
-            }
+            creep.moveTo(creep.memory.roomName);
+            // var exitPoint = creep.memory.exitPoint;
+            // if (exitPoint) {
+            //     creep.moveTo(exitPoint.x, exitPoint.y);
+            // } else {
+            //     util.moveToRoom(creep, creep.memory.roomName);
+            // }
         }
 
     }
