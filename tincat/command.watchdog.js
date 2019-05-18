@@ -26,7 +26,7 @@ function watchCreeps() {
     Memory.watch['drillers'] = drillers.length;
     Memory.watch['lorries'] = lorries.length;
     Memory.watch['miners'] = miners.length;
-    
+
     if (Game.time % 10 == 0) {
         console.log(JSON.stringify(Memory.watch));
         console.log('limits: ' + JSON.stringify(Memory.limits));
@@ -77,15 +77,29 @@ function correction() {
             }
         }
     }
-    sources.forEach(source=>{
-        if(c[source.id]){
+    sources.forEach(source => {
+        if (c[source.id]) {
             source.binds = c[source.id];
-        }else{
+        } else {
             source.binds = 0;
         }
     });
     // console.log('sources'+JSON.stringify(sources));
     Memory.system.sources = sources;
+
+    var colonies = system.colonyRoomNames();
+    colonies.forEach(c => {
+        var room = Game.rooms[c];
+        if (room && room.controller.my) {
+            var sources = room.find(FIND_SOURCES);
+            var sids = [];
+            sources.forEach(s => {
+                sids.push(s.id);
+            })
+            system.removeColony(c, sids);
+            system.addBase(c, sids);
+        }
+    })
 }
 
 var theWatchdog = {
