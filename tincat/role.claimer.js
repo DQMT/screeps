@@ -52,7 +52,7 @@ var roleClaimer = {
                 }
             }
         } else {
-            creep.moveTo(creep.memory.roomName);
+            creep.moveTo(new RoomPosition(25, 20, creep.memory.roomName));
             // var exitPoint = creep.memory.exitPoint;
             // if (exitPoint) {
             //     creep.moveTo(exitPoint.x, exitPoint.y);
