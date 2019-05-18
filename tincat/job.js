@@ -25,7 +25,7 @@ module.exports = {
         }
         this.exeOnceOff();
     },
-    exeOnce() {
+    exeOnce: function() {
         system.addColony('E46N37',['5bbcafba9099fc012e63b109','5bbcafba9099fc012e63b10a']);
     }
 };
