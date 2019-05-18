@@ -26,7 +26,6 @@ module.exports = {
         this.exeOnceOff();
     },
     exeOnce() {
-        // system.removeColony('E48N38', ['5bbcafdc9099fc012e63b4ca', '5bbcafdc9099fc012e63b4c8']);
-        // system.addBase('E48N38', ['5bbcafdc9099fc012e63b4ca', '5bbcafdc9099fc012e63b4c8']);
+        system.addColony('E46N37',['5bbcafba9099fc012e63b109','5bbcafba9099fc012e63b10a']);
     }
 };
