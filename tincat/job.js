@@ -14,7 +14,7 @@ module.exports = {
         });
     },
     exeOnceOn: function () {
-        Memory.job.once = true;
+        Memory.job  = {'once': true};
     },
     exeOnceOff: function () {
         Memory.job.once = false;
