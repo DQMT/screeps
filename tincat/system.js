@@ -229,7 +229,7 @@ module.exports = {
     colonyRoomNames: function () {
         return Memory.system['colonies'] ? Memory.system['colonies'] : [];
     },
-    availableStructureSpawns(needEnergy) {
+    availableStructureSpawns: function(needEnergy) {
         var need = needEnergy ? needEnergy : 0;
         var spawns = [];
         for (const i in Game.spawns) {
