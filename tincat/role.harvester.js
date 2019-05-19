@@ -63,7 +63,7 @@ var roleHarvester = {
             });
             if (structure && structure.structureType == STRUCTURE_TOWER) {
                 // var nc = util.getNearestCreep(structure, 'harvester');
-                var nc = structrue.pos.findClosestByPath(FIND_MY_CREEPS, {
+                var nc = structure.pos.findClosestByPath(FIND_MY_CREEPS, {
                     filter: (s) => (s.memory.role == 'harvester'
                         && creep.memory.transfering == true
                         && s.carry.energy > 0)
