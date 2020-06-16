@@ -28,28 +28,36 @@ module.exports.loop = function () {
     myConsole.clear();
     tower.defendOrRepair('E11N48');
     myConsole.append('we have ' + Memory.upgraderCount + ' upgraders ' + Memory.builderCount + ' builders ' + Memory.chargerCount + ' chargers!');
-    //Builder 
-    let sites = Game.spawns['Hospital1'].room.find(FIND_MY_CONSTRUCTION_SITES);
-    if (sites && sites.length && builderCount < 3) {
-        console.log('we have ' + sites.length + ' sites to build');
-        myConsole.append('spawn builder=' + Game.spawns['Hospital1'].spawnCreep([WORK, CARRY, CARRY, MOVE], 'Builder' + Game.time));
-        // console.log("building a builder!");
+
+    //重要优先级：Charger>Buider>Upgrader
+    var structure = Game.spawns['Hospital1'].pos.findClosestByPath(FIND_MY_STRUCTURES, {
+        filter: (s) => (s.structureType == STRUCTURE_EXTENSION
+            || s.structureType == STRUCTURE_TOWER)
+            && s.energy < s.energyCapacity
+    });
+    if (structure && chargerCount < 3) {
+        //Charger
+        myConsole.append('spawn charger=' + Game.spawns['Hospital1'].spawnCreep([WORK, CARRY, CARRY, MOVE, MOVE], 'Charger' + Game.time));
     } else {
-        var structure = Game.spawns['Hospital1'].pos.findClosestByPath(FIND_MY_STRUCTURES, {
-            filter: (s) => (s.structureType == STRUCTURE_EXTENSION
-                || s.structureType == STRUCTURE_TOWER)
-                && s.energy < s.energyCapacity
-        });
-        if (structure && chargerCount < 3) {
-            //Charger
-            myConsole.append('spawn charger=' + Game.spawns['Hospital1'].spawnCreep([WORK, CARRY, CARRY, MOVE], 'Charger' + Game.time));
+        //Builder 
+        let sites = Game.spawns['Hospital1'].room.find(FIND_MY_CONSTRUCTION_SITES);
+        if (sites && sites.length && builderCount < 2) {
+            console.log('we have ' + sites.length + ' sites to build');
+            myConsole.append('spawn builder=' + Game.spawns['Hospital1'].spawnCreep([WORK, WORK, WORK, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE], 'Builder' + Game.time));
         } else {
-            if (upgraderCount < 8) {
-                //Upgrader
-                myConsole.append('spawn upgrader=' + Game.spawns['Hospital1'].spawnCreep([WORK, CARRY, MOVE, WORK, CARRY, MOVE, WORK, CARRY, MOVE], 'Upgrader' + Game.time));
+            //Upgrader
+            if (upgraderCount < 5) {
+                myConsole.append('spawn upgrader=' + Game.spawns['Hospital1'].spawnCreep(
+                    [
+                        WORK, WORK,
+                        CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY,
+                        MOVE, MOVE, MOVE
+                    ],
+                    'Upgrader' + Game.time));
             }
         }
     }
+
     myConsole.log();
     for (const i in Game.creeps) {
         if (i.startsWith("Upgrader") || i.startsWith("Worker")) {

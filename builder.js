@@ -22,11 +22,10 @@ var builder = {
             var source = creep.pos.findClosestByPath(FIND_SOURCES);
             let res = creep.harvest(source)
             if (res == ERR_NOT_IN_RANGE) {
-               let mres =  creep.moveTo(source);
-               console.log('builder mres='+mres);
+                let mres = creep.moveTo(source);
+                console.log('builder mres=' + mres);
             } else if (res !== OK) {
-                console.log('builder harvest result = ' + res);
-                console.log(source);
+                console.log('builder harvest result = ' + res + ' source = ' + source);
             }
         }
 
