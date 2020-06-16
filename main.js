@@ -2,7 +2,7 @@ var roleUpgrader = require('./upgrader');
 var roleCharger = require('./charger');
 var roleBuilder = require('./builder');
 const myConsole = require('./console');
-const builder = require('./builder');
+const tower = require('./tower');
 
 module.exports.loop = function () {
     let upgraderCount = 0;
@@ -26,7 +26,7 @@ module.exports.loop = function () {
     Memory.builderCount = builderCount;
     Memory.chargerCount = chargerCount;
     myConsole.clear();
-
+    tower.defendOrRepair('E11N48');
     myConsole.append('we have ' + Memory.upgraderCount + ' upgraders ' + Memory.builderCount + ' builders ' + Memory.chargerCount + ' chargers!');
     //Builder 
     let sites = Game.spawns['Hospital1'].room.find(FIND_MY_CONSTRUCTION_SITES);
